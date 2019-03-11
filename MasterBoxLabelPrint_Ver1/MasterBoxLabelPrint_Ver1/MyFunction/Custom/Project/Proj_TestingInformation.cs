@@ -27,11 +27,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
         }
         public void FailParameters() {
             TotalResult = "FAIL";
-            ProductSerial = "";
+            //ProductSerial = "";
         }
         public void PassParameters() {
             TotalResult = "PASS";
-            ProductSerial = "";
+            //ProductSerial = "";
         }
 
         //property --------------------------------------//
@@ -123,6 +123,14 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
             set {
                 _error_code = value;
                 OnPropertyChanged(nameof(ErrorCode));
+            }
+        }
+        bool _use_scale; //use scale flag
+        public bool UseScaleFlag {
+            get { return _use_scale; }
+            set {
+                _use_scale = value;
+                OnPropertyChanged(nameof(UseScaleFlag));
             }
         }
     }

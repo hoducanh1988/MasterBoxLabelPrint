@@ -45,6 +45,26 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <param name="table_name"></param>
+        /// <returns></returns>
+        public bool Input_New_DataRow_To_Access_DB_Table<T>(string table_name, T t, string ignore_column_name) {
+            try {
+                if (!accessDB.IsConnected) accessDB.OpenConnection();
+                Thread.Sleep(100);
+                if (!accessDB.IsConnected) return false;
+
+                return accessDB.InsertDataToTable<T>(t, table_name, ignore_column_name);
+            }
+            catch {
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// 

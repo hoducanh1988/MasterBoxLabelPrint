@@ -211,37 +211,52 @@
 
                 
                 <!--CÀI ĐẶT CÂN TRỌNG LƯỢNG-->
-                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT CÂN TRỌNG LƯỢNG (LOẠI GIAO TIẾP QUA UART)"/>
-                <Grid>
-                    <Label Content="Tên cổng UART"/>
-                    <ComboBox x:Name="cbb_port_name"
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=PrintMode}" Value="Combine label printing with product weighing">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=PrintMode}" Value="Only print label">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT CÂN TRỌNG LƯỢNG (LOẠI GIAO TIẾP QUA UART)"/>
+                    <Grid>
+                        <Label Content="Tên cổng UART"/>
+                        <ComboBox x:Name="cbb_port_name"
                               Tag="serialportname" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialPortName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Tốc độ baud"/>
-                    <ComboBox x:Name="cbb_baud_rate"
+                    </Grid>
+                    <Grid>
+                        <Label Content="Tốc độ baud"/>
+                        <ComboBox x:Name="cbb_baud_rate"
                               Tag="serialbaudrate" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialBaudRate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Data Bits"/>
-                    <ComboBox x:Name="cbb_data_bit"
+                    </Grid>
+                    <Grid>
+                        <Label Content="Data Bits"/>
+                        <ComboBox x:Name="cbb_data_bit"
                               Tag="serialdatabits" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialDataBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Parity"/>
-                    <ComboBox x:Name="cbb_parity"
+                    </Grid>
+                    <Grid>
+                        <Label Content="Parity"/>
+                        <ComboBox x:Name="cbb_parity"
                               Tag="serialparity" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialParity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
-                <Grid>
-                    <Label Content="Stop bits"/>
-                    <ComboBox x:Name="cbb_stop_bit"
+                    </Grid>
+                    <Grid>
+                        <Label Content="Stop bits"/>
+                        <ComboBox x:Name="cbb_stop_bit"
                               Tag="serialstopbits" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialStopBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
+                    </Grid>
+                </StackPanel>
+                
 
                 
                 <!--CÀI ĐẶT LƯU LOG-->

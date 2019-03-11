@@ -126,11 +126,37 @@
                                Content="{Binding Path=LotProgress, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=UseScaleFlag}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=UseScaleFlag}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                
                                 <Label Style="{StaticResource label_title}" Content="Weight Limit (g):"/>
                                 <Label Style="{StaticResource label_content}" 
                                Content="{Binding Path=WeightStandard, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                             <Grid>
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=UseScaleFlag}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=UseScaleFlag}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                
                                 <Label Style="{StaticResource label_title}" Content="Weight Actual (g):"/>
                                 <Label Style="{StaticResource label_content}" 
                                Content="{Binding Path=WeightActual, UpdateSourceTrigger=PropertyChanged}"/>
@@ -289,7 +315,7 @@
 
                 <TabItem>
                     <TabItem.Header>
-                        <Label FontSize="14" FontWeight="SemiBold" Content="Recent Products"/>
+                        <Label FontSize="14" FontWeight="SemiBold" Content="Recent Printed Products"/>
                     </TabItem.Header>
 
                     <Grid>

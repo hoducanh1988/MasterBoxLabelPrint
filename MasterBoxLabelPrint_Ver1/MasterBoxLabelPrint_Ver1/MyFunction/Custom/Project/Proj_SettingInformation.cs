@@ -102,8 +102,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _print_mode = value;
                 OnPropertyChanged(nameof(PrintMode));
-                if (PrintMode == "Combine label printing with product weighing") UseScaleFlag = true;
-                else UseScaleFlag = false;
+                if (PrintMode == "Combine label printing with product weighing") MyGlobal.MyTesting.UseScaleFlag = true;
+                else MyGlobal.MyTesting.UseScaleFlag = false;
             }
         }
 
@@ -377,16 +377,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 
         //9
         #region OTHER ###################################################
-
-        bool _use_scale; //use scale flag
-        public bool UseScaleFlag { 
-            get { return _use_scale; }
-            set {
-                _use_scale = value;
-                OnPropertyChanged(nameof(UseScaleFlag));
-            }
-        }
-
         string _weight_lower_limit; //weight lower
         public string WeightLL {
             get { return _weight_lower_limit; }

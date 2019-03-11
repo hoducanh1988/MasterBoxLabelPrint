@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
+using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
@@ -73,7 +74,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 }
 
                 //check product weight
-                if (MyGlobal.MySetting.UseScaleFlag  == true) {
+                if (MyGlobal.MyTesting.UseScaleFlag  == true) {
 
                 }
 
@@ -84,6 +85,13 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 {
                     txt_SN.IsEnabled = true;
                     MyGlobal.MyTesting.FailParameters();
+
+                    //save log
+                    _save_log_();
+
+                    //load ms database
+                    _load_ms_datatable_();
+
                     return;
                 }
 
@@ -93,10 +101,8 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                     txt_SN.IsEnabled = true;
                     MyGlobal.MyTesting.PassParameters();
 
-
-
-
                     //save log
+                    _save_log_();
 
                     //gen lot
                     MyGlobal.MyTesting.LotCount = string.Format("{0}", int.Parse(MyGlobal.MyTesting.LotCount) + 1);
@@ -106,6 +112,9 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                     }
 
                     //save testing value
+
+                    //load ms database
+                    _load_ms_datatable_();
 
                     return;
                 }
@@ -119,6 +128,26 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 if (MyGlobal.MyTesting.TotalResult.ToLower().Equals("waiting...")) MyGlobal.MyTesting.TotalResult = "";
             }
         }
+
+
+
+
+        bool _save_log_() {
+            bool r = false;
+            r = new io_msaccdb_tbDataLog().WriteData(); //save log to tb_datalog
+
+
+            return r;
+        }
+        bool _load_ms_datatable_() {
+            bool r = false;
+            this.datagrid_recentdatalog.ItemsSource = new io_msaccdb_tbDataLog().ReadData(); //read log from tb_datalog
+
+
+            MyGlobal.MyTesting.ProductSerial = ""; //clear product serial number
+            return r;
+        }
+
 
     }
 }

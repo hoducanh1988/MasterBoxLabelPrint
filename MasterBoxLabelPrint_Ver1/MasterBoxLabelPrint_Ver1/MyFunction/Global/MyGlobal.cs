@@ -14,8 +14,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static string Setting_FileFullName = string.Format("{0}Setting.xml", AppDomain.CurrentDomain.BaseDirectory);
 
         //objects
-        public static Proj_SettingInformation MySetting = new Proj_SettingInformation();
         public static Proj_TestingInformation MyTesting = new Proj_TestingInformation();
+        public static Proj_SettingInformation MySetting = new Proj_SettingInformation();
+        
         public static AccessDatabase.MasterBoxAccessDB MasterBox = null;
 
         public static List<Init_Guideline> Guidelines = null;

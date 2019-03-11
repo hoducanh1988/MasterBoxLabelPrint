@@ -2,7 +2,7 @@
   <ProductionPlace>1</ProductionPlace>
   <ProductionYear>19</ProductionYear>
   <ProductionCommand>#12345</ProductionCommand>
-  <PrintMode>Combine label printing with product weighing</PrintMode>
+  <PrintMode>Only print label</PrintMode>
   <LineIndex>1</LineIndex>
   <StationName>MasterBoxLabelPrint</StationName>
   <StationIndex>1</StationIndex>
@@ -21,14 +21,13 @@
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <DirLog>D:\LOGDATA</DirLog>
-  <VisibleLogQuantity>100</VisibleLogQuantity>
+  <VisibleLogQuantity>10</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>
   <ProductCode>018</ProductCode>
   <ColorCode>F</ColorCode>
   <ProductWeight>400</ProductWeight>
   <WeightTolerance>10</WeightTolerance>
   <LotQuantity>20</LotQuantity>
-  <UseScaleFlag>true</UseScaleFlag>
   <WeightLL>390</WeightLL>
   <WeightUL>410</WeightUL>
   <ProductInfo>&lt; 018,   F,   400,   10,   20 &gt;</ProductInfo>
