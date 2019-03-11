@@ -1,0 +1,289 @@
+﻿<UserControl x:Class="MasterBoxLabelPrint_Ver1.MyUserControl.ucSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="595" d:DesignWidth="985" Background="White">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        
+        <!--content-->
+        <ScrollViewer>
+            
+            <!--<ScrollViewer.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.25" Color="#FFFFFF"/>
+                    <GradientStop Offset="0.75" Color="#E0E0E0"/>
+                    <GradientStop Offset="0.95" Color="#E0E0E0"/>
+                </LinearGradientBrush>
+            </ScrollViewer.Background>-->
+            
+            <ScrollViewer.Resources>
+                <!--label titlte-->
+                <Style x:Key="label_style" TargetType="Label">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="BorderBrush" Value="#777777"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="Margin" Value="0,15,0,0"/>
+
+                </Style>
+                
+                <!--label content-->
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="Margin" Value="0,0,0,0"/>
+                    <Setter Property="Width" Value="180"/>
+                    <Setter Property="BorderBrush" Value="#777777"/>
+                    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="Padding" Value="5,3,0,0"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+                
+                <!--textbox-->
+                <Style TargetType="TextBox">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderBrush" Value="#777777"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Margin" Value="180,0,0,0"/>
+                    <Setter Property="Padding" Value="5,0,0,0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Foreground" Value="Blue"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#e1f2b8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                
+                <!--combobox-->
+                <Style TargetType="ComboBox">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="BorderBrush" Value="#777777"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Margin" Value="180,0,0,0"/>
+                    <Setter Property="Padding" Value="5,0,0,0"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="Foreground" Value="Blue"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="IsEditable" Value="True"/>
+                    <EventSetter Event="PreviewMouseWheel" Handler="ComboBox_PreviewMouseWheel"/>
+                </Style>
+                
+                <!--button-->
+                <Style x:Key="button_style" TargetType="Button">
+                    <Setter Property="Content" Value="..."/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="Width" Value="20"/>
+                    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+                    <EventSetter Event="Click" Handler="Button_Click"/>
+                </Style>
+                
+            </ScrollViewer.Resources>
+
+            <StackPanel Margin="15,0,15,5" Width="700" HorizontalAlignment="Left">
+             
+                <!--CÀI ĐẶT SẢN XUẤT-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT SẢN XUẤT"/>
+                <Grid>
+                    <Label Content="Nhà máy sản xuất"/>
+                    <ComboBox x:Name="cbb_production_place"
+                        Tag="productionplace" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=ProductionPlace, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Năm sản xuất"/>
+                    <ComboBox x:Name="cbb_production_year"
+                        Tag="productionyear" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=ProductionYear, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Mã lệnh sản xuất"/>
+                    <TextBox Tag="productioncommand" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=ProductionCommand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                </Grid>
+                <Grid>
+                    <Label Content="Chế độ in tem"/>
+                    <ComboBox x:Name="cbb_print_mode"
+                              Tag="printmode" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=PrintMode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+
+                
+                <!--CÀI ĐẶT TRẠM-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT TRẠM IN TEM"/>
+                <Grid>
+                    <Label Content="Chuyền"/>
+                    <ComboBox x:Name="cbb_line"
+                              Tag="lineindex" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LineIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Tên công đoạn"/>
+                    <ComboBox x:Name="cbb_station_name"
+                              Tag="stationname" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=StationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Số thứ tự của trạm"/>
+                    <ComboBox x:Name="cbb_station_index"
+                              Tag="stationindex" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=StationIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Số thứ tự Jig"/>
+                    <ComboBox x:Name="cbb_jig_index"
+                              Tag="jigindex" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=JigIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Tên người thao tác"/>
+                    <TextBox Tag="operator" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=Operator, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+
+                
+                <!--CÀI ĐẶT SẢN PHẨM-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT SẢN PHẨM"/>
+                <Grid>
+                    <Label Content="File quản lý sản phẩm"/>
+                    <TextBox Tag="fileproduct" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=FileProduct, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource button_style}" Tag="select_file_product"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Tên sản phẩm"/>
+                    <ComboBox x:Name="cbb_product_name"
+                              Tag="productname" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=ProductName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Version sản phẩm"/>
+                    <ComboBox x:Name="cbb_product_version"
+                              Tag="productversion" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=ProductVersion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Mã sản phẩm theo chuyền"/>
+                    <TextBox Tag="productcodeinline" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=ProductCodeInLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+
+      
+                <!--CÀI ĐẶT MÁY IN NHÃN-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT MÁY IN NHÃN"/>
+                <Grid>
+                    <Label Content="Tên máy in nhãn"/>
+                    <TextBox Tag="printname" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=PrinterName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource button_style}" Tag="select_printer"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Số lượng nhãn in ra"/>
+                    <ComboBox x:Name="cbb_print_page"
+                              Tag="printpage" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=PrintPage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="File in tem (file MS Access)"/>
+                    <TextBox Tag="msaccessfile" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=MSAccessFile, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource button_style}" Tag="select_msdb"/>
+                </Grid>
+
+                
+                <!--CÀI ĐẶT CÂN TRỌNG LƯỢNG-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT CÂN TRỌNG LƯỢNG (LOẠI GIAO TIẾP QUA UART)"/>
+                <Grid>
+                    <Label Content="Tên cổng UART"/>
+                    <ComboBox x:Name="cbb_port_name"
+                              Tag="serialportname" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=SerialPortName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Tốc độ baud"/>
+                    <ComboBox x:Name="cbb_baud_rate"
+                              Tag="serialbaudrate" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=SerialBaudRate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Data Bits"/>
+                    <ComboBox x:Name="cbb_data_bit"
+                              Tag="serialdatabits" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=SerialDataBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Parity"/>
+                    <ComboBox x:Name="cbb_parity"
+                              Tag="serialparity" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=SerialParity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Stop bits"/>
+                    <ComboBox x:Name="cbb_stop_bit"
+                              Tag="serialstopbits" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=SerialStopBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+
+                
+                <!--CÀI ĐẶT LƯU LOG-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT LƯU LOG"/>
+                <Grid>
+                    <Label Content="Đường dẫn lưu log"/>
+                    <TextBox Tag="dirlog" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=DirLog, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource button_style}" Tag="select_logdir"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Số lượng log hiển thị"/>
+                    <ComboBox x:Name="cbb_visible_log_quantity"
+                        Tag="visiblelogquantity" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=VisibleLogQuantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+
+
+                <!--CÀI ĐẶT SOP-->
+                <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT SOP"/>
+                <Grid>
+                    <Label Content="SOP Server"/>
+                    <TextBox Tag="sopserver" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=SOPServer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                
+
+                <TextBlock Margin="0,0,0,30"/>
+            </StackPanel>
+            
+        </ScrollViewer>
+        
+        <!--Legend-->
+        <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#777777">
+            <TextBlock FontSize="13" x:Name="tbGuide" Foreground="Red" FontWeight="Normal" FontStyle="Normal" Padding="15,5,0,0" Background="Transparent" TextWrapping="Wrap" TextBlock.LineHeight="1" Text=""/>
+        </Border>
+        
+        <!--button-->
+        <Grid Grid.Row="2">
+            <Button Click="Button_Click" Tag="save_setting" FontSize="18" Background="#C0C0C0" BorderThickness="0,0,0,0" Content="Save Setting"/>
+        </Grid>
+        
+    </Grid>
+    
+</UserControl>

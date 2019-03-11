@@ -1,0 +1,35 @@
+﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProductionPlace>1</ProductionPlace>
+  <ProductionYear>19</ProductionYear>
+  <ProductionCommand>#12345</ProductionCommand>
+  <PrintMode>Combine label printing with product weighing</PrintMode>
+  <LineIndex>1</LineIndex>
+  <StationName>MasterBoxLabelPrint</StationName>
+  <StationIndex>1</StationIndex>
+  <JigIndex>1</JigIndex>
+  <Operator>ABCD</Operator>
+  <FileProduct>Product_Ver1.csv</FileProduct>
+  <ProductName>GW020BoB</ProductName>
+  <ProductCodeInLine>ONT.02.4NU.1F.IM2 (HY5NPE5N000002NP)</ProductCodeInLine>
+  <ProductVersion>3</ProductVersion>
+  <PrinterName>Microsoft Print to PDF</PrinterName>
+  <PrintPage>1</PrintPage>
+  <MSAccessFile>MASTER_LABLE_PRINT_20190109.accdb</MSAccessFile>
+  <SerialPortName>COM3</SerialPortName>
+  <SerialBaudRate>9600</SerialBaudRate>
+  <SerialDataBits>8</SerialDataBits>
+  <SerialParity>None</SerialParity>
+  <SerialStopBits>1</SerialStopBits>
+  <DirLog>D:\LOGDATA</DirLog>
+  <VisibleLogQuantity>100</VisibleLogQuantity>
+  <SOPServer>192.168.10.1</SOPServer>
+  <ProductCode>018</ProductCode>
+  <ColorCode>F</ColorCode>
+  <ProductWeight>400</ProductWeight>
+  <WeightTolerance>10</WeightTolerance>
+  <LotQuantity>20</LotQuantity>
+  <UseScaleFlag>true</UseScaleFlag>
+  <WeightLL>390</WeightLL>
+  <WeightUL>410</WeightUL>
+  <ProductInfo>&lt; 018,   F,   400,   10,   20 &gt;</ProductInfo>
+</Proj_SettingInformation>
