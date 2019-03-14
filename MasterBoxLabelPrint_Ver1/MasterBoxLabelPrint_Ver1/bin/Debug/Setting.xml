@@ -1,6 +1,6 @@
 ﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProductionPlace>1</ProductionPlace>
-  <ProductionYear>19</ProductionYear>
+  <ProductionYear>18</ProductionYear>
   <ProductionCommand>#12345</ProductionCommand>
   <PrintMode>Only print label</PrintMode>
   <LineIndex>1</LineIndex>
@@ -11,7 +11,7 @@
   <FileProduct>Product_Ver1.csv</FileProduct>
   <ProductName>GW020BoB</ProductName>
   <ProductCodeInLine>ONT.02.4NU.1F.IM2 (HY5NPE5N000002NP)</ProductCodeInLine>
-  <ProductVersion>3</ProductVersion>
+  <ProductVersion>1</ProductVersion>
   <PrinterName>Microsoft Print to PDF</PrinterName>
   <PrintPage>1</PrintPage>
   <MSAccessFile>MASTER_LABLE_PRINT_20190109.accdb</MSAccessFile>
@@ -21,14 +21,14 @@
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <DirLog>D:\LOGDATA</DirLog>
-  <VisibleLogQuantity>10</VisibleLogQuantity>
+  <VisibleLogQuantity>50</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>
-  <ProductCode>018</ProductCode>
+  <ProductCode>008</ProductCode>
   <ColorCode>F</ColorCode>
   <ProductWeight>400</ProductWeight>
   <WeightTolerance>10</WeightTolerance>
   <LotQuantity>20</LotQuantity>
   <WeightLL>390</WeightLL>
   <WeightUL>410</WeightUL>
-  <ProductInfo>&lt; 018,   F,   400,   10,   20 &gt;</ProductInfo>
+  <ProductInfo>&lt; 008,   F,   400,   10,   20 &gt;</ProductInfo>
 </Proj_SettingInformation>

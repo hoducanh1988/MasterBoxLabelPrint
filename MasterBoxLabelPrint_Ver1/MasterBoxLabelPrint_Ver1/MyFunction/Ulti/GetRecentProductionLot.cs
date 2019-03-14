@@ -12,20 +12,28 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
     public class GetRecentProductionLot {
         static string _file_productionlot = string.Format("{0}tmp_\\Recent.dll", AppDomain.CurrentDomain.BaseDirectory);
         static string tmpData = ""; //Lot Name, Lot Progress
+        string _line = "", _place = "", _year = "", _code = "";
 
         //get all text from file production lot
-        static GetRecentProductionLot() {
+        public GetRecentProductionLot() { }
+
+        public GetRecentProductionLot(string line, string place, string year, string code) {
+            this._line = line;
+            this._place = place;
+            this._year = year;
+            this._code = code;
+
             if (File.Exists(_file_productionlot) == true) {
                 tmpData = File.ReadAllText(_file_productionlot);
             }
         }
 
         //get recent lot
-        public static void GetData() {
+        public void GetData() {
             try {
                 if (string.IsNullOrEmpty(tmpData)) {
                     MyGlobal.MyTesting.LotCount = "0";
-                    MyGlobal.MyTesting.LotName = new GenerateProductionLot().Gererate();
+                    MyGlobal.MyTesting.LotName = new GenerateProductionLot(_line, _place, _year, _code).Gererate();
                 }
                 else {
                     string[] buffer = tmpData.Split(',');
@@ -40,7 +48,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
 
         //write lot info to file
-        public static bool SetData() {
+        public bool SetData() {
             try {
                 if (string.IsNullOrEmpty(MyGlobal.MyTesting.LotName) == false && string.IsNullOrEmpty(MyGlobal.MyTesting.LotProgress) == false) {
                     File.WriteAllText(_file_productionlot, string.Format("{0},{1}", MyGlobal.MyTesting.LotName, MyGlobal.MyTesting.LotProgress));

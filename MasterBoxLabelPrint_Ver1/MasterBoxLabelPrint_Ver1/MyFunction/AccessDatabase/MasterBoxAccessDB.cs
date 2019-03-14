@@ -206,7 +206,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
                 // Open a database in exclusive mode:
                 oAccess.OpenCurrentDatabase(Access_FileFullName);
 
-                //// Print preview a report named IMEI_SN_fPrint:
+                //// Print preview a report named IMEI_SN_fPrint: //1
                 //oAccess.DoCmd.OpenReport(
                 //   "IMEI_SN_fPrint", //ReportName
                 //   Access.AcView.acViewNormal, //View
@@ -214,12 +214,30 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
                 //   System.Reflection.Missing.Value //WhereCondition
                 //   );
 
-                // Print a report named IMEI_SN_fPrint:
-                oAccess.DoCmd.OpenReport(
-                   report_name, //ReportName
-                   Access.AcView.acViewNormal, //View
-                   System.Reflection.Missing.Value, //FilterName
-                   System.Reflection.Missing.Value //WhereCondition
+                //// Print a report named IMEI_SN_fPrint: //2
+                //oAccess.DoCmd.OpenReport(
+                //   report_name, //ReportName
+                //   Access.AcView.acViewNormal, //View
+                //   System.Reflection.Missing.Value, //FilterName
+                //   System.Reflection.Missing.Value //WhereCondition
+                //   );
+
+
+                // Select the Employees report in the database window: //3
+                oAccess.DoCmd.SelectObject(
+                   Access.AcObjectType.acReport, //ObjectType
+                   report_name, //ObjectName
+                   true //InDatabaseWindow
+                   );
+
+                // Print 1 copies of the selected object:
+                oAccess.DoCmd.PrintOut(
+                   Access.AcPrintRange.acPrintAll, //PrintRange
+                   System.Reflection.Missing.Value, //PageFrom
+                   System.Reflection.Missing.Value, //PageTo
+                   Access.AcPrintQuality.acHigh, //PrintQuality
+                   1, //Copies
+                   false //CollateCopies
                    );
 
                 oAccess.CloseCurrentDatabase();

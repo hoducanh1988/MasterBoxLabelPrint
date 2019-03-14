@@ -99,7 +99,7 @@ namespace MasterBoxLabelPrint_Ver1
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            GetRecentProductionLot.SetData();
+            new GetRecentProductionLot().SetData();
         }
     }
 }

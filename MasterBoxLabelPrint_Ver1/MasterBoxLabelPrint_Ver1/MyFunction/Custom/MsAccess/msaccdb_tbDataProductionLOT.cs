@@ -20,4 +20,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
         public string Rework { get; set; }
 
     }
+
+    public class msaccdb_ProductionLOT {
+        public string Lot { get; set; }
+    }
+
 }

@@ -73,7 +73,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_place = value;
                 OnPropertyChanged(nameof(ProductionPlace));
-                GetRecentProductionLot.GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
             }
         }
 
@@ -83,7 +83,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_year = value;
                 OnPropertyChanged(nameof(ProductionYear));
-                GetRecentProductionLot.GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
             }
         }
 
@@ -118,7 +118,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _line_index = value;
                 OnPropertyChanged(nameof(LineIndex));
-                GetRecentProductionLot.GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
             }
         }
 
@@ -181,7 +181,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 MyGlobal.MyTesting.ProductName = ProductName;
 
                 Get_product_info();
-                GetRecentProductionLot.GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
             }
         }
 

@@ -26,7 +26,38 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             tbDataProductionLot.ProductName = setting.ProductName;
             tbDataProductionLot.ProductSerial = testing.ProductSerial;
             tbDataProductionLot.Rework = "-";
-            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool WriteData() {
+            try {
+                var box = MyGlobal.MasterBox;
+                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", this.tbDataProductionLot, "tb_ID");
+            }
+            catch {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<msaccdb_tbDataProductionLOT> ReadData() {
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "Line", "", "Lot", "");
+        }
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<msaccdb_ProductionLOT> ReadProductionLot() {
+            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot");
         }
     }
 }

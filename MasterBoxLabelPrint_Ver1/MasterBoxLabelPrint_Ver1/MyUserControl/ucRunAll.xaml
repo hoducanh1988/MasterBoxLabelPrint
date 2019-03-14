@@ -286,13 +286,13 @@
                         </Grid.RowDefinitions>
 
                         <WrapPanel Grid.Row="0">
-                            <Button Content="Search" Width="80" Margin="2,0,0,0" Tag="search_serial"
+                            <Button Content="Search" Width="80" Margin="2,0,0,0" Tag="search_datalog"
                                     Click="Button_Click"/>
 
                             <Label Margin="30,0,0,0" Content="Lot name: " Width="70"/>
                             <TextBox x:Name="txt_lot_name" VerticalContentAlignment="Center" Width="170"/>
                             <Label Margin="30,0,0,0" Content="Product Serial: " Width="100"/>
-                            <TextBox x:Name="txt_search_sn" VerticalContentAlignment="Center" Width="200"/>
+                            <TextBox x:Name="txt_search_datalog_sn" VerticalContentAlignment="Center" Width="200"/>
                             <Label Margin="30,0,0,0" Content="Result: "/>
                             <ComboBox x:Name="cbb_list_result" FontWeight="SemiBold" VerticalContentAlignment="Center" Width="200" IsEditable="True"/>
                             
@@ -325,10 +325,12 @@
                         </Grid.RowDefinitions>
 
                         <WrapPanel Grid.Row="0">
-                            <Button Content="Search" Width="80" Margin="2,0,0,0" Tag="search_lot"
+                            <Button Content="Search" Width="80" Margin="2,0,0,0" Tag="search_printed"
                                     Click="Button_Click"/>
                             <Label Margin="30,0,0,0" Content="Product LOT: " Width="100"/>
-                            <TextBox VerticalContentAlignment="Center" Width="200"/>
+                            <TextBox x:Name="txt_printed_lot" VerticalContentAlignment="Center" Width="200"/>
+                            <Label Margin="30,0,0,0" Content="Product Serial: " Width="100"/>
+                            <TextBox x:Name="txt_search_printed_sn" VerticalContentAlignment="Center" Width="200"/>
                             <Label Margin="30,0,0,0" Content="Status: "/>
                             <ComboBox VerticalContentAlignment="Center" Width="200" IsEditable="True"/>
 
@@ -362,9 +364,14 @@
                             
                         </WrapPanel>
 
-                        <DataGrid x:Name="datagrid_recentlot" Grid.Row="1" Background="Transparent" BorderThickness="0"/>
-
-
+                        <DataGrid x:Name="datagrid_recentlot" Grid.Row="1" Background="Transparent" BorderThickness="0">
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Print label" Click="MenuItem_Click"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                        
                     </Grid>
                 </TabItem>
 

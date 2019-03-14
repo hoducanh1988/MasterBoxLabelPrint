@@ -33,7 +33,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             ValidateItems.Add(new validate_item() { ActionName = "The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = MyGlobal.MySetting.ProductionPlace });
             ValidateItems.Add(new validate_item() { ActionName = "Product version is not correct", ActualValue = _get_value_from_serial(7, 1), StandardValue = MyGlobal.MySetting.ProductVersion });
             ValidateItems.Add(new validate_item() { ActionName = "Color code is not correct", ActualValue = _get_value_from_serial(8, 1), StandardValue = MyGlobal.MySetting.ColorCode });
-            ValidateItems.Add(new validate_item() { ActionName = "Year of manufacture is not correct", ActualValue = _get_value_from_serial(4, 1), StandardValue = MyGlobal.MySetting.ProductionYear });
+            ValidateItems.Add(new validate_item() { ActionName = "Year of manufacture is not correct", ActualValue = _get_value_from_serial(4, 1), StandardValue = _convert_production_year() });
             ValidateItems.Add(new validate_item() { ActionName = "The production week is not correct", ActualValue = _get_value_from_serial(5, 2), StandardValue = "01~52" });
             ValidateItems.Add(new validate_item() { ActionName = "The last six characters of the serial number are not hexadecimal", ActualValue = _get_value_from_serial(9, 6), StandardValue = "^[0-9,A-F]{6}$" });
         }
@@ -47,6 +47,19 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
                 return "";
             }
         }
+        //convert production year from number to alphabet
+        string _convert_production_year() {
+            try {
+                int _bias = 13; //<=>2013
+                int _year = int.Parse(MyGlobal.MySetting.ProductionYear); //19,20,21...
+                int _diff_year = _year - _bias;
+
+                return _diff_year < 10 ? _diff_year.ToString() : Char.ConvertFromUtf32(55 + _diff_year);
+            } catch {
+                return "";
+            }
+        }
+
 
         //generic method --------------------------------------//
         int _is_value_validate_same_setting(validate_item validate_Item) {
