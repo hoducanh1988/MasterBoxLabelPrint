@@ -134,6 +134,7 @@
     <Compile Include="MyFunction\IO\io_msaccdb_tbIMEISerialPrint.cs" />
     <Compile Include="MyFunction\Ulti\GenerateProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\GetRecentProductionLot.cs" />
+    <Compile Include="MyFunction\Ulti\ReprintProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\zCNotifyPropertyChanged.cs" />
     <Compile Include="MyFunction\Ulti\Utility.cs" />
     <Compile Include="MyFunction\Ulti\ValidateProductSerialNumber.cs" />

@@ -358,7 +358,7 @@
                             <Button Content="Search" Width="80" Margin="2,0,0,0" Tag="search_lot"
                                     Click="Button_Click"/>
                             <Label Margin="30,0,0,0" Content="Product LOT: " Width="100"/>
-                            <TextBox VerticalContentAlignment="Center" Width="200"/>
+                            <TextBox x:Name="txt_lot_recent" VerticalContentAlignment="Center" Width="200"/>
                             <Label Margin="30,0,0,0" Content="Status: "/>
                             <ComboBox VerticalContentAlignment="Center" Width="200" IsEditable="True"/>
                             
@@ -367,7 +367,7 @@
                         <DataGrid x:Name="datagrid_recentlot" Grid.Row="1" Background="Transparent" BorderThickness="0">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Print label" Click="MenuItem_Click"/>
+                                    <MenuItem Header="Reprint label" Click="MenuItem_Click"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                         </DataGrid>

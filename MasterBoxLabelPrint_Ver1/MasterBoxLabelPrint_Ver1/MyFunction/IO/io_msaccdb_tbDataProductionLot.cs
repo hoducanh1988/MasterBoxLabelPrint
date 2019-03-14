@@ -50,7 +50,14 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public List<msaccdb_tbDataProductionLOT> ReadData() {
             return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "Line", "", "Lot", "");
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<msaccdb_tbDataProductionLOT> ReadProduct(string lot_name) {
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", 1000, "tb_ID", "ProductSerial", "", "Line", "", "Lot", lot_name);
+        }
 
         /// <summary>
         /// 
@@ -58,6 +65,14 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// <returns></returns>
         public List<msaccdb_ProductionLOT> ReadProductionLot() {
             return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<msaccdb_ProductionLOT> ReadProductionLot(string lot_name) {
+            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot", lot_name);
         }
     }
 }

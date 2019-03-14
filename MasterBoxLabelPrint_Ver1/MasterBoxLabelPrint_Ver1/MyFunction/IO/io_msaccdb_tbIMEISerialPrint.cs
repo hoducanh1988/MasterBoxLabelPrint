@@ -12,8 +12,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
     public class io_msaccdb_tbIMEISerialPrint {
         msaccdb_IMEISerialPrint tbIMEISerialPrint = null;
 
+        //first print
         public io_msaccdb_tbIMEISerialPrint() {
-
             var testing = MyGlobal.MyTesting;
             var setting = MyGlobal.MySetting;
             this.tbIMEISerialPrint = new msaccdb_IMEISerialPrint();
@@ -26,8 +26,24 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             tbIMEISerialPrint.SN = testing.ProductSerial;
             tbIMEISerialPrint.TimeScan = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
-        
-        
+
+        //reprint
+        public io_msaccdb_tbIMEISerialPrint(msaccdb_tbDataProductionLOT productionLOT) {
+            this.tbIMEISerialPrint = new msaccdb_IMEISerialPrint();
+            var setting = MyGlobal.MySetting;
+
+            Init_Product product = MyGlobal.Products.Single(p => p.name == productionLOT.ProductName);
+
+            tbIMEISerialPrint.IMEI = "";
+            tbIMEISerialPrint.LoSX = productionLOT.Lot;
+            tbIMEISerialPrint.NoLine = product.code;
+            tbIMEISerialPrint.NoLine1 = setting.LineIndex;
+            tbIMEISerialPrint.Colour = product.color;
+            tbIMEISerialPrint.SN = productionLOT.ProductSerial;
+            tbIMEISerialPrint.TimeScan = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        }
+
+
 
         /// <summary>
         /// 

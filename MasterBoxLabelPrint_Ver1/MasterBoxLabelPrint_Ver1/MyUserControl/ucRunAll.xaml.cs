@@ -54,7 +54,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                         break;
                     }
                 case "search_lot": {
-                        this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot();
+                        this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot(txt_lot_recent.Text);
                         MessageBox.Show("Success.", "Search Log MSAccess", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
                     }
@@ -121,18 +121,21 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                         MyGlobal.MyTesting.LotCount = "0";
                         MyGlobal.MyTesting.LotName =  new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductCode).Gererate();
 
-                        //print label
-                        MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint");
-                        Thread.Sleep(100);
+                        Thread t = new Thread(new ThreadStart(() => {
+                            //print label
+                            MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint");
+                            Thread.Sleep(100);
 
-                        //delete all row in table imei print
-                        new io_msaccdb_tbIMEISerialPrint().DeleteAll();
-
+                            //delete all row in table imei print
+                            new io_msaccdb_tbIMEISerialPrint().DeleteAll();
+                        }));
+                        t.IsBackground = true;
+                        t.Start();
                     }
 
                     //load ms database
                     _load_ms_datatable_();
-
+                    
                     return;
                 }
             
@@ -161,7 +164,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         bool _load_ms_datatable_() {
             bool r = false;
             this.datagrid_recentdatalog.ItemsSource = new io_msaccdb_tbDataLog().ReadData(); //read log from tb_datalog
-            //this.datagrid_recentproduct.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadData(); //read serial from tb_DataProductionLot
+            this.datagrid_recentproduct.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadData(); //read serial from tb_DataProductionLot
             //this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot(); //read all lot from tb_DataProductionLot
 
             MyGlobal.MyTesting.ProductSerial = ""; //clear product serial number
@@ -169,7 +172,34 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
+            MenuItem item = sender as MenuItem;
 
+            switch (item.Header) {
+                case "Reprint label": {
+                        string msg = "";
+                        string lot_selected = "";
+
+                        try {
+                            msaccdb_ProductionLOT row = (msaccdb_ProductionLOT) this.datagrid_recentlot.SelectedValue;
+                            lot_selected = row.Lot;
+                        } catch { }
+
+
+                        if (lot_selected != "") {
+                            Thread t = new Thread(new ThreadStart(() => {
+                                bool r = new ReprintProductionLot(lot_selected).Print(out msg);
+                                MessageBox.Show(r ? "Success" : "Fail\n" + msg, "Reprint", MessageBoxButton.OK, r ? MessageBoxImage.Information : MessageBoxImage.Error);
+                            }));
+                            t.IsBackground = true;
+                            t.Start();
+                        }
+                        else {
+                            MessageBox.Show("Please select a production lot.", "Reprint", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        
+                        break;
+                    }
+            }
         }
     }
 }

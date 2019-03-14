@@ -20,7 +20,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
         /// </summary>
         /// <param name="access_file_name"></param>
         public MasterBoxAccessDB(string access_file_name) {
-            Access_FileFullName = access_file_name;
+            Access_FileFullName = string.Format("{0}{1}",AppDomain.CurrentDomain.BaseDirectory, access_file_name);
             accessDB = new MSAccessDB(Access_FileFullName);
         }
 
@@ -134,6 +134,27 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
         /// <param name="table_name"></param>
         /// <param name="row_quantity"></param>
         /// <returns></returns>
+        public List<T> Get_Distinct_Newest_DataRow_From_Access_DB_Table<T>(string table_name, int row_quantity, string selected_Field, string field_value) where T : class, new() {
+            try {
+                if (!accessDB.IsConnected) accessDB.OpenConnection();
+                Thread.Sleep(100);
+                if (!accessDB.IsConnected) return null;
+
+                return accessDB.QueryDataReturnListObject<T>(string.Format("SELECT DISTINCT TOP {0} {1} FROM {2} WHERE {1} LIKE '%{3}%'", row_quantity, selected_Field, table_name, field_value));
+            }
+            catch {
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table_name"></param>
+        /// <param name="row_quantity"></param>
+        /// <returns></returns>
         public List<T> Get_Specified_DataRow_From_Access_DB_Table<T>(string table_name, int row_quantity, string Field_Order, string ref_Field1, string field_Value1, string ref_Field2, string field_Value2, string ref_Field3, string field_Value3) where T : class, new() {
             try {
                 if (!accessDB.IsConnected) accessDB.OpenConnection();
@@ -180,6 +201,24 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
             }
             catch {
                 return null;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query_string"></param>
+        /// <returns></returns>
+        public bool QueryData(string query_string) {
+            try {
+                if (!accessDB.IsConnected) accessDB.OpenConnection();
+                Thread.Sleep(100);
+                if (!accessDB.IsConnected) return false;
+
+                return accessDB.QueryDeleteOrUpdate(query_string);
+            } catch {
+                return false;
             }
         }
 
@@ -245,7 +284,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
 
                 return true;
             }
-            catch {
+            catch (Exception ex) {
+                System.Windows.MessageBox.Show(ex.ToString());
                 return false;
             }
         }
