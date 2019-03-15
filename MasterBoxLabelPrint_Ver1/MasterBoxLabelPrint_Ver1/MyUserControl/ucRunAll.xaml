@@ -367,7 +367,7 @@
                         <DataGrid x:Name="datagrid_recentlot" Grid.Row="1" Background="Transparent" BorderThickness="0">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Reprint label" Click="MenuItem_Click"/>
+                                    <MenuItem IsEnabled="True" Header="Reprint label" Click="MenuItem_Click"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                         </DataGrid>

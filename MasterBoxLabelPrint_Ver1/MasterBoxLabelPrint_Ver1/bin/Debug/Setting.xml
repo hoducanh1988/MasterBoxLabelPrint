@@ -21,7 +21,7 @@
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <DirLog>D:\LOGDATA</DirLog>
-  <VisibleLogQuantity>50</VisibleLogQuantity>
+  <VisibleLogQuantity>100</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>
   <ProductCode>008</ProductCode>
   <ColorCode>F</ColorCode>

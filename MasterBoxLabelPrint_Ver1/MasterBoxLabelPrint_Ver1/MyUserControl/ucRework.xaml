@@ -5,8 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="595" d:DesignWidth="985"  Background="White">
+  
+    <TabControl TabStripPlacement="Bottom">
+        <TabControl.Resources>
+            <Style TargetType="TabPanel">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+        </TabControl.Resources>
+
+        <TabItem>
+            <TabItem.Header>
+                <Label FontSize="14" FontWeight="SemiBold" Content="Small Quantity"/>
+            </TabItem.Header>
+
+            <Grid>
+            </Grid>
+
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <Label FontSize="14" FontWeight="SemiBold" Content="Bulk Quantity"/>
+            </TabItem.Header>
+
+            <Grid>
+            </Grid>
+
+        </TabItem>
+
+
+
+
+    </TabControl>
+    
 </UserControl>

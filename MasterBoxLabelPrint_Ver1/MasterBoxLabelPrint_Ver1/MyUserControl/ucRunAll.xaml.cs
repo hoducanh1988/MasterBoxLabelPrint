@@ -180,9 +180,10 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                         string lot_selected = "";
 
                         try {
-                            msaccdb_ProductionLOT row = (msaccdb_ProductionLOT) this.datagrid_recentlot.SelectedValue;
+                            msaccdb_ProductionLOT row = (msaccdb_ProductionLOT)this.datagrid_recentlot.SelectedValue;
                             lot_selected = row.Lot;
-                        } catch { }
+                        }
+                        catch { }
 
 
                         if (lot_selected != "") {
@@ -196,7 +197,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                         else {
                             MessageBox.Show("Please select a production lot.", "Reprint", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
-                        
+
                         break;
                     }
             }
