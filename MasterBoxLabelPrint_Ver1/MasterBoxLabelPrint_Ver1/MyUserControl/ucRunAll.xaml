@@ -62,7 +62,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--nhap so serial-->
-                    <StackPanel Grid.Column="0">
+                    <StackPanel Grid.Column="0" Margin="0,0,0,-30">
                         <Label FontSize="14" FontWeight="SemiBold" Content="Input product serial number:"/>
                         <TextBox x:Name="txt_SN" FontSize="30" Width="400" HorizontalAlignment="Left"  
                              Text="{Binding Path=ProductSerial, UpdateSourceTrigger=PropertyChanged}"
@@ -70,7 +70,7 @@
                              TextChanged="Txt_SN_TextChanged"/>
 
                         <Label FontSize="14" Content="Results of SN testing and product weight:"/>
-                        <Label FontSize="30" FontWeight="Bold"
+                        <Label FontSize="50" FontWeight="Bold"
                            Content="{Binding Path=TotalResult, UpdateSourceTrigger=PropertyChanged}">
                             <Label.Style>
                                 <Style TargetType="Label">
@@ -167,7 +167,7 @@
                 </Grid>
 
                 <!--error message-->
-                <Border Grid.Row="1">
+                <Border Grid.Row="1" Margin="0,20,0,0">
                     <Grid>
                         <TextBlock FontSize="13" TextWrapping="Wrap" TextBlock.LineHeight="1" IsEnabled="False"
                                Text="{Binding Path=ErrorMessage, UpdateSourceTrigger=PropertyChanged}">
@@ -243,11 +243,6 @@
                         <Label Style="{StaticResource label_title}" Content="Product Version:"/>
                         <Label Style="{StaticResource label_content}" 
                                Content="{Binding Path=ProductVersion, UpdateSourceTrigger=PropertyChanged}"/>
-                    </Grid>
-                    <Grid>
-                        <Label Style="{StaticResource label_title}" Content="Code In Line:"/>
-                        <Label Style="{StaticResource label_content}" 
-                               Content="{Binding Path=ProductCodeInLine, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <Grid>
                         <Label Style="{StaticResource label_title}" Content="Product Info:"/>

@@ -181,13 +181,8 @@
                               Tag="productversion" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=ProductVersion, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Grid>
-                <Grid>
-                    <Label Content="Mã sản phẩm theo chuyền"/>
-                    <TextBox Tag="productcodeinline" GotFocus="FrameWorkElement_Focus"
-                        Text="{Binding Path=ProductCodeInLine, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
 
-      
+
                 <!--CÀI ĐẶT MÁY IN NHÃN-->
                 <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT MÁY IN NHÃN"/>
                 <Grid>
@@ -255,6 +250,12 @@
                               Tag="serialstopbits" GotFocus="FrameWorkElement_Focus"
                               Text="{Binding Path=SerialStopBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     </Grid>
+                    <Grid>
+                        <Label Content="Connection timeout (ms)"/>
+                        <TextBox Tag="connectiontimeout" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=ConnectionTimeout, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+                    
                 </StackPanel>
                 
 

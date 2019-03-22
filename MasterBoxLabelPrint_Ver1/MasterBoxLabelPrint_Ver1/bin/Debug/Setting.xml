@@ -2,7 +2,7 @@
   <ProductionPlace>1</ProductionPlace>
   <ProductionYear>18</ProductionYear>
   <ProductionCommand>#12345</ProductionCommand>
-  <PrintMode>Only print label</PrintMode>
+  <PrintMode>Combine label printing with product weighing</PrintMode>
   <LineIndex>1</LineIndex>
   <StationName>MasterBoxLabelPrint</StationName>
   <StationIndex>1</StationIndex>
@@ -10,25 +10,26 @@
   <Operator>ABCD</Operator>
   <FileProduct>Product_Ver1.csv</FileProduct>
   <ProductName>GW020BoB</ProductName>
-  <ProductCodeInLine>ONT.02.4NU.1F.IM2 (HY5NPE5N000002NP)</ProductCodeInLine>
+  <ProductCode>HY5NPE6N000002NP</ProductCode>
   <ProductVersion>1</ProductVersion>
   <PrinterName>Microsoft Print to PDF</PrinterName>
   <PrintPage>1</PrintPage>
   <MSAccessFile>MASTER_LABLE_PRINT_20190109.accdb</MSAccessFile>
-  <SerialPortName>COM3</SerialPortName>
+  <SerialPortName>COM4</SerialPortName>
   <SerialBaudRate>9600</SerialBaudRate>
   <SerialDataBits>8</SerialDataBits>
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
+  <ConnectionTimeout>3000</ConnectionTimeout>
   <DirLog>D:\LOGDATA</DirLog>
   <VisibleLogQuantity>100</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>
-  <ProductCode>008</ProductCode>
+  <ProductNumber>008</ProductNumber>
   <ColorCode>F</ColorCode>
-  <ProductWeight>400</ProductWeight>
-  <WeightTolerance>10</WeightTolerance>
+  <ProductWeight>100</ProductWeight>
+  <WeightBias>10</WeightBias>
   <LotQuantity>20</LotQuantity>
-  <WeightLL>390</WeightLL>
-  <WeightUL>410</WeightUL>
-  <ProductInfo>&lt; 008,   F,   400,   10,   20 &gt;</ProductInfo>
+  <WeightLL>90</WeightLL>
+  <WeightUL>110</WeightUL>
+  <ProductInfo>&lt; 008,HY5NPE6N000002NP,F,100,10,20 &gt;</ProductInfo>
 </Proj_SettingInformation>

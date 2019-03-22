@@ -19,9 +19,10 @@
         </StackPanel>
 
         <Border Grid.Row="1" BorderBrush="#777777" BorderThickness="0.5">
-            <Grid>
-
-            </Grid>
+            <StackPanel Margin="5">
+                <Button Click="Button_Click" Content="Connect Scale" HorizontalAlignment="Left" Width="100" Height="25" Margin="0,5,0,0"/>
+                <Button Click="Button_Click" Content="Disconect Scale" HorizontalAlignment="Left" Width="100" Height="25" Margin="0,5,0,0"/>
+            </StackPanel>
         </Border>
         
 
@@ -37,7 +38,7 @@
                 <RichTextBox  Margin="0,0,2,0" Background="Transparent" BorderThickness="0.5,0.5,0.5,0.5" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
                     <FlowDocument PageHeight="180">
                         <Paragraph>
-                            <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=DEBUGLOG, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=DebugLog, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using MasterBoxLabelPrint_Ver1.MyFunction.Scale;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl
 {
@@ -26,6 +27,21 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
         {
             InitializeComponent();
             this.cbb_debugtype.ItemsSource = MyParameter.debugTypes;
+            this.DataContext = MyGlobal.myDebug;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Button b = sender as Button;
+            
+            switch (b.Content) {
+                case "Connect Scale": {
+                        //new CAS_EDH().Start();
+                        break;
+                    }
+                case "Disconnect Scale": {
+                        break;
+                    }
+            }
         }
     }
 }

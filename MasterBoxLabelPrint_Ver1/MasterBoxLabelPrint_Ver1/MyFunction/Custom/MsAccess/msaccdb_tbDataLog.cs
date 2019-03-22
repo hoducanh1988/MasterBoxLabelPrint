@@ -14,8 +14,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
         public string Lot { get; set; }
         public string LotProgress { get; set; }
         public string ProductName { get; set; }
-        public string ProductCodeInLine { get; set; }
         public string ProductCode { get; set; }
+        public string ProductNumber { get; set; }
         public string Color { get; set; }
         public string ProductionCommand { get; set; }
         public string Factory { get; set; }

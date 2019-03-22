@@ -32,7 +32,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             tbDataLog.LotProgress = testing.LotProgress;
             tbDataLog.Operator = setting.Operator;
             tbDataLog.ProductCode = setting.ProductCode;
-            tbDataLog.ProductCodeInLine = setting.ProductCodeInLine;
+            tbDataLog.ProductNumber = setting.ProductNumber;
             tbDataLog.ProductionCommand = setting.ProductionCommand;
             tbDataLog.ProductName = setting.ProductName;
             tbDataLog.ProductSerial = testing.ProductSerial;

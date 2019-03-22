@@ -17,6 +17,7 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
+using MasterBoxLabelPrint_Ver1.MyFunction.Implement;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
@@ -67,78 +68,68 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         private void Txt_SN_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
                 txt_SN.IsEnabled = false;
-                MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
-                
-                //validate serial number
-                ValidateProductSerialNumber validate = new ValidateProductSerialNumber(MyGlobal.MyTesting.ProductSerial);
-                bool serial_is_valid = validate.Validate();
-                if (!serial_is_valid) {
-                    MyGlobal.MyTesting.ErrorMessage += validate.Validate_Error_Message;
-                    goto FAIL;
-                }
 
-                //check serial printed or not
-                msaccdb_tbDataProductionLOT tb = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", "ProductSerial", MyGlobal.MyTesting.ProductSerial);
-                if (tb != null) {
-                    MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number was printed in lot {0}, date printed {1}.", tb.Lot, tb.DateTimeCreated);
-                    goto FAIL;
-                }
 
-                //check product weight
-                if (MyGlobal.MyTesting.UseScaleFlag  == true) {
+                Thread zzz = new Thread(new ThreadStart(() => {
+                    MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
 
-                }
+                    var runall = new imp_RunAll();
+                    if (!runall.Execute()) goto FAIL;
+                    else goto PASS;
 
-                goto PASS;
 
-            
-            FAIL:
-                {
-                    txt_SN.IsEnabled = true;
-                    MyGlobal.MyTesting.FailParameters();
+                FAIL:
+                    {
+                        MyGlobal.MyTesting.FailParameters();
 
-                    //save log
-                    _save_log_();
+                        //save log
+                        _save_log_();
 
-                    //load ms database
-                    _load_ms_datatable_();
+                        //load ms database
+                        _load_ms_datatable_();
 
-                    return;
-                }
-
-            PASS:
-                {
-                    MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number is valid.");
-                    txt_SN.IsEnabled = true;
-                    MyGlobal.MyTesting.PassParameters();
-                    MyGlobal.MyTesting.LotCount = string.Format("{0}", int.Parse(MyGlobal.MyTesting.LotCount) + 1);
-
-                    //save log
-                    _save_log_();
-
-                    //gen lot
-                    if (MyGlobal.MyTesting.LotCount.Equals(MyGlobal.MyTesting.LotLimit)) {
-                        MyGlobal.MyTesting.LotCount = "0";
-                        MyGlobal.MyTesting.LotName =  new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductCode).Gererate();
-
-                        Thread t = new Thread(new ThreadStart(() => {
-                            //print label
-                            MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint");
-                            Thread.Sleep(100);
-
-                            //delete all row in table imei print
-                            new io_msaccdb_tbIMEISerialPrint().DeleteAll();
-                        }));
-                        t.IsBackground = true;
-                        t.Start();
+                        //
+                        Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); }));
+                        return;
                     }
 
-                    //load ms database
-                    _load_ms_datatable_();
-                    
-                    return;
-                }
-            
+                PASS:
+                    {
+                        MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number is valid.");
+                        MyGlobal.MyTesting.PassParameters();
+                        MyGlobal.MyTesting.LotCount = string.Format("{0}", int.Parse(MyGlobal.MyTesting.LotCount) + 1);
+
+                        //save log
+                        _save_log_();
+
+                        //gen lot
+                        if (MyGlobal.MyTesting.LotCount.Equals(MyGlobal.MyTesting.LotLimit)) {
+                            MyGlobal.MyTesting.LotCount = "0";
+                            MyGlobal.MyTesting.LotName = new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductCode).Gererate();
+
+                            Thread t = new Thread(new ThreadStart(() => {
+                                //print label
+                                MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint");
+                                Thread.Sleep(100);
+
+                                //delete all row in table imei print
+                                new io_msaccdb_tbIMEISerialPrint().DeleteAll();
+                            }));
+                            t.IsBackground = true;
+                            t.Start();
+                        }
+
+                        //load ms database
+                        _load_ms_datatable_();
+
+                        //
+                        Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); }));
+                        return;
+                    }
+                }));
+                zzz.IsBackground = true;
+                zzz.Start();
+
             }
         }
 
@@ -148,8 +139,6 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 if (MyGlobal.MyTesting.TotalResult.ToLower().Equals("waiting...")) MyGlobal.MyTesting.TotalResult = "";
             }
         }
-
-
 
 
         bool _save_log_() {
@@ -163,12 +152,14 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         }
         bool _load_ms_datatable_() {
             bool r = false;
-            this.datagrid_recentdatalog.ItemsSource = new io_msaccdb_tbDataLog().ReadData(); //read log from tb_datalog
-            this.datagrid_recentproduct.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadData(); //read serial from tb_DataProductionLot
-            //this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot(); //read all lot from tb_DataProductionLot
-
-            MyGlobal.MyTesting.ProductSerial = ""; //clear product serial number
+            Dispatcher.Invoke(new Action(() => {
+                this.datagrid_recentdatalog.ItemsSource = new io_msaccdb_tbDataLog().ReadData(); //read log from tb_datalog
+                this.datagrid_recentproduct.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadData(); //read serial from tb_DataProductionLot
+                //this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot(); //read all lot from tb_DataProductionLot
+                MyGlobal.MyTesting.ProductSerial = ""; //clear product serial number
+            }));
             return r;
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e) {

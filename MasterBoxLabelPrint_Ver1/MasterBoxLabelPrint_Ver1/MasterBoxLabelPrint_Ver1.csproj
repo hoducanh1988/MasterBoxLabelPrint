@@ -123,15 +123,19 @@
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataLog.cs" />
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataProductionLOT.cs" />
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataRework.cs" />
+    <Compile Include="MyFunction\Custom\Project\Proj_DebugInformation.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_SettingInformation.cs" />
     <Compile Include="MyFunction\Custom\Init\Init_SuggestionText.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_TestingInformation.cs" />
+    <Compile Include="MyFunction\Implement\imp_RunAll.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataLog.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataProductionLot.cs" />
     <Compile Include="MyFunction\Global\MyGlobal.cs" />
     <Compile Include="MyFunction\Global\MyParameter.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataRework.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbIMEISerialPrint.cs" />
+    <Compile Include="MyFunction\Scale\CAS_EDH.cs" />
+    <Compile Include="MyFunction\Scale\Iscale.cs" />
     <Compile Include="MyFunction\Ulti\GenerateProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\GetRecentProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\ReprintProductionLot.cs" />
@@ -192,7 +196,6 @@
     <Folder Include="Asset\Image\" />
     <Folder Include="Asset\Resource\" />
     <Folder Include="MyFunction\Protocol\" />
-    <Folder Include="MyFunction\Scale\" />
     <Folder Include="MyWindow\" />
   </ItemGroup>
   <ItemGroup>

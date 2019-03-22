@@ -51,7 +51,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             }
 
             //load production lot
-            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductCode).GetData();
+            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
 
             //
             this.DataContext = MyGlobal.MySetting;

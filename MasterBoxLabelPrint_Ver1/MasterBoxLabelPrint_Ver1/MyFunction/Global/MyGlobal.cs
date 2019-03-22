@@ -17,6 +17,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         //objects
         public static Proj_TestingInformation MyTesting = new Proj_TestingInformation();
         public static Proj_SettingInformation MySetting = new Proj_SettingInformation();
+        public static Proj_DebugInformation myDebug = new Proj_DebugInformation();
 
         public static AccessDatabase.MasterBoxAccessDB MasterBox = null;
 

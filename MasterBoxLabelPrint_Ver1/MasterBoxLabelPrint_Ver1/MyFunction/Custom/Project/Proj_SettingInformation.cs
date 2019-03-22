@@ -35,7 +35,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 
             //temp
             ProductionCommand = "#12345";
-            ProductCodeInLine = "ONT.02.4NU.1F.IM2 (HY5NPE5N000002NP)";
             Operator = "ABCD";
             SerialPortName = "COM3";
             PrinterName = "Microsoft Print to PDF";
@@ -50,14 +49,15 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             if (MyGlobal.Products != null) {
                 Init_Product product = MyGlobal.Products.Single(x => x.name.Equals(MyGlobal.MySetting.ProductName));
                 if (product != null) {
+                    MyGlobal.MySetting.ProductNumber = product.number;
                     MyGlobal.MySetting.ProductCode = product.code;
                     MyGlobal.MySetting.ColorCode = product.color;
                     MyGlobal.MySetting.ProductWeight = product.weight;
-                    MyGlobal.MySetting.WeightTolerance = product.tolerance;
+                    MyGlobal.MySetting.WeightBias = product.bias;
                     MyGlobal.MySetting.LotQuantity = product.lotqty;
 
-                    MyGlobal.MySetting.WeightLL = string.Format("{0}", double.Parse(product.weight) - double.Parse(product.tolerance));
-                    MyGlobal.MySetting.WeightUL = string.Format("{0}", double.Parse(product.weight) + double.Parse(product.tolerance));
+                    MyGlobal.MySetting.WeightLL = string.Format("{0}", double.Parse(product.weight) - double.Parse(product.bias));
+                    MyGlobal.MySetting.WeightUL = string.Format("{0}", double.Parse(product.weight) + double.Parse(product.bias));
 
                     MyGlobal.MySetting.ProductInfo = product.ToString();
                 }
@@ -73,7 +73,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_place = value;
                 OnPropertyChanged(nameof(ProductionPlace));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -83,7 +83,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_year = value;
                 OnPropertyChanged(nameof(ProductionYear));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -118,7 +118,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _line_index = value;
                 OnPropertyChanged(nameof(LineIndex));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -181,16 +181,16 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 MyGlobal.MyTesting.ProductName = ProductName;
 
                 Get_product_info();
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductCode).GetData();
+                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
-        string _product_code_in_line; //product code in line
-        public string ProductCodeInLine {
-            get { return _product_code_in_line; }
+        string _product_code; //product code in line
+        public string ProductCode {
+            get { return _product_code; }
             set {
-                _product_code_in_line = value;
-                OnPropertyChanged(nameof(ProductCodeInLine));
+                _product_code = value;
+                OnPropertyChanged(nameof(ProductCode));
             }
         }
 
@@ -285,6 +285,15 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             }
         }
 
+        string _connection_timeout; //connection timeout
+        public string ConnectionTimeout {
+            get { return _connection_timeout; }
+            set {
+                _connection_timeout = value;
+                OnPropertyChanged(nameof(ConnectionTimeout));
+            }
+        }
+
         #endregion
 
         //6
@@ -327,12 +336,12 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
         //8
         #region THONG_TIN_SAN_PHAM ######################################
 
-        string _product_code; //product code
-        public string ProductCode {
-            get { return _product_code; }
+        string _product_number; //product Number
+        public string ProductNumber {
+            get { return _product_number; }
             set {
-                _product_code = value;
-                OnPropertyChanged(nameof(ProductCode));
+                _product_number = value;
+                OnPropertyChanged(nameof(ProductNumber));
             }
         }
 
@@ -354,12 +363,12 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             }
         }
 
-        string _weight_tolerance; //weight tolerance
-        public string WeightTolerance {
-            get { return _weight_tolerance; }
+        string _weight_bias; //weight tolerance
+        public string WeightBias {
+            get { return _weight_bias; }
             set {
-                _weight_tolerance = value;
-                OnPropertyChanged(nameof(WeightTolerance));
+                _weight_bias = value;
+                OnPropertyChanged(nameof(WeightBias));
             }
         }
 
