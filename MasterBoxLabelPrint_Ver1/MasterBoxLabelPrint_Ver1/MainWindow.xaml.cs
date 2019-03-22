@@ -66,8 +66,8 @@ namespace MasterBoxLabelPrint_Ver1
                     }
                 case "Debug":
                     {
-                        ucDebug.Visibility = Visibility.Visible;
-                        Canvas.SetZIndex(ucDebug, 1);
+                        //ucDebug.Visibility = Visibility.Visible;
+                        //Canvas.SetZIndex(ucDebug, 1);
                         break;
                     }
                 case "Setting":

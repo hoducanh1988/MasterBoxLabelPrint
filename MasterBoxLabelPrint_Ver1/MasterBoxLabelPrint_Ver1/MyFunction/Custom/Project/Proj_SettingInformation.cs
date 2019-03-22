@@ -285,12 +285,12 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             }
         }
 
-        string _connection_timeout; //connection timeout
-        public string ConnectionTimeout {
-            get { return _connection_timeout; }
+        string _wait_time; //connection timeout
+        public string WaitTime {
+            get { return _wait_time; }
             set {
-                _connection_timeout = value;
-                OnPropertyChanged(nameof(ConnectionTimeout));
+                _wait_time = value;
+                OnPropertyChanged(nameof(WaitTime));
             }
         }
 

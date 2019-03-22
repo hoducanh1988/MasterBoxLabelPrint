@@ -45,7 +45,7 @@
                 <Label x:Name="lblSOP" Margin="320,0,0,0" Width="60" Content="SOP"/>
                 <Label x:Name="lblHelp" Margin="380,0,0,0" Width="70" Content="Help"/>
                 <Label x:Name="lblAbout" Margin="450,0,0,0" Width="70" Content="About"/>
-                <Label x:Name="lblDebug" Margin="520,0,0,0" Width="80" Content="Debug"/>
+                <Label x:Name="lblDebug" Visibility="Collapsed" Margin="520,0,0,0" Width="80" Content="Debug"/>
 
             </Grid>
             <Border x:Name="border_underline" HorizontalAlignment="Left" BorderBrush="Lime" BorderThickness="1.5" Width="70"/>

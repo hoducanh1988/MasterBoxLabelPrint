@@ -100,6 +100,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyUserControl\ucRework_BulkQty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControl\ucRework_SmallQty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyUserControl\ucRunAll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +117,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyUserControl\ucSOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyWindow\ReasonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyWindow\ReworkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,6 +140,7 @@
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataProductionLOT.cs" />
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataRework.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_DebugInformation.cs" />
+    <Compile Include="MyFunction\Custom\Project\Proj_ReworkInformation.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_SettingInformation.cs" />
     <Compile Include="MyFunction\Custom\Init\Init_SuggestionText.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_TestingInformation.cs" />
@@ -157,6 +174,12 @@
     <Compile Include="MyUserControl\ucRework.xaml.cs">
       <DependentUpon>ucRework.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyUserControl\ucRework_BulkQty.xaml.cs">
+      <DependentUpon>ucRework_BulkQty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl\ucRework_SmallQty.xaml.cs">
+      <DependentUpon>ucRework_SmallQty.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyUserControl\ucRunAll.xaml.cs">
       <DependentUpon>ucRunAll.xaml</DependentUpon>
     </Compile>
@@ -165,6 +188,17 @@
     </Compile>
     <Compile Include="MyUserControl\ucSOP.xaml.cs">
       <DependentUpon>ucSOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl_Code_Expand\ucRunAll\RunAll_Button.cs" />
+    <Compile Include="MyUserControl_Code_Expand\ucRunAll\RunAll_Constructor.cs" />
+    <Compile Include="MyUserControl_Code_Expand\ucRunAll\RunAll_MenuItem.cs" />
+    <Compile Include="MyUserControl_Code_Expand\ucRunAll\RunAll_Function.cs" />
+    <Compile Include="MyUserControl_Code_Expand\ucRunAll\RunAll_TextBox.cs" />
+    <Compile Include="MyWindow\ReasonWindow.xaml.cs">
+      <DependentUpon>ReasonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyWindow\ReworkWindow.xaml.cs">
+      <DependentUpon>ReworkWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -196,7 +230,6 @@
     <Folder Include="Asset\Image\" />
     <Folder Include="Asset\Resource\" />
     <Folder Include="MyFunction\Protocol\" />
-    <Folder Include="MyWindow\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ADODB">

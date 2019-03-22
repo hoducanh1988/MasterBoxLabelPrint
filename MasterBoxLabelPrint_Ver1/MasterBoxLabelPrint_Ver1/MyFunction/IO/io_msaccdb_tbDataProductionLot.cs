@@ -56,7 +56,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_tbDataProductionLOT> ReadProduct(string lot_name) {
-            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", 1000, "tb_ID", "ProductSerial", "", "Line", "", "Lot", lot_name);
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", 1000, "tb_ID", "Rework", "-", "Line", "", "Lot", lot_name);
         }
 
         /// <summary>

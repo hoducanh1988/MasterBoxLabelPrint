@@ -18,6 +18,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
         public string LotQuantity { get; set; }
         public string LotStatus { get; set; }
         public string Rework { get; set; }
+        public string ReworkReason { get; set; }
 
     }
 

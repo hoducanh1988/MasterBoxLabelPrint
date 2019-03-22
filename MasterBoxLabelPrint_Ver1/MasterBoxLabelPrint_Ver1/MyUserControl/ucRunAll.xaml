@@ -67,7 +67,8 @@
                         <TextBox x:Name="txt_SN" FontSize="30" Width="400" HorizontalAlignment="Left"  
                              Text="{Binding Path=ProductSerial, UpdateSourceTrigger=PropertyChanged}"
                              KeyDown="Txt_SN_KeyDown"
-                             TextChanged="Txt_SN_TextChanged"/>
+                             TextChanged="Txt_SN_TextChanged">
+                        </TextBox>
 
                         <Label FontSize="14" Content="Results of SN testing and product weight:"/>
                         <Label FontSize="50" FontWeight="Bold"
@@ -362,7 +363,7 @@
                         <DataGrid x:Name="datagrid_recentlot" Grid.Row="1" Background="Transparent" BorderThickness="0">
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem IsEnabled="True" Header="Reprint label" Click="MenuItem_Click"/>
+                                    <MenuItem IsEnabled="False" Header="Reprint label" Click="MenuItem_Click"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                         </DataGrid>

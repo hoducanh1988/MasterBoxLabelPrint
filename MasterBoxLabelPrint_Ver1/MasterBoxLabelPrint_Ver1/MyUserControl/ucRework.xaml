@@ -20,6 +20,7 @@
             </TabItem.Header>
 
             <Grid>
+                <local:ucRework_SmallQty/>
             </Grid>
 
         </TabItem>
@@ -30,6 +31,7 @@
             </TabItem.Header>
 
             <Grid>
+                <local:ucRework_BulkQty/>
             </Grid>
 
         </TabItem>

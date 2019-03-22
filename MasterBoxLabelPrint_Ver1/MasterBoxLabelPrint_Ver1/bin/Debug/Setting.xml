@@ -20,7 +20,7 @@
   <SerialDataBits>8</SerialDataBits>
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
-  <ConnectionTimeout>3000</ConnectionTimeout>
+  <WaitTime>100</WaitTime>
   <DirLog>D:\LOGDATA</DirLog>
   <VisibleLogQuantity>100</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>

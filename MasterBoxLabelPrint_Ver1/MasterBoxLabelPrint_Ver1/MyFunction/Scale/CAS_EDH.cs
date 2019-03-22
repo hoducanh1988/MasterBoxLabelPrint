@@ -42,7 +42,10 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Scale {
             //clear serial receive buffer
             string data = null;
             device.Read();
-            Thread.Sleep(100);
+
+            int wait_time; bool r = int.TryParse(MyGlobal.MySetting.WaitTime, out wait_time);
+            wait_time = r ? wait_time : 100;
+            Thread.Sleep(wait_time);
 
             //get data newest
             data = device.Read();

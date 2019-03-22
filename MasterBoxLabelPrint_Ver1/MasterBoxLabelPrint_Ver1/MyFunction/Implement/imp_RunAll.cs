@@ -14,6 +14,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
 
         public bool Execute() {
             try {
+                MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
+
                 //validate serial number
                 if (!_validate_product_serialnumber()) return false;
 
