@@ -91,14 +91,16 @@ namespace MasterBoxLabelPrint_Ver1
             r = new io_msaccdb_tbDataProductionLot().WriteData(Proj_Rework);
 
             //print label
-            Thread t = new Thread(new ThreadStart(() => {
-                string msg;
-                bool ret = new ReprintProductionLot(Proj_Rework.ProductionLot).Print(out msg);
-                MessageBox.Show(ret ? "Success" : "Fail\n" + msg, "Reprint LOT " + Proj_Rework.ProductionLot, MessageBoxButton.OK, r ? MessageBoxImage.Information : MessageBoxImage.Error);
-            }));
-            t.IsBackground = true;
-            t.Start();
-
+            if (Proj_Rework.AutoPrintLabel == true) {
+                Thread t = new Thread(new ThreadStart(() => {
+                    string msg;
+                    bool ret = new ReprintProductionLot(Proj_Rework.ProductionLot).Print(out msg);
+                    MessageBox.Show(ret ? "Success" : "Fail\n" + msg, "Reprint LOT " + Proj_Rework.ProductionLot, MessageBoxButton.OK, r ? MessageBoxImage.Information : MessageBoxImage.Error);
+                }));
+                t.IsBackground = true;
+                t.Start();
+            }
+            
             Proj_Rework.NewProductSerial = ""; //clear product serial number
             return r;
         }

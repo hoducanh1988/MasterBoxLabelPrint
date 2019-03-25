@@ -67,7 +67,8 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             }
             
             _load_ms_datatable_(); //load ms database
-            
+
+            new GetRecentProductionLot().SetData(); //
         } 
 
 

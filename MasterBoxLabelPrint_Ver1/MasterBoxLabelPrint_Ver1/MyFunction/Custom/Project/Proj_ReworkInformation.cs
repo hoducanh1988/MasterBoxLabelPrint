@@ -9,7 +9,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 {
     public class Proj_ReworkInformation : MasterBoxLabelPrint_Ver1.MyFunction.Ulti.zCNotifyPropertyChanged {
         public Proj_ReworkInformation() {
-            AutoPrintLabel = true;
+            AutoPrintLabel = false;
             PrintMode = MyGlobal.MySetting.PrintMode;
         }
 

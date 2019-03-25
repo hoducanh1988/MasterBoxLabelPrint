@@ -6,9 +6,75 @@
              xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="595" d:DesignWidth="985"  Background="White">
-   
+
+    <UserControl.Resources>
+
+        <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="CharacterCasing" Value="Upper"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="RichTextBox">
+            <Setter Property="TextBlock.LineHeight" Value="1"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="0,5,0,0"/>
+            <Setter Property="BorderBrush" Value="#777777"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="30"/>
+            <EventSetter Event="Click" Handler="Button_Click"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    
     <Grid>
-            
+        <Label Background="#d15151" Foreground="White" VerticalAlignment="Top" Height="45" Content="Số Lượng Lớn (nhiều LOTs sản xuất)" FontSize="25" BorderBrush="Blue" BorderThickness="0,0,0,1" FontWeight="SemiBold"/>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0">
+            <WrapPanel>
+                <Label FontSize="14" Content="Lý do rework:"/>
+                <RichTextBox Margin="5,0,0,0" Height="100"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button x:Name="btnstartbulk" Margin="5,5,0,0" Content="Start Bulk Rework"/>
+                <Button x:Name="btnendbulk" Margin="10,5,0,0" Content="End Bulk Rework"/>
+            </WrapPanel>
+        </StackPanel>
     </Grid>
     
 </UserControl>

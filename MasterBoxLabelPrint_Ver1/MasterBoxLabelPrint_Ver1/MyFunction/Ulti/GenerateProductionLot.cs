@@ -12,7 +12,10 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
     public class GenerateProductionLot {
 
         string _file_production = string.Format("{0}tmp_\\Production.dll", AppDomain.CurrentDomain.BaseDirectory);
+        string _file_recent = string.Format("{0}tmp_\\Recent.dll", AppDomain.CurrentDomain.BaseDirectory);
+
         string tmpData = ""; //Factory,Year,Line,LOT Index
+        string tmpRecent = ""; //LotName,LotProgress
         string _line = "", _place = "", _year = "", _code = "";
 
         //get all text from file production
@@ -25,6 +28,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             if (File.Exists(_file_production) == true) {
                 tmpData = File.ReadAllText(_file_production);
             }
+            if (File.Exists(_file_recent) == true) {
+                tmpRecent = File.ReadAllText(_file_recent);
+            }
         }
 
         //generate lot
@@ -35,19 +41,23 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
                 if (string.IsNullOrEmpty(tmpData) == true) {
                     //reset lot
-                    _new_lot = _gen(null, out _new_lot_index);
+                    _new_lot = _gen(null, null, out _new_lot_index);
                 }
                 else {
                     string[] buffer = tmpData.Split(',');
                     string factory = buffer[0], year = buffer[1], line = buffer[2], lot = buffer[3];
 
+                    buffer = tmpRecent.Split(',');
+                    string _recent_lot = buffer[0], _recent_lot_progress = buffer[1];
+
                     if (factory.ToLower().Equals(_place.ToLower()) && year.ToLower().Equals(_year.ToLower()) && line.ToLower().Equals(_line.ToLower())) {
-                        //increment lot
-                        _new_lot = _gen(lot, out _new_lot_index);
+                        //increment lot or not
+                        string _curr_qty = _recent_lot_progress.Split('/')[0];
+                        _new_lot = _gen(lot, _curr_qty, out _new_lot_index);
                     }
                     else {
                         //reset lot
-                        _new_lot = _gen(null, out _new_lot_index);
+                        _new_lot = _gen(null, null, out _new_lot_index);
                     }
                 }
 
@@ -64,8 +74,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
         }
 
 
-        private string _gen(string lot, out string lot_index) {
-            lot_index = lot == null ? "000001" : _increment_lot(lot);
+        private string _gen(string lot, string curr_qty, out string lot_index) {
+            lot_index = lot == null ? "000001" : (curr_qty=="0" ? lot : _increment_lot(lot));
             if (string.IsNullOrEmpty(_code) ||
                 string.IsNullOrEmpty(_place) ||
                 string.IsNullOrEmpty(_year) ||

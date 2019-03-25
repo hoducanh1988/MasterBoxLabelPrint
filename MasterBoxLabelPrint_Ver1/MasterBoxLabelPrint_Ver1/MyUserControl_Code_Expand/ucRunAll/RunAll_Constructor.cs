@@ -1,5 +1,11 @@
 ﻿using System.Windows.Controls;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using System.Threading;
+using System;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
@@ -15,6 +21,26 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
             this._grid_testing.DataContext = MyGlobal.MyTesting;
             this._grid_setting.DataContext = MyGlobal.MySetting;
+
+            Thread t = new Thread(new ThreadStart(() => {
+                while (true) {
+                    if (MyGlobal.MySetting.ProductionStatus == "Normal") {
+                        Dispatcher.Invoke(new Action(() => {
+                            this.Background = Brushes.White;
+                            this.lblproductionstatus.Content = "";
+                        }));
+                    }
+                    else {
+                        Dispatcher.Invoke(new Action(() => {
+                            this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
+                            this.lblproductionstatus.Content = "=> Bulk Rework";
+                        }));
+                    }
+                    Thread.Sleep(1000);
+                }
+            }));
+            t.IsBackground = true;
+            t.Start();
         }
         
     }

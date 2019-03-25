@@ -42,6 +42,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             StationIndex = "1";
             JigIndex = "1";
             ProductVersion = "3";
+
+            //other
+            ProductionStatus = "Normal";
         }
 
         //method
@@ -73,7 +76,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_place = value;
                 OnPropertyChanged(nameof(ProductionPlace));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
+                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -83,7 +86,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_year = value;
                 OnPropertyChanged(nameof(ProductionYear));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
+                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -118,7 +121,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _line_index = value;
                 OnPropertyChanged(nameof(LineIndex));
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
+                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -181,7 +184,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 MyGlobal.MyTesting.ProductName = ProductName;
 
                 Get_product_info();
-                new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
+                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -412,6 +415,15 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _product_info = value;
                 OnPropertyChanged(nameof(ProductInfo));
+            }
+        }
+
+        string _production_status;
+        public string ProductionStatus {
+            get { return _production_status; }
+            set {
+                _production_status = value;
+                OnPropertyChanged(nameof(ProductionStatus));
             }
         }
 

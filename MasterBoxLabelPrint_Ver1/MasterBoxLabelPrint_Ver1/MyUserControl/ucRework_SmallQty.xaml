@@ -48,14 +48,16 @@
     </UserControl.Resources>
     
     <Grid>
-        <WrapPanel Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Label Background="#9b8525" Foreground="White" VerticalAlignment="Top" Height="45" Content="Số Lượng Nhỏ (1 vài sản phẩm trong 1 LOT sản xuất)" FontSize="25" BorderBrush="Blue" BorderThickness="0,0,0,1" FontWeight="SemiBold"/>
+        <WrapPanel Margin="0,55,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Label Content="Product LOT: "/>
             <TextBox x:Name="txt_lot"/>
             <Label Content="Product Serial: " Margin="20,0,0,0"/>
             <TextBox x:Name="txt_product_serial"/>
             <Button Margin="10,0,0,0" Tag="search_lot_rework" Content="Search"/>
         </WrapPanel>
-        <DataGrid x:Name="data_grid_lot" Margin="5,40,0,5" Background="Transparent" 
+        
+        <DataGrid x:Name="data_grid_lot" Margin="5,95,0,5" Background="Transparent" 
                   SelectionMode="Single"
                   BorderThickness="0"
                   CanUserAddRows="False" 

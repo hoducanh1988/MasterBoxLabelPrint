@@ -34,11 +34,28 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
                 if (string.IsNullOrEmpty(tmpData)) {
                     MyGlobal.MyTesting.LotCount = "0";
                     MyGlobal.MyTesting.LotName = new GenerateProductionLot(_line, _place, _year, _code).Gererate();
+                    this.SetData();
                 }
                 else {
                     string[] buffer = tmpData.Split(',');
-                    MyGlobal.MyTesting.LotCount = buffer[1].Split('/')[0];
-                    MyGlobal.MyTesting.LotName = buffer[0];
+                    string lotname = buffer[0];
+
+                    string pd_number = lotname.Substring(0, 3);
+                    string pd_place = lotname.Substring(2, 1);
+                    string pd_year = lotname.Substring(3, 2);
+                    string pd_line = lotname.Substring(5, 1);
+
+                    bool _ischangelot = pd_number != _code || pd_place != _place || pd_year != _year || pd_line != _line;
+
+                    if (_ischangelot) {
+                        MyGlobal.MyTesting.LotCount = "0";
+                        MyGlobal.MyTesting.LotName = new GenerateProductionLot(_line, _place, _year, _code).Gererate();
+                        this.SetData();
+                    }
+                    else {
+                        MyGlobal.MyTesting.LotCount = buffer[1].Split('/')[0];
+                        MyGlobal.MyTesting.LotName = buffer[0];
+                    }
                 }
             }
             catch (Exception ex) {

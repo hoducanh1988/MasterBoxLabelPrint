@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using UtilityPack.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl
 {
@@ -23,6 +26,36 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
         public ucRework_BulkQty()
         {
             InitializeComponent();
+
+            Thread t = new Thread(new ThreadStart(() => {
+                while (true) {
+                    if (MyGlobal.MySetting.ProductionStatus == "Normal") {
+                        Dispatcher.Invoke(new Action(() => { btnstartbulk.IsEnabled = true; btnendbulk.IsEnabled = false; }));
+                    }
+                    else {
+                        Dispatcher.Invoke(new Action(() => { btnstartbulk.IsEnabled = false; btnendbulk.IsEnabled = true; }));
+                    }
+                    Thread.Sleep(500);
+                }
+            }));
+            t.IsBackground = true;
+            t.Start();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Button b = sender as Button;
+            switch (b.Content) {
+                case "Start Bulk Rework": {
+                        MyGlobal.MySetting.ProductionStatus = "BulkRework";
+                        break;
+                    }
+                case "End Bulk Rework": {
+                        MyGlobal.MySetting.ProductionStatus = "Normal";
+                        break;
+                    }
+            }
+            XmlHelper<MyFunction.Custom.Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName);
         }
     }
 }

@@ -130,7 +130,7 @@
                             </Style>
                         </CheckBox.Style>
                     </CheckBox>
-                    <CheckBox Content="Auto Print Label"
+                    <CheckBox Content="Auto Print Label" IsEnabled="True"
                               IsChecked="{Binding Path=AutoPrintLabel}"/>
                 </WrapPanel>
                 <Label Content="Please input new Product Serial:" FontSize="14"/>
