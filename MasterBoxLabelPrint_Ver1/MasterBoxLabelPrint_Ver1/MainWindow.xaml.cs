@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
+using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 
 namespace MasterBoxLabelPrint_Ver1
 {
@@ -25,7 +26,7 @@ namespace MasterBoxLabelPrint_Ver1
         public MainWindow()
         {
             InitializeComponent();
-
+            this.DataContext = MyGlobal.myWindow;
             
         }
 

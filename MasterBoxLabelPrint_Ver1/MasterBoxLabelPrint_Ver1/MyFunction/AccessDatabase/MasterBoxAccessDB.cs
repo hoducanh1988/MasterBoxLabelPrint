@@ -197,7 +197,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
                 Thread.Sleep(100);
                 if (!accessDB.IsConnected) return null;
 
-                return accessDB.QueryDataReturnObject<T>(string.Format("SELECT * FROM {0} WHERE {1}='{2}'", table_name, ref_Field, field_Value));
+                return accessDB.QueryDataReturnObject<T>(string.Format("SELECT * FROM {0} WHERE {1}='{2}' AND Rework='-'", table_name, ref_Field, field_Value));
             }
             catch {
                 return null;

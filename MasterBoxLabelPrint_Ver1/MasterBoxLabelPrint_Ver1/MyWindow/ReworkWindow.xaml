@@ -5,48 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1"
         mc:Ignorable="d"
-        Title="Rework" Height="350" Width="1100" WindowStartupLocation="CenterScreen">
-    
+        Title="Rework" Height="450" Width="1000" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="label_title" TargetType="Label">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0.5"/>
+            <Setter Property="BorderBrush" Value="#777777"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#D0D0D0"/>
+        </Style>
+
+        <Style x:Key="label_content" TargetType="Label">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="150,0,0,0"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0.5"/>
+            <Setter Property="BorderBrush" Value="#777777"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Background" Value="#D0D0D0"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="CharacterCasing" Value="Upper"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="5,5,5,15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="25"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="5,5,0,0"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+        
+    </Window.Resources>
+
     <Grid Margin="5">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="450"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Background="#D0D0D0">
-            <StackPanel.Resources>
-                <Style x:Key="label_title" TargetType="Label">
-                    <Setter Property="Width" Value="150"/>
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="BorderThickness" Value="0,0,0,0.5"/>
-                    <Setter Property="BorderBrush" Value="#777777"/>
-                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="Margin" Value="0,0,0,0"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="Background" Value="#D0D0D0"/>
-                </Style>
-
-                <Style x:Key="label_content" TargetType="Label">
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="Margin" Value="150,0,0,0"/>
-                    <Setter Property="BorderThickness" Value="0,0,0,0.5"/>
-                    <Setter Property="BorderBrush" Value="#777777"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="FontWeight" Value="SemiBold"/>
-                    <Setter Property="Background" Value="#D0D0D0"/>
-                </Style>
-
-                <Style TargetType="TextBox">
-                    
-                </Style>
-
-                <Style TargetType="ComboBox">
-                    
-                </Style>
-                
-            </StackPanel.Resources>
-
-            
+        <StackPanel Grid.Column="0" Background="#D0D0D0">
             <Grid>
                 <Label Style="{StaticResource label_title}" Content="Production LOT:"/>
                 <Label Style="{StaticResource label_content}" 
@@ -58,8 +78,8 @@
                                Content="{Binding Path=LotProgress, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <Grid>
-                <Label Style="{StaticResource label_title}" Content="Rework Serial:"/>
-                <Label Style="{StaticResource label_content}" 
+                <Label Style="{StaticResource label_title}" Content="Old Product Serial:"/>
+                <Label Style="{StaticResource label_content}" FontSize="25" Padding="0,-10,0,0"
                                Content="{Binding Path=ReworkSerial, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <Grid>
@@ -89,9 +109,70 @@
             
         </StackPanel>
 
-        <Grid Grid.Row="1">
-            
-        </Grid>
+        <Border Grid.Column="1" BorderBrush="#777777" BorderThickness="1,1,1,1">
+            <StackPanel >
+                <WrapPanel>
+                    <CheckBox Content="Verify Product Weight">
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="Height" Value="30"/>
+                                <Setter Property="Width" Value="200"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Margin" Value="5,5,0,0"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="IsChecked" Value="False"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=PrintMode}" Value="Combine label printing with product weighing">
+                                        <Setter Property="IsChecked" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+                    <CheckBox Content="Auto Print Label"
+                              IsChecked="{Binding Path=AutoPrintLabel}"/>
+                </WrapPanel>
+                <Label Content="Please input new Product Serial:" FontSize="14"/>
+                <TextBox x:Name="txtnewproduct" KeyDown="TextBox_KeyDown" TextChanged="Txtnewproduct_TextChanged" Height="40" Text="{Binding Path=NewProductSerial, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <Label Content="Result:" FontSize="14"/>
+                <Label Height="80" FontSize="50" FontWeight="Bold"
+                           Content="{Binding Path=ReworkResult, UpdateSourceTrigger=PropertyChanged}">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=ReworkResult}" Value="PASS">
+                                    <Setter Property="Foreground" Value="Lime"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ReworkResult}" Value="FAIL">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ReworkResult}" Value="Waiting...">
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <TextBlock Height="100" FontSize="13" TextWrapping="Wrap" TextBlock.LineHeight="1" IsEnabled="False"
+                               Text="{Binding Path=ErrorMessage, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=ReworkResult}" Value="PASS">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=ReworkResult}" Value="FAIL">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <Button Click="Button_Click" Content="Close" Height="30" Width="100" HorizontalAlignment="Right" Margin="0,30,5,0"/>
+            </StackPanel>
+        </Border>
         
     </Grid>
 </Window>

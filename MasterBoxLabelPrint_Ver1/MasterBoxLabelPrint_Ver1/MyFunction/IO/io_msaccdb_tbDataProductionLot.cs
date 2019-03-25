@@ -9,7 +9,7 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
     public class io_msaccdb_tbDataProductionLot {
-         msaccdb_tbDataProductionLOT tbDataProductionLot = null;
+        msaccdb_tbDataProductionLOT tbDataProductionLot = null;
 
         public io_msaccdb_tbDataProductionLot() {
             var testing = MyGlobal.MyTesting;
@@ -42,6 +42,51 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_ReworkInformation"></param>
+        /// <returns></returns>
+        public bool WriteData(Proj_ReworkInformation _ReworkInformation) {
+            try {
+                var box = MyGlobal.MasterBox;
+                this.tbDataProductionLot = new msaccdb_tbDataProductionLOT();
+                tbDataProductionLot.DateTimeCreated = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                tbDataProductionLot.Line = _ReworkInformation.Line;
+                tbDataProductionLot.Lot = _ReworkInformation.ProductionLot;
+                tbDataProductionLot.LotProgress = _ReworkInformation.LotProgress;
+                tbDataProductionLot.LotQuantity = _ReworkInformation.LotQuantity ;
+                tbDataProductionLot.LotStatus = "";
+                tbDataProductionLot.ProductName = _ReworkInformation.ProductName;
+                tbDataProductionLot.ProductSerial = _ReworkInformation.NewProductSerial;
+                tbDataProductionLot.Rework = "-";
+
+                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", this.tbDataProductionLot, "tb_ID");
+            }
+            catch {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lot"></param>
+        /// <param name="oldSN"></param>
+        /// <param name="newSN"></param>
+        /// <param name="reason"></param>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public bool UpdateReworkData(string lot, string oldSN, string newSN, string reason, string person) {
+            try {
+                var box = MyGlobal.MasterBox;
+                string rw_reason = string.Format("[Rework date::{0}][Reason::{1}][Person::{2}][New Product::{3}]", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), reason, person, newSN);
+                return box.QueryData(string.Format("UPDATE tb_DataProductionLOT SET Rework='1',ReworkReason='{0}' WHERE Lot='{1}' AND ProductSerial='{2}'", rw_reason, lot, oldSN));
+            }
+            catch {
+                return false;
+            }
+        }
 
         /// <summary>
         /// 

@@ -5,13 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1"
         mc:Ignorable="d"
-        Title="Reason" Height="270" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Reason" Height="250" Width="700" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="#777777"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="120,0,0,0"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="RichTextBox">
+            <Setter Property="TextBlock.LineHeight" Value="1"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="0,5,0,0"/>
+            <Setter Property="BorderBrush" Value="#777777"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#e1f2b8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
+    </Window.Resources>
     
     <StackPanel Margin="10,5,10,0">
-        <Label Content="Tên người thao tác :"/>
-        <TextBox x:Name="txt_operator" Padding="5,0,0,0" FontWeight="SemiBold" VerticalContentAlignment="Center" Height="30"/>
+        <Grid>
+            <Label Content="Tên người thao tác :"/>
+            <TextBox x:Name="txt_operator"/>
+        </Grid>
+        
         <Label Content="Lý do rework :"/>
-        <RichTextBox x:Name="rtb_reason" Padding="0,5,0,0" FontWeight="SemiBold" Height="100" TextBlock.LineHeight="1"/>
+        <RichTextBox x:Name="rtb_reason"/>
         
         <WrapPanel HorizontalAlignment="Center">
             <Button Click="Button_Click" Content="OK" Height="25" Width="100" Margin="0,5,0,0"/>

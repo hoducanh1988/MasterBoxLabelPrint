@@ -84,14 +84,18 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                             ProductName = row_selected.ProductName,
                             ReworkSerial = row_selected.ProductSerial,
                             ProductInfo = product.ToString(),
+                            Line = row_selected.Line,
+                            LotQuantity = row_selected.LotQuantity,
                             WeightLimit = string.Format("{0} ~ {1}", double.Parse(product.weight) - double.Parse(product.bias), double.Parse(product.weight) + double.Parse(product.bias))
                         };
+
+                        MyGlobal.myWindow.WindowOpacity = 0.3;
 
                         ReasonWindow reason = new ReasonWindow(ref Proj_Rework);
                         reason.ShowDialog();
                         if (Proj_Rework.Operator.Trim() == "" || Proj_Rework.Reason.Trim() == "") {
                             MessageBox.Show("Tên người thao tác hoặc lý do rework không hợp lệ.", "Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                            return;
+                            break;
                         }
 
                         ReworkWindow rework = new ReworkWindow(Proj_Rework, product);
@@ -102,6 +106,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                         break;
                     }
             }
+            MyGlobal.myWindow.WindowOpacity = 1;
         }
     }
 }

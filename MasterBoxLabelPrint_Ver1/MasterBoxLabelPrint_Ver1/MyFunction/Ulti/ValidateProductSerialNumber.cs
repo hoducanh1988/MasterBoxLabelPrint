@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
@@ -27,7 +28,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
         //Construtor ------------------------------------------//
         public ValidateProductSerialNumber(string sn) {
             validate_product_serialnumber = sn;
-
+            ValidateItems.Clear();
             ValidateItems.Add(new validate_item() { ActionName = "Invalid serial number length", ActualValue = validate_product_serialnumber.Length.ToString(), StandardValue = "15" });
             ValidateItems.Add(new validate_item() { ActionName = "Product code is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = MyGlobal.MySetting.ProductNumber });
             ValidateItems.Add(new validate_item() { ActionName = "The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = MyGlobal.MySetting.ProductionPlace });
@@ -37,6 +38,20 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             ValidateItems.Add(new validate_item() { ActionName = "The production week is not correct", ActualValue = _get_value_from_serial(5, 2), StandardValue = "01~52" });
             ValidateItems.Add(new validate_item() { ActionName = "The last six characters of the serial number are not hexadecimal", ActualValue = _get_value_from_serial(9, 6), StandardValue = "^[0-9,A-F]{6}$" });
         }
+
+        public ValidateProductSerialNumber(string sn_rework, Init_Product productInfo) {
+            validate_product_serialnumber = sn_rework;
+            ValidateItems.Clear();
+            ValidateItems.Add(new validate_item() { ActionName = "Invalid serial number length", ActualValue = validate_product_serialnumber.Length.ToString(), StandardValue = "15" });
+            ValidateItems.Add(new validate_item() { ActionName = "Product code is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = productInfo.number });
+            ValidateItems.Add(new validate_item() { ActionName = "Rework: The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = "" });
+            ValidateItems.Add(new validate_item() { ActionName = "Rework: Product version is not correct", ActualValue = _get_value_from_serial(7, 1), StandardValue = "" });
+            ValidateItems.Add(new validate_item() { ActionName = "Color code is not correct", ActualValue = _get_value_from_serial(8, 1), StandardValue = productInfo.color });
+            ValidateItems.Add(new validate_item() { ActionName = "Rework: Year of manufacture is not correct", ActualValue = _get_value_from_serial(4, 1), StandardValue = "" });
+            ValidateItems.Add(new validate_item() { ActionName = "The production week is not correct", ActualValue = _get_value_from_serial(5, 2), StandardValue = "01~52" });
+            ValidateItems.Add(new validate_item() { ActionName = "The last six characters of the serial number are not hexadecimal", ActualValue = _get_value_from_serial(9, 6), StandardValue = "^[0-9,A-F]{6}$" });
+        }
+
 
         //get actual value
         string _get_value_from_serial(int start, int len) {
@@ -71,6 +86,16 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
                 }
                 else if (validate_Item.ActionName.ToLower().Equals("the last six characters of the serial number are not hexadecimal")) {
                     r = (Regex.IsMatch(validate_Item.ActualValue, validate_Item.StandardValue) == true) ? 0 : 1;
+                }
+                else if (validate_Item.ActionName.ToLower().Equals("rework: the place of production is not correct") || validate_Item.ActionName.ToLower().Equals("rework: product version is not correct")) {
+                    int value;
+                    bool kq = int.TryParse(validate_Item.ActualValue, out value);
+                    if (kq == false) return 1;
+                    return r = value > 0 ? 0 : 1;
+                }
+                else if (validate_Item.ActionName.ToLower().Equals("rework: year of manufacture is not correct")) {
+                    bool kq = Regex.IsMatch(validate_Item.ActualValue, "[0-9,A-Z]");
+                    return r = kq == true ? 0 : 1;
                 }
                 else {
                     r = validate_Item.ActualValue.ToLower().Equals(validate_Item.StandardValue.ToLower()) == true ? 0 : 1;

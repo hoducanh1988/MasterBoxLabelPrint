@@ -140,10 +140,12 @@
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataProductionLOT.cs" />
     <Compile Include="MyFunction\Custom\MsAccess\msaccdb_tbDataRework.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_DebugInformation.cs" />
+    <Compile Include="MyFunction\Custom\Project\Proj_MainWindowInfo.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_ReworkInformation.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_SettingInformation.cs" />
     <Compile Include="MyFunction\Custom\Init\Init_SuggestionText.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_TestingInformation.cs" />
+    <Compile Include="MyFunction\Implement\imp_Rework.cs" />
     <Compile Include="MyFunction\Implement\imp_RunAll.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataLog.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataProductionLot.cs" />
