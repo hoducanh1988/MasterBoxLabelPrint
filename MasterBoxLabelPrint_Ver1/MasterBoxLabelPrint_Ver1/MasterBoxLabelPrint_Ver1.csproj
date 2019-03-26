@@ -156,6 +156,7 @@
     <Compile Include="MyFunction\IO\io_msaccdb_tbIMEISerialPrint.cs" />
     <Compile Include="MyFunction\Scale\CAS_EDH.cs" />
     <Compile Include="MyFunction\Scale\Iscale.cs" />
+    <Compile Include="MyFunction\Ulti\GetLatestFileInDirectory.cs" />
     <Compile Include="MyFunction\Ulti\GenerateProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\GetRecentProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\ReprintProductionLot.cs" />

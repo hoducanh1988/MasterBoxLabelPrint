@@ -5,8 +5,120 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="595" d:DesignWidth="985" Background="White">
+  
     <Grid>
-        
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+
+        <!--<Grid Grid.Row="0">
+            <Button Click="Button_Click"  Margin="5,5,5,5" Content="PDF Viewer" Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Button Click="Button_Click"  Margin="150,5,5,5" Content="Play Video" Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        </Grid>-->
+
+        <TabControl Grid.Row="1" TabStripPlacement="Bottom">
+
+            <TabItem Header="PDF Viewer" GotFocus="TabItem_GotFocus">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="Aqua" Grid.Row="0">
+                        <StackPanel>
+                            <WrapPanel Margin="0,0,0,0">
+                                <Label Width="100" Content="Root Directory :"/>
+                                <Label x:Name="lbl_documentDir" Content="" FontWeight="SemiBold"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,-5,0,0">
+                                <Label Width="100" Content="File Name (pdf) :"/>
+                                <Label x:Name="lbl_documentFile" Content="" FontWeight="SemiBold"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <WebBrowser x:Name="pdfWebViewer" Grid.Row="1"/>
+
+                </Grid>
+                
+            </TabItem>
+            
+            
+            <TabItem Header="Video Player" GotFocus="TabItem_GotFocus">
+                <TabItem.CommandBindings>
+                    <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
+                    <CommandBinding Command="MediaCommands.Play" CanExecute="Play_CanExecute" Executed="Play_Executed" />
+                    <CommandBinding Command="MediaCommands.Pause" CanExecute="Pause_CanExecute" Executed="Pause_Executed" />
+                    <CommandBinding Command="MediaCommands.Stop" CanExecute="Stop_CanExecute" Executed="Stop_Executed" />
+                </TabItem.CommandBindings>
+
+                <Grid MouseWheel="Grid_MouseWheel">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="Aqua" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <WrapPanel Margin="0,0,0,0">
+                                <Label Width="100" Content="Root Directory :"/>
+                                <Label x:Name="lbl_videoDir" Content="" FontWeight="SemiBold"/>
+                            </WrapPanel>
+                            <WrapPanel Margin="0,-5,0,0">
+                                <Label Width="150" Content="File Name (avi,mkv,mp4) :"/>
+                                <Label x:Name="lbl_videoFile" Content="" FontWeight="SemiBold"/>
+                            </WrapPanel>
+                        </StackPanel>
+
+                        <Grid Grid.Column="1">
+                            <Button Click="Button_Click" Content="Play" Height="35" Width="100" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                            
+                        </Grid>
+                        
+                    </Grid>
+
+                    <MediaElement Name="mePlayer" Grid.Row="1" LoadedBehavior="Manual" Stretch="None" />
+
+                    <StatusBar Grid.Row="2">
+                        <StatusBar.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                            </ItemsPanelTemplate>
+                        </StatusBar.ItemsPanel>
+                        <StatusBarItem>
+                            <TextBlock Name="lblProgressStatus">00:00:00</TextBlock>
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="1" HorizontalContentAlignment="Stretch">
+                            <Slider Name="sliProgress" Thumb.DragStarted="sliProgress_DragStarted"  Thumb.DragCompleted="sliProgress_DragCompleted" ValueChanged="sliProgress_ValueChanged" />
+                        </StatusBarItem>
+                        <StatusBarItem Grid.Column="2">
+                            <!--<ProgressBar Name="pbVolume" Width="50" Height="12" Maximum="1" Value="{Binding ElementName=mePlayer, Path=Volume}" />-->
+                        </StatusBarItem>
+                    </StatusBar>
+                </Grid>
+                
+
+
+                <!--<MediaElement x:Name="videoPlayer" LoadedBehavior="Manual" />-->
+            </TabItem>
+        </TabControl>
+
+
     </Grid>
+    
 </UserControl>

@@ -23,11 +23,25 @@ namespace MasterBoxLabelPrint_Ver1
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Label> labels; //= new List<Label>() { lblRunAll, lblRework, lblSetting, lblLog, lblSOP, lblHelp, lblAbout, lblDebug };
+        List<Control> list; //= new List<Control>() { ucRunAll, ucRework, ucSOP, ucDebug, ucSetting, ucLog, ucHelp, ucAbout };
+
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = MyGlobal.myWindow;
-            
+
+            labels = new List<Label>() { lblRunAll, lblRework, lblSetting, lblLog, lblSOP, lblHelp, lblAbout, lblDebug };
+            list = new List<Control>() { ucRunAll, ucRework, ucSOP, ucDebug, ucSetting, ucLog, ucHelp, ucAbout };
+
+            foreach (var item in list) {
+                item.Visibility = Visibility.Collapsed;
+                Canvas.SetZIndex(item, 0);
+            }
+
+            ucRunAll.Visibility = Visibility.Visible;
+            Canvas.SetZIndex(ucRunAll, 1);
+
         }
 
 
@@ -35,7 +49,7 @@ namespace MasterBoxLabelPrint_Ver1
         {
             Label lb = sender as Label;
             //change label foreground --------------//
-            List<Label> labels = new List<Label>() {lblRunAll, lblRework, lblSetting, lblLog, lblSOP, lblHelp, lblAbout, lblDebug};
+            
             foreach (var label in labels) label.Foreground = Brushes.Black;
             lb.Foreground = Brushes.Orange;
 
@@ -43,7 +57,7 @@ namespace MasterBoxLabelPrint_Ver1
             this.border_underline.Margin = lb.Margin;
             this.border_underline.Width = lb.Width - 10;
             //change user control ------------------//
-            List<Control> list = new List<Control>() { ucRunAll, ucRework, ucSOP, ucDebug, ucSetting, ucLog, ucHelp, ucAbout };
+            
             foreach (var item in list) {
                 item.Visibility = Visibility.Collapsed;
                 Canvas.SetZIndex(item, 0);

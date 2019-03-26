@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/icon/qr.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/image/open.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/image/pause.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/image/play.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("asset/image/stop.png")]
 
 
