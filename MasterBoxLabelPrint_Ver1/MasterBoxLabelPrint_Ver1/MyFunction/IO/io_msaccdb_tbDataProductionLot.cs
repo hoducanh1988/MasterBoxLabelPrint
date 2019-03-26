@@ -35,7 +35,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public bool WriteData() {
             try {
                 var box = MyGlobal.MasterBox;
-                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", this.tbDataProductionLot, "tb_ID");
+                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", this.tbDataProductionLot, "tb_ID");
             }
             catch {
                 return false;
@@ -61,7 +61,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
                 tbDataProductionLot.ProductSerial = _ReworkInformation.NewProductSerial;
                 tbDataProductionLot.Rework = "-";
 
-                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", this.tbDataProductionLot, "tb_ID");
+                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", this.tbDataProductionLot, "tb_ID");
             }
             catch {
                 return false;
@@ -81,19 +81,35 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             try {
                 var box = MyGlobal.MasterBox;
                 string rw_reason = string.Format("[Rework date::{0}][Reason::{1}][Person::{2}][New Product::{3}]", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), reason, person, newSN);
-                return box.QueryData(string.Format("UPDATE tb_DataProductionLOT SET Rework='1',ReworkReason='{0}' WHERE Lot='{1}' AND ProductSerial='{2}'", rw_reason, lot, oldSN));
+                return box.QueryData(string.Format("UPDATE {3} SET Rework='1',ReworkReason='{0}' WHERE Lot='{1}' AND ProductSerial='{2}'", rw_reason, lot, oldSN, MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk"));
             }
             catch {
                 return false;
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool DeleteAll() {
+            try {
+                var box = MyGlobal.MasterBox;
+                return box.Delete_All_DataRow_From_Access_DB_Table(MyGlobal.MySetting.ProductionStatus == "Normal" ? "" : "tb_DataProductionLOT_Bulk");
+            }
+            catch {
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_tbDataProductionLOT> ReadData() {
-            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "Line", "", "Lot", "");
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "Line", "", "Lot", "");
         }
 
         /// <summary>
@@ -101,7 +117,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_tbDataProductionLOT> ReadProduct(string lot_name) {
-            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", 1000, "tb_ID", "Rework", "-", "Line", "", "Lot", lot_name);
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", 1000, "tb_ID", "Rework", "-", "Line", "", "Lot", lot_name);
         }
 
         /// <summary>
@@ -109,7 +125,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_ProductionLOT> ReadProductionLot() {
-            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot");
+            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot");
         }
 
         /// <summary>
@@ -117,7 +133,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_ProductionLOT> ReadProductionLot(string lot_name) {
-            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot", lot_name);
+            return MyGlobal.MasterBox.Get_Distinct_Newest_DataRow_From_Access_DB_Table<msaccdb_ProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "Lot", lot_name);
         }
+        
     }
 }

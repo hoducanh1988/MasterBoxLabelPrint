@@ -33,7 +33,9 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
         
         //main function -------------------------------------------//
-        void _run_All() {
+
+        //normal production
+        bool _run_All() {
             Thread zzz = new Thread(new ThreadStart(() => {
                 var runall = new imp_RunAll();
                 if (!runall.Execute()) _jud_fail();
@@ -41,6 +43,21 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             }));
             zzz.IsBackground = true;
             zzz.Start();
+
+            return true;
+        }
+
+        //bulk rework
+        bool _run_Bulk_Rework() {
+            Thread zzz = new Thread(new ThreadStart(() => {
+                var run = new imp_BulkRework();
+                if (!run.Execute()) _jud_fail();
+                else _jud_pass();
+            }));
+            zzz.IsBackground = true;
+            zzz.Start();
+
+            return true;
         }
         
 
@@ -69,7 +86,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             _load_ms_datatable_(); //load ms database
 
             new GetRecentProductionLot().SetData(); //
-        } 
+        }
 
 
         void _jud_fail() {

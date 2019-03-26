@@ -68,7 +68,7 @@
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0">
             <WrapPanel>
                 <Label FontSize="14" Content="Lý do rework:"/>
-                <RichTextBox Margin="5,0,0,0" Height="100"/>
+                <RichTextBox x:Name="rtb_reason" Margin="5,0,0,0" Height="100"/>
             </WrapPanel>
             <WrapPanel>
                 <Button x:Name="btnstartbulk" Margin="5,5,0,0" Content="Start Bulk Rework"/>

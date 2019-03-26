@@ -67,7 +67,7 @@
                     <StackPanel Grid.Column="0" Margin="0,0,0,-30">
                         <WrapPanel>
                             <Label FontSize="14" FontWeight="SemiBold" Content="Input product serial number:"/>
-                            <Label Margin="0,-10,0,0" FontWeight="Bold" Foreground="#ff7c7c" x:Name="lblproductionstatus" FontSize="25" Content=""/>
+                            <Label Margin="0,-10,0,0" FontWeight="Bold" Foreground="Red" x:Name="lblproductionstatus" FontSize="25" Content=""/>
                         </WrapPanel>
                         <TextBox x:Name="txt_SN" FontSize="30" Width="400" HorizontalAlignment="Left"  
                              Text="{Binding Path=ProductSerial, UpdateSourceTrigger=PropertyChanged}"

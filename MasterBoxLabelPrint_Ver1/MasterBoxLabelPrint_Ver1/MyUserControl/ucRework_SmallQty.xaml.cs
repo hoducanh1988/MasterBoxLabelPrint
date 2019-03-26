@@ -36,7 +36,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
             Button b = sender as Button;
             switch (b.Tag) {
                 case "search_lot_rework": {
-                        List<msaccdb_tbDataProductionLOT> listdataproductionlot = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", txt_product_serial.Text, "Rework", "-", "Lot", txt_lot.Text);
+                        List<msaccdb_tbDataProductionLOT> listdataproductionlot = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataProductionLOT" : "tb_DataProductionLOT_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", txt_product_serial.Text, "Rework", "-", "Lot", txt_lot.Text);
                         this.data_grid_lot.ItemsSource = listdataproductionlot;
                         MessageBox.Show(string.Format("Success. Found {0} results.", listdataproductionlot.Count), "Search Log MSAccess", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;

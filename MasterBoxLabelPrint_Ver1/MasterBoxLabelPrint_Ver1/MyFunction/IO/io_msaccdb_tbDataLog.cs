@@ -53,7 +53,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public bool WriteData() {
             try {
                 var box = MyGlobal.MasterBox;
-                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataLog>("tb_DataLog", this.tbDataLog, "tb_ID");
+                return box.Input_New_DataRow_To_Access_DB_Table<msaccdb_tbDataLog>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataLog" : "tb_DataLog_Bulk", this.tbDataLog, "tb_ID");
             } catch {
                 return false;
             }
@@ -65,7 +65,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         /// </summary>
         /// <returns></returns>
         public List<msaccdb_tbDataLog> ReadData() {
-            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataLog>("tb_DataLog", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "TotalResult", "", "Lot", "");
+            return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataLog>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataLog" : "tb_DataLog_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "TotalResult", "", "Lot", "");
         }
         
 

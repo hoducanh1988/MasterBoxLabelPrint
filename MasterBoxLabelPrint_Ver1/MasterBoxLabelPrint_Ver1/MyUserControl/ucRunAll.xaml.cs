@@ -31,7 +31,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             if (e.Key == Key.Enter) {
                 txt_SN.IsEnabled = false; //
 
-                _run_All();
+                bool r = MyGlobal.MySetting.ProductionStatus == "Normal" ? _run_All() : _run_Bulk_Rework();
             }
         }
 

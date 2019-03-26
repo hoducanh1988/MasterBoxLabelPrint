@@ -145,6 +145,7 @@
     <Compile Include="MyFunction\Custom\Project\Proj_SettingInformation.cs" />
     <Compile Include="MyFunction\Custom\Init\Init_SuggestionText.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_TestingInformation.cs" />
+    <Compile Include="MyFunction\Implement\imp_BulkRework.cs" />
     <Compile Include="MyFunction\Implement\imp_Rework.cs" />
     <Compile Include="MyFunction\Implement\imp_RunAll.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataLog.cs" />

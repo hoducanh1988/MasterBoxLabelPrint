@@ -9,8 +9,8 @@
   <JigIndex>1</JigIndex>
   <Operator>ABCD</Operator>
   <FileProduct>Product_Ver1.csv</FileProduct>
-  <ProductName>GW020BoB</ProductName>
-  <ProductCode>HY5NPE6N000002NP</ProductCode>
+  <ProductName>GW040H</ProductName>
+  <ProductCode>HY5NPE8N000002NP</ProductCode>
   <ProductVersion>1</ProductVersion>
   <PrinterName>Microsoft Print to PDF</PrinterName>
   <PrintPage>1</PrintPage>
@@ -24,13 +24,13 @@
   <DirLog>D:\LOGDATA</DirLog>
   <VisibleLogQuantity>50</VisibleLogQuantity>
   <SOPServer>192.168.10.1</SOPServer>
-  <ProductNumber>008</ProductNumber>
+  <ProductNumber>031</ProductNumber>
   <ColorCode>F</ColorCode>
   <ProductWeight>100</ProductWeight>
   <WeightBias>10</WeightBias>
   <LotQuantity>20</LotQuantity>
   <WeightLL>90</WeightLL>
   <WeightUL>110</WeightUL>
-  <ProductInfo>&lt; 008,HY5NPE6N000002NP,F,100,10,20 &gt;</ProductInfo>
-  <ProductionStatus>Normal</ProductionStatus>
+  <ProductInfo>&lt; 031,HY5NPE8N000002NP,F,100,10,20 &gt;</ProductInfo>
+  <ProductionStatus>BulkRework</ProductionStatus>
 </Proj_SettingInformation>
