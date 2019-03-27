@@ -68,7 +68,5 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataLog>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataLog" : "tb_DataLog_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "TotalResult", "", "Lot", "");
         }
         
-
-        
     }
 }

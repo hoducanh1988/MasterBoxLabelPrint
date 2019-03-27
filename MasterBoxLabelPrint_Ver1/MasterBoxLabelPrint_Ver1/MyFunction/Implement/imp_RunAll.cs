@@ -7,37 +7,60 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Scale;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
+using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
     public class imp_RunAll {
 
 
         public bool Execute() {
+            bool r = false;
+
             try {
+                //init log
+                MyGlobal.testFunctionLogInfo = new IO.VnptAsmTestFunctionLogInfo() {
+                    Rework = "-",
+                    Production_Command = MyGlobal.MySetting.ProductionCommand,
+                    ProductionLot = MyGlobal.MyTesting.LotName,
+                    LotProgress = MyGlobal.MyTesting.LotProgress,
+                };
+
                 MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
 
                 //validate serial number
-                if (!_validate_product_serialnumber()) return false;
+                if (!_validate_product_serialnumber()) goto END;
 
                 //check serial printed or not
-                if (!_serial_was_printed()) return false;
+                if (!_serial_was_printed()) goto END;
 
                 //check product weight
-                if (!_product_weight_is_valid()) return false;
+                if (!_product_weight_is_valid()) goto END;
 
-                return true;
+                r = true;
+                goto END;
+
             } catch {
-                return false;
+                goto END;
             }
+
+            
+        END:
+            new LogTotal().To_CSV_File(MyGlobal.testFunctionLogInfo, new VnptLogMoreInfo());
+            return r;
+
         }
 
 
         //validate product serial number
         bool _validate_product_serialnumber() {
             bool r = false;
+            MyGlobal.testFunctionLogInfo.Product_Serial = MyGlobal.MyTesting.ProductSerial;
             ValidateProductSerialNumber validate = new ValidateProductSerialNumber(MyGlobal.MyTesting.ProductSerial);
             r = validate.Validate();
             if (!r) MyGlobal.MyTesting.ErrorMessage += validate.Validate_Error_Message;
+            MyGlobal.testFunctionLogInfo.SerialFormat.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
+
             return r;
         }
 
@@ -47,6 +70,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
             msaccdb_tbDataProductionLOT tb = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", "ProductSerial", MyGlobal.MyTesting.ProductSerial);
             r = tb == null;
             if (!r) MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number was printed in lot {0}, date printed {1}.", tb.Lot, tb.DateTimeCreated);
+            MyGlobal.testFunctionLogInfo.SerialPrinted.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
             return r;
         }
 
@@ -58,6 +83,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
                 int count = 0;
                 double ul = double.Parse(MyGlobal.MySetting.WeightUL);
                 double ll = double.Parse(MyGlobal.MySetting.WeightLL);
+                MyGlobal.testFunctionLogInfo.ProductWeight.Upper_Limit = MyGlobal.MySetting.WeightUL;
+                MyGlobal.testFunctionLogInfo.ProductWeight.Lower_Limit = MyGlobal.MySetting.WeightLL;
+                MyGlobal.testFunctionLogInfo.ProductWeight.Unit_Of_Measurement = "g";
 
             REP:
                 count++;
@@ -67,6 +95,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight can't is NULL.", weight_string);
+                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = "NULL";
+                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
                 }
@@ -76,21 +107,31 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight {0} is not valid.", weight_string);
+                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = weight_string;
+                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
                 }
 
                 MyGlobal.MyTesting.WeightActual = weight_value.ToString();
+                MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = MyGlobal.MyTesting.WeightActual;
                 r = weight_value >= ll && weight_value <= ul;
 
                 if (!r) {
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight {0} is out of range {1}.", weight_string, MyGlobal.MyTesting.WeightStandard);
+                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
                 }
-                else return true;
+                else {
+                    MyGlobal.testFunctionLogInfo.ProductWeight.Result = "PASS";
+                    MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
+                    return true;
+                }
             }
             else return true;
         }

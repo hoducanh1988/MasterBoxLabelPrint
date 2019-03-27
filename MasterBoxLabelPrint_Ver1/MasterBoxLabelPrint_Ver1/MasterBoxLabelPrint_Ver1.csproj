@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MasterBoxLabelPrint_Ver1</RootNamespace>
     <AssemblyName>MasterBoxLabelPrint_Ver1</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -154,6 +155,10 @@
     <Compile Include="MyFunction\Global\MyParameter.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataRework.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbIMEISerialPrint.cs" />
+    <Compile Include="MyFunction\IO\Logger\AbstractLogger.cs" />
+    <Compile Include="MyFunction\IO\Logger\LogDetail.cs" />
+    <Compile Include="MyFunction\IO\Logger\LogSingle.cs" />
+    <Compile Include="MyFunction\IO\Logger\LogTotal.cs" />
     <Compile Include="MyFunction\Scale\CAS_EDH.cs" />
     <Compile Include="MyFunction\Scale\Iscale.cs" />
     <Compile Include="MyFunction\Ulti\GetLatestFileInDirectory.cs" />

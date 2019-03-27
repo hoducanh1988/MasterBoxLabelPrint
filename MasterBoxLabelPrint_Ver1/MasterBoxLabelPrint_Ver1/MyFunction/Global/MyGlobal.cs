@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
+using MasterBoxLabelPrint_Ver1.MyFunction.IO;
+using UtilityPack.VNPT;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
 
@@ -20,14 +22,16 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static Proj_DebugInformation myDebug = new Proj_DebugInformation();
         public static Proj_MainWindowInfo myWindow = new Proj_MainWindowInfo();
 
+        public static VNPTTestInfo TestingInfo = new VNPTTestInfo();
+
         public static AccessDatabase.MasterBoxAccessDB MasterBox = null;
 
         public static List<Init_Guideline> Guidelines = null;
         public static List<Init_SuggestionText> SuggestionTexts = null;
         public static List<Init_Product> Products = null;
 
-        
-
+        //log
+        public static VnptAsmTestFunctionLogInfo testFunctionLogInfo = null;
         
     }
 }
