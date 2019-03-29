@@ -78,6 +78,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                     }
             }
 
+            MyGlobal.IncreasementLot = true;
             //gen lot when start/end bulk rework
             new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
             //save setting

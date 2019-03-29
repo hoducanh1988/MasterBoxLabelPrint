@@ -18,6 +18,7 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 using MasterBoxLabelPrint_Ver1.MyFunction.Implement;
+using MasterBoxLabelPrint_Ver1.MyFunction.Lamp;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
@@ -37,6 +38,10 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         //normal production
         bool _run_All() {
             Thread zzz = new Thread(new ThreadStart(() => {
+                //set off lamp
+                VNPT_Lamp.Output(LampStatus.AllOFF);
+
+                //run check
                 var runall = new imp_RunAll();
                 if (!runall.Execute()) _jud_fail();
                 else _jud_pass();
@@ -50,6 +55,10 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         //bulk rework
         bool _run_Bulk_Rework() {
             Thread zzz = new Thread(new ThreadStart(() => {
+                //set off lamp
+                VNPT_Lamp.Output(LampStatus.AllOFF);
+
+                //run check
                 var run = new imp_BulkRework();
                 if (!run.Execute()) _jud_fail();
                 else _jud_pass();
@@ -71,21 +80,24 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); }));  //set focus for txt_SN
 
             if (MyGlobal.MyTesting.LotCount.Equals(MyGlobal.MyTesting.LotLimit)) {  //gen lot
-                MyGlobal.MyTesting.LotCount = "0";
-                MyGlobal.MyTesting.LotName = new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).Gererate();
 
                 Thread t = new Thread(new ThreadStart(() => {
                     MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint"); //print label
                     Thread.Sleep(100);
                     new io_msaccdb_tbIMEISerialPrint().DeleteAll(); //delete all row in table imei print
+
+                    MyGlobal.MyTesting.LotCount = "0";
+                    MyGlobal.MyTesting.LotName = new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).Gererate();
                 }));
                 t.IsBackground = true;
                 t.Start();
             }
             
             _load_ms_datatable_(); //load ms database
-
             new GetRecentProductionLot().SetData(); //
+
+            //set green lamp
+            VNPT_Lamp.Output(LampStatus.GreenON);
         }
 
 
@@ -94,6 +106,9 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             _save_log_(); //save log
             Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); })); //set focus for txt_SN
             _load_ms_datatable_(); //load ms database
+
+            //set red lamp
+            VNPT_Lamp.Output(LampStatus.RedON);
         }
 
 

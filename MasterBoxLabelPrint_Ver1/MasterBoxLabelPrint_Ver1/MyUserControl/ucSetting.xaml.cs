@@ -143,12 +143,12 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         private void _init_ItemSource_For_Combobox_() {
 
             if (MyGlobal.SuggestionTexts != null) {
-                this.cbb_baud_rate.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.baud }).Where(x => x.baud.Trim() != "").Select(x => x.baud.ToString()).ToList();
-                this.cbb_data_bit.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.databit }).Where(x => x.databit.Trim() != "").Select(x => x.databit.ToString()).ToList();
+                this.cbb_baud_rate.ItemsSource = this.cbb_lamp_baud_rate.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.baud }).Where(x => x.baud.Trim() != "").Select(x => x.baud.ToString()).ToList();
+                this.cbb_data_bit.ItemsSource = this.cbb_lamp_data_bit.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.databit }).Where(x => x.databit.Trim() != "").Select(x => x.databit.ToString()).ToList();
                 this.cbb_jig_index.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
                 this.cbb_line.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.line }).Where(x => x.line.Trim() != "").Select(x => x.line.ToString()).ToList();
-                this.cbb_parity.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.parity }).Where(x => x.parity.Trim() != "").Select(x => x.parity.ToString()).ToList();
-                this.cbb_port_name.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.port }).Where(x => x.port.Trim() != "").Select(x => x.port.ToString()).ToList();
+                this.cbb_parity.ItemsSource = this.cbb_lamp_parity.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.parity }).Where(x => x.parity.Trim() != "").Select(x => x.parity.ToString()).ToList();
+                this.cbb_port_name.ItemsSource = this.cbb_lamp_port_name.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.port }).Where(x => x.port.Trim() != "").Select(x => x.port.ToString()).ToList();
                 this.cbb_print_mode.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.mode }).Where(x => x.mode.Trim() != "").Select(x => x.mode.ToString()).ToList();
                 this.cbb_print_page.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
                 this.cbb_station_index.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
@@ -156,7 +156,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 this.cbb_station_name.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.station }).Where(x => x.station.Trim() != "").Select(x => x.station.ToString()).ToList();
                 this.cbb_production_place.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.place }).Where(x => x.place.Trim() != "").Select(x => x.place.ToString()).ToList();
                 this.cbb_production_year.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.year }).Where(x => x.year.Trim() != "").Select(x => x.year.ToString()).ToList();
-                this.cbb_stop_bit.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.stopbit }).Where(x => x.stopbit.Trim() != "").Select(x => x.stopbit.ToString()).ToList();
+                this.cbb_stop_bit.ItemsSource = this.cbb_lamp_stop_bit.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.stopbit }).Where(x => x.stopbit.Trim() != "").Select(x => x.stopbit.ToString()).ToList();
                 this.cbb_visible_log_quantity.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.quantity }).Where(x => x.quantity.Trim() != "").Select(x => x.quantity.ToString()).ToList();
             }
         }

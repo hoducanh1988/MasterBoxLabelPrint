@@ -257,6 +257,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             get { return _serial_baud_rate; }
             set {
                 _serial_baud_rate = value;
+                LampBaudRate = value;
                 OnPropertyChanged(nameof(SerialBaudRate));
             }
         }
@@ -266,6 +267,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             get { return _serial_data_bits; }
             set {
                 _serial_data_bits = value;
+                LampDataBits = value;
                 OnPropertyChanged(nameof(SerialDataBits));
             }
         }
@@ -275,6 +277,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             get { return _serial_parity; }
             set {
                 _serial_parity = value;
+                LampParity = value;
                 OnPropertyChanged(nameof(SerialParity));
             }
         }
@@ -284,6 +287,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             get { return _serial_stop_bits; }
             set {
                 _serial_stop_bits = value;
+                LampStopBits = value;
                 OnPropertyChanged(nameof(SerialStopBits));
             }
         }
@@ -300,6 +304,58 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
         #endregion
 
         //6
+        #region CAI_DAT_DEN_HIEN_THI #################################
+
+        string _lamp_port_name; //serial port name
+        public string LampPortName {
+            get { return _lamp_port_name; }
+            set {
+                _lamp_port_name = value;
+                OnPropertyChanged(nameof(LampPortName));
+            }
+        }
+
+        string _lamp_baud_rate; //baud rate
+        public string LampBaudRate {
+            get { return _lamp_baud_rate; }
+            set {
+                _lamp_baud_rate = value;
+                OnPropertyChanged(nameof(LampBaudRate));
+            }
+        }
+
+        string _lamp_data_bits; //data bits
+        public string LampDataBits {
+            get { return _lamp_data_bits; }
+            set {
+                _lamp_data_bits = value;
+                OnPropertyChanged(nameof(LampDataBits));
+            }
+        }
+
+        string _lamp_parity; //parity
+        public string LampParity {
+            get { return _lamp_parity; }
+            set {
+                _lamp_parity = value;
+                OnPropertyChanged(nameof(LampParity));
+            }
+        }
+
+        string _lamp_stop_bits; //stop bits
+        public string LampStopBits {
+            get { return _lamp_stop_bits; }
+            set {
+                _lamp_stop_bits = value;
+                OnPropertyChanged(nameof(LampStopBits));
+            }
+        }
+
+        #endregion
+
+
+
+        //7
         #region CAI_DAT_LUU_LOG #########################################
 
         string _dir_log; //log directory
@@ -322,7 +378,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 
         #endregion
 
-        //7
+        //8
         #region CAI_DAT_SOP #############################################
 
         string _sop_server; //SOP Server
@@ -336,7 +392,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 
         #endregion
 
-        //8
+        //9
         #region THONG_TIN_SAN_PHAM ######################################
 
         string _product_number; //product Number
@@ -387,7 +443,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
 
         #endregion
 
-        //9
+        //10
         #region OTHER ###################################################
         string _weight_lower_limit; //weight lower
         public string WeightLL {

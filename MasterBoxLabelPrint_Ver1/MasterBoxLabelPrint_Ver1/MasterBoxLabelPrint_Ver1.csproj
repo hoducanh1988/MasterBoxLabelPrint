@@ -159,6 +159,7 @@
     <Compile Include="MyFunction\IO\Logger\LogDetail.cs" />
     <Compile Include="MyFunction\IO\Logger\LogSingle.cs" />
     <Compile Include="MyFunction\IO\Logger\LogTotal.cs" />
+    <Compile Include="MyFunction\Lamp\VNPT_Lamp.cs" />
     <Compile Include="MyFunction\Scale\CAS_EDH.cs" />
     <Compile Include="MyFunction\Scale\Iscale.cs" />
     <Compile Include="MyFunction\Ulti\GetLatestFileInDirectory.cs" />
@@ -238,7 +239,6 @@
   <ItemGroup>
     <Folder Include="Asset\Image\" />
     <Folder Include="Asset\Resource\" />
-    <Folder Include="MyFunction\Protocol\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ADODB">

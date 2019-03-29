@@ -32,6 +32,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
 
         //log
         public static VnptAsmTestFunctionLogInfo testFunctionLogInfo = null;
+        public static bool IncreasementLot = false;
+        public static string OutputLamp = "";
         
     }
 }

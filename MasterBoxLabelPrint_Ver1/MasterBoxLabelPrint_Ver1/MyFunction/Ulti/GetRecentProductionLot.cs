@@ -47,10 +47,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
                     bool _ischangelot = pd_number != _code || pd_place != _place || pd_year != _year || pd_line != _line;
 
-                    if (_ischangelot) {
+                    if (_ischangelot || MyGlobal.IncreasementLot == true) {
                         MyGlobal.MyTesting.LotCount = "0";
                         MyGlobal.MyTesting.LotName = new GenerateProductionLot(_line, _place, _year, _code).Gererate();
                         this.SetData();
+                        MyGlobal.IncreasementLot = false;
                     }
                     else {
                         MyGlobal.MyTesting.LotCount = buffer[1].Split('/')[0];

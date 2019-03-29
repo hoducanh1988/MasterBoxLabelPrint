@@ -21,6 +21,11 @@
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <WaitTime>100</WaitTime>
+  <LampPortName>COM6</LampPortName>
+  <LampBaudRate>9600</LampBaudRate>
+  <LampDataBits>8</LampDataBits>
+  <LampParity>None</LampParity>
+  <LampStopBits>1</LampStopBits>
   <DirLog>D:\LOGDATA</DirLog>
   <VisibleLogQuantity>50</VisibleLogQuantity>
   <SOPServer>10.5.1.254</SOPServer>

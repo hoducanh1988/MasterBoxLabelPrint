@@ -257,9 +257,44 @@
                     </Grid>
                     
                 </StackPanel>
+
+                <!--CÀI ĐẶT ĐÈN HIỂN THỊ-->
+                <StackPanel>
+                    <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT ĐÈN HIỂN THỊ (LOẠI GIAO TIẾP QUA UART)"/>
+                    <Grid>
+                        <Label Content="Tên cổng UART"/>
+                        <ComboBox x:Name="cbb_lamp_port_name"
+                              Tag="lampportname" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LampPortName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+                    <Grid>
+                        <Label Content="Tốc độ baud"/>
+                        <ComboBox x:Name="cbb_lamp_baud_rate"
+                              Tag="lampbaudrate" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LampBaudRate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+                    <Grid>
+                        <Label Content="Data Bits"/>
+                        <ComboBox x:Name="cbb_lamp_data_bit"
+                              Tag="lampdatabits" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LampDataBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+                    <Grid>
+                        <Label Content="Parity"/>
+                        <ComboBox x:Name="cbb_lamp_parity"
+                              Tag="lampparity" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LampParity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+                    <Grid>
+                        <Label Content="Stop bits"/>
+                        <ComboBox x:Name="cbb_lamp_stop_bit"
+                              Tag="lampstopbits" GotFocus="FrameWorkElement_Focus"
+                              Text="{Binding Path=LampStopBits, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    </Grid>
+
+                </StackPanel>
                 
 
-                
                 <!--CÀI ĐẶT LƯU LOG-->
                 <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT LƯU LOG"/>
                 <Grid>

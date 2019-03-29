@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
@@ -89,6 +90,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
         private string _increment_lot(string lot) {
             int r = int.Parse(lot);
             r++;
+            new io_msaccdb_tbIMEISerialPrint().DeleteAll(); //delete all row in table imei print
             return r.ToString().PadLeft(6, '0');
         }
 

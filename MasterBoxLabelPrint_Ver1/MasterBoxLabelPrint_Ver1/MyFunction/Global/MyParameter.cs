@@ -15,6 +15,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
             "verify device::ms access database file"
 
         };
+
         //public static List<string> IndexList = MyBase.Get_Init_File("IndexList.ini");
         //public static List<string> ProductList = MyBase.Get_Init_File("ProductList.ini");
         //public static List<string> StationList = MyBase.Get_Init_File("StationList.ini");

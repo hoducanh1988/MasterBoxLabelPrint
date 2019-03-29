@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
+using MasterBoxLabelPrint_Ver1.MyFunction.Lamp;
 using MasterBoxLabelPrint_Ver1.MyFunction.Scale;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 
@@ -24,6 +25,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
 
         public bool Execute() {
             bool r = false;
+
+            //set lamp off
+            VNPT_Lamp.Output(LampStatus.AllOFF);
 
             try {
                 //init log
@@ -54,6 +58,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
 
         END:
             new LogTotal().To_CSV_File(MyGlobal.testFunctionLogInfo, new VnptLogMoreInfo());
+
+            //set lamp on
+            VNPT_Lamp.Output(r ? LampStatus.GreenON : LampStatus.RedON);
+
+            //return value
             return r;
         }
 
