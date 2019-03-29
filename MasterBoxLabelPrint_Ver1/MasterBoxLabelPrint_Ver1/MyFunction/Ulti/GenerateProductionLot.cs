@@ -85,6 +85,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             }
             else return string.Format("{0}{1}{2}{3}_{4}", _code, _place, _year, _line, lot_index);
         }
+
         private string _increment_lot(string lot) {
             int r = int.Parse(lot);
             r++;

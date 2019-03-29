@@ -41,9 +41,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
                     string lotname = buffer[0];
 
                     string pd_number = lotname.Substring(0, 3);
-                    string pd_place = lotname.Substring(2, 1);
-                    string pd_year = lotname.Substring(3, 2);
-                    string pd_line = lotname.Substring(5, 1);
+                    string pd_place = lotname.Substring(3, 1);
+                    string pd_year = lotname.Substring(4, 2);
+                    string pd_line = lotname.Substring(6, 1);
 
                     bool _ischangelot = pd_number != _code || pd_place != _place || pd_year != _year || pd_line != _line;
 

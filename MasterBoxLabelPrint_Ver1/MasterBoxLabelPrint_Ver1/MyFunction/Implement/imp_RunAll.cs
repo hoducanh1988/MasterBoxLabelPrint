@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Scale;
@@ -47,7 +48,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
         END:
             new LogTotal().To_CSV_File(MyGlobal.testFunctionLogInfo, new VnptLogMoreInfo());
             return r;
-
         }
 
 

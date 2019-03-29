@@ -41,12 +41,16 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
                     foreach (var ext in this.file_extensions) {
                         var file = GetFile(ext);
-                        if (DateTime.Compare(d, file.LastWriteTime) < 0) {
-                            f = file;
-                            d = file.LastWriteTime;
+                        if (file != null) {
+                            if (DateTime.Compare(d, file.LastWriteTime) < 0) {
+                                f = file;
+                                d = file.LastWriteTime;
+                            }
                         }
+                        
                     }
-                    return f.Name;
+                    if (f != null) return f.Name;
+                    else return null;
                 }
                 
             } catch {

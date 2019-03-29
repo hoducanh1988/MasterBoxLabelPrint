@@ -71,7 +71,6 @@ C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabel
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\bin\Debug\UtilityPack.dll
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\bin\Debug\Interop.ADODB.dll
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\bin\Debug\Interop.ADOX.dll
-C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MasterBoxLabelPrint_Ver1.csprojAssemblyReference.cache
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\Interop.ADODB.dll
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\Interop.ADOX.dll
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MasterBoxLabelPrint_Ver1.csproj.ResolveComReference.cache
@@ -112,3 +111,4 @@ C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabel
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MyWindow\ReworkWindow.baml
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MyWindow\ReasonWindow.g.cs
 C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MyWindow\ReasonWindow.baml
+C:\Users\chien\source\repos\_Git_________________________________\MasterBoxLabelPrint\MasterBoxLabelPrint_Ver1\MasterBoxLabelPrint_Ver1\obj\Debug\MasterBoxLabelPrint_Ver1.csprojAssemblyReference.cache

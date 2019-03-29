@@ -44,30 +44,38 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 while (true) {
                     string dir = string.Format(@"\\{0}\SOP\{1}\{2}", MyGlobal.MySetting.SOPServer, MyGlobal.MySetting.ProductName, MyGlobal.MySetting.StationName);
                     Dispatcher.Invoke(new Action(() => {
-                        lbl_videoDir.Content = lbl_documentDir.Content = dir;
+                        try {
+                            lbl_videoDir.Content = lbl_documentDir.Content = dir;
+                        } catch { }
+                        
                     }));
-                    
+
                     PingReply r = new Ping().Send(MyGlobal.MySetting.SOPServer, 1000, Encoding.ASCII.GetBytes("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
                     if (r.Status == IPStatus.Success) {
                         Dispatcher.Invoke(new Action(() => {
-                            if (Directory.Exists(dir)) {
-                                //get lastest file
-                                lbl_documentFile.Content = new GetLatestFileInDirectory(dir, new string[] { "pdf" });
-                                lbl_videoFile.Content = new GetLatestFileInDirectory(dir, new string[] { "mp4", "mkv", "avi" }); ;
-                            }
-                            else {
-                                lbl_documentFile.Content = "null";
-                                lbl_videoFile.Content = "null";
-                            }
+                            try {
+                                if (Directory.Exists(dir)) {
+                                    //get lastest file
+                                    lbl_documentFile.Content = new GetLatestFileInDirectory(dir, new string[] { "pdf" }).GetFileName();
+                                    lbl_videoFile.Content = new GetLatestFileInDirectory(dir, new string[] { "mp4", "mkv", "avi" }).GetFileName(); ;
+                                }
+                                else {
+                                    lbl_documentFile.Content = "null";
+                                    lbl_videoFile.Content = "null";
+                                }
+                            } catch { }
+                            
                         }));
                     }
                     else {
                         Dispatcher.Invoke(new Action(() => {
-                            lbl_documentFile.Content = "null";
-                            lbl_videoFile.Content = "null";
+                            try {
+                                lbl_documentFile.Content = "null";
+                                lbl_videoFile.Content = "null";
+                            } catch { }
                         }));
                     }
-                   
+
                     Thread.Sleep(1000);
                 }
             }));

@@ -221,7 +221,7 @@
 
                 <StackPanel Margin="10,0,0,0">
                     <Grid>
-                        <Label Style="{StaticResource label_title}" Content="Production Command:"/>
+                        <Label Style="{StaticResource label_title}" Content="Production Order:"/>
                         <Label Style="{StaticResource label_content}" 
                                Content="{Binding Path=ProductionCommand, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>

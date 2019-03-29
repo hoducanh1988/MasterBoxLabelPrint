@@ -26,14 +26,19 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 while (true) {
                     if (MyGlobal.MySetting.ProductionStatus == "Normal") {
                         Dispatcher.Invoke(new Action(() => {
-                            this.Background = Brushes.White;
-                            this.lblproductionstatus.Content = "";
+                            try {
+                                this.Background = Brushes.White;
+                                this.lblproductionstatus.Content = "";
+                            } catch { }
+                            
                         }));
                     }
                     else {
                         Dispatcher.Invoke(new Action(() => {
-                            this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
-                            this.lblproductionstatus.Content = "=> Bulk Rework";
+                            try {
+                                this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
+                                this.lblproductionstatus.Content = "=> Bulk Rework";
+                            } catch { }
                         }));
                     }
                     Thread.Sleep(1000);
