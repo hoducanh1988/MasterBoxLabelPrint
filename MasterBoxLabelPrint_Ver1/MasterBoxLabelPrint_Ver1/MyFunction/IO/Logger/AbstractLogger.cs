@@ -49,11 +49,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
 
             Date_Time = Mac_Address = Product_Serial = Total_Result = Error_Message = System_Log = "";
 
-            SerialFormat = new VnptTestItemInfo(); //ok
+            FORMAT = new VnptTestItemInfo(); //ok
 
-            SerialPrinted = new VnptTestItemInfo(); //ok
+            PRINTED = new VnptTestItemInfo(); //ok
 
-            ProductWeight = new VnptTestItemInfo(); //ok
+            WEIGHT = new VnptTestItemInfo(); //ok
         }
 
         public string Date_Time { get; set; }
@@ -69,10 +69,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public string Rework { get; set; }
         public string ProductionLot { get; set; }
         public string LotProgress { get; set; }
+        public string ProductCode { get; set; }
 
-        public VnptTestItemInfo SerialFormat { get; set; }
-        public VnptTestItemInfo SerialPrinted { get; set; }
-        public VnptTestItemInfo ProductWeight { get; set; }
+        public VnptTestItemInfo FORMAT { get; set; }
+        public VnptTestItemInfo PRINTED { get; set; }
+        public VnptTestItemInfo WEIGHT { get; set; }
     }
 
     public class VnptTestItemInfo {

@@ -147,8 +147,10 @@
     <Compile Include="MyFunction\Custom\Init\Init_SuggestionText.cs" />
     <Compile Include="MyFunction\Custom\Project\Proj_TestingInformation.cs" />
     <Compile Include="MyFunction\Implement\imp_BulkRework.cs" />
+    <Compile Include="MyFunction\Implement\imp_CalibProductWeight.cs" />
     <Compile Include="MyFunction\Implement\imp_Rework.cs" />
     <Compile Include="MyFunction\Implement\imp_RunAll.cs" />
+    <Compile Include="MyFunction\Implement\imp_Setting.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataLog.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataProductionLot.cs" />
     <Compile Include="MyFunction\Global\MyGlobal.cs" />
@@ -166,6 +168,7 @@
     <Compile Include="MyFunction\Ulti\GenerateProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\GetRecentProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\ReprintProductionLot.cs" />
+    <Compile Include="MyFunction\Ulti\ValidateSettingBarcode.cs" />
     <Compile Include="MyFunction\Ulti\zCNotifyPropertyChanged.cs" />
     <Compile Include="MyFunction\Ulti\Utility.cs" />
     <Compile Include="MyFunction\Ulti\ValidateProductSerialNumber.cs" />

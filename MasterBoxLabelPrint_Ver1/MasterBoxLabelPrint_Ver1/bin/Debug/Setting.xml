@@ -1,6 +1,6 @@
 ﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProductionPlace>1</ProductionPlace>
-  <ProductionYear>18</ProductionYear>
+  <ProductionPlace>2</ProductionPlace>
+  <ProductionYear>19</ProductionYear>
   <ProductionCommand>#12345</ProductionCommand>
   <PrintMode>Only print label</PrintMode>
   <LineIndex>1</LineIndex>

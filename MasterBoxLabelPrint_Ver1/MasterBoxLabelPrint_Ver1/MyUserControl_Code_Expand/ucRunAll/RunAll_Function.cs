@@ -68,6 +68,14 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
             return true;
         }
+
+        //setting
+        bool _run_Setting() {
+            var run = new imp_Setting();
+            run.Execute();
+            MyGlobal.MyTesting.ProductSerial = "";
+            return true;
+        }
         
 
         //sub function --------------------------------------------//

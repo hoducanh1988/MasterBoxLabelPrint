@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
+using MasterBoxLabelPrint_Ver1.MyFunction.Implement;
 using UtilityPack.VNPT;
+using System.Collections.ObjectModel;
 
 namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
 
@@ -21,6 +23,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static Proj_SettingInformation MySetting = new Proj_SettingInformation();
         public static Proj_DebugInformation myDebug = new Proj_DebugInformation();
         public static Proj_MainWindowInfo myWindow = new Proj_MainWindowInfo();
+        public static ObservableCollection<calib_WeightInfo> calibWeightGridItem = new ObservableCollection<calib_WeightInfo>();
+        
+
 
         public static VNPTTestInfo TestingInfo = new VNPTTestInfo();
 
@@ -34,6 +39,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static VnptAsmTestFunctionLogInfo testFunctionLogInfo = null;
         public static bool IncreasementLot = false;
         public static string OutputLamp = "";
+
+        public static bool ModeSetting = false;
+        
         
     }
 }

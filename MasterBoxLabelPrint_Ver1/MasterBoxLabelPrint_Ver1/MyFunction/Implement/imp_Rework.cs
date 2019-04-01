@@ -36,6 +36,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     Production_Command = "",
                     ProductionLot = reworkInformation.ProductionLot,
                     LotProgress = reworkInformation.LotProgress,
+                    ProductCode = product.code
                 };
 
                 reworkInformation.ErrorMessage = string.Format("Product: \"{0}\"\n", reworkInformation.NewProductSerial);
@@ -74,7 +75,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
             ValidateProductSerialNumber validate = new ValidateProductSerialNumber(reworkInformation.NewProductSerial, this.product);
             r = validate.Validate();
             if (!r) reworkInformation.ErrorMessage += validate.Validate_Error_Message;
-            MyGlobal.testFunctionLogInfo.SerialFormat.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.FORMAT.Result = r ? "PASS" : "FAIL";
             MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
             return r;
         }
@@ -85,7 +86,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
             msaccdb_tbDataProductionLOT tb = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT", "ProductSerial", reworkInformation.NewProductSerial);
             r = tb == null;
             if (!r) reworkInformation.ErrorMessage += string.Format("Serial Number was printed in lot {0}, date printed {1}.", tb.Lot, tb.DateTimeCreated);
-            MyGlobal.testFunctionLogInfo.SerialPrinted.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.PRINTED.Result = r ? "PASS" : "FAIL";
             MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
             return r;
         }
@@ -98,9 +99,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                 int count = 0;
                 double ul = double.Parse(product.weight) + double.Parse(product.bias);
                 double ll = double.Parse(product.weight) - double.Parse(product.bias);
-                MyGlobal.testFunctionLogInfo.ProductWeight.Upper_Limit = ul.ToString();
-                MyGlobal.testFunctionLogInfo.ProductWeight.Lower_Limit = ll.ToString();
-                MyGlobal.testFunctionLogInfo.ProductWeight.Unit_Of_Measurement = "g";
+                MyGlobal.testFunctionLogInfo.WEIGHT.Upper_Limit = ul.ToString();
+                MyGlobal.testFunctionLogInfo.WEIGHT.Lower_Limit = ll.ToString();
+                MyGlobal.testFunctionLogInfo.WEIGHT.Unit_Of_Measurement = "g";
 
             REP:
                 count++;
@@ -110,8 +111,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     if (count < 5) goto REP;
                     else {
                         reworkInformation.ErrorMessage += string.Format("Product weight can't is NULL.", weight_string);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = "NULL";
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = "NULL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
                         return false;
                     }
@@ -122,28 +123,28 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     if (count < 5) goto REP;
                     else {
                         reworkInformation.ErrorMessage += string.Format("Product weight {0} is not valid.", weight_string);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = weight_string;
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = weight_string;
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
                         return false;
                     }
                 }
 
                 reworkInformation.WeightActual = weight_value.ToString();
-                MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = reworkInformation.WeightActual;
+                MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = reworkInformation.WeightActual;
                 r = weight_value >= ll && weight_value <= ul;
 
                 if (!r) {
                     if (count < 5) goto REP;
                     else {
                         reworkInformation.ErrorMessage += string.Format("Product weight {0} is out of range {1}.", weight_string, reworkInformation.WeightLimit);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
                         return false;
                     }
                 }
                 else {
-                    MyGlobal.testFunctionLogInfo.ProductWeight.Result = "PASS";
+                    MyGlobal.testFunctionLogInfo.WEIGHT.Result = "PASS";
                     MyGlobal.testFunctionLogInfo.Error_Message = reworkInformation.ErrorMessage;
                     return true;
                 }

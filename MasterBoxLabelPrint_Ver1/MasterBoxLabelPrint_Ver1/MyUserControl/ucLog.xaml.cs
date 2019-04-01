@@ -27,6 +27,8 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
         {
             InitializeComponent();
             this.cbb_logtype.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.logtype }).Where(x => x.logtype.Trim() != "").Select(x => x.logtype.ToString()).ToList();
+
+            this.datagrid_calib.ItemsSource = MyGlobal.calibWeightGridItem;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -78,6 +80,14 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                         else {
                             MessageBox.Show("Please select a log type.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
+                        break;
+                    }
+
+                case "Start Calib": {
+                        break;
+                    }
+
+                case "Stop Calib": {
                         break;
                     }
             }

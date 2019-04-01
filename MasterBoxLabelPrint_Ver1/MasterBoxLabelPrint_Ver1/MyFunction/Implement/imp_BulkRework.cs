@@ -25,6 +25,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     Production_Command = MyGlobal.MySetting.ProductionCommand,
                     ProductionLot = MyGlobal.MyTesting.LotName,
                     LotProgress = MyGlobal.MyTesting.LotProgress,
+                    ProductCode = MyGlobal.MySetting.ProductCode
                 };
 
                 MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
@@ -59,7 +60,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
             ValidateProductSerialNumber validate = new ValidateProductSerialNumber(MyGlobal.MyTesting.ProductSerial, "bulk_rework");
             r = validate.Validate();
             if (!r) MyGlobal.MyTesting.ErrorMessage += validate.Validate_Error_Message;
-            MyGlobal.testFunctionLogInfo.SerialFormat.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.FORMAT.Result = r ? "PASS" : "FAIL";
             MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
             return r;
         }
@@ -70,7 +71,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
             msaccdb_tbDataProductionLOT tb = MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataProductionLOT>("tb_DataProductionLOT_Bulk", "ProductSerial", MyGlobal.MyTesting.ProductSerial);
             r = tb == null;
             if (!r) MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number was printed in lot {0}, date printed {1}.", tb.Lot, tb.DateTimeCreated);
-            MyGlobal.testFunctionLogInfo.SerialPrinted.Result = r ? "PASS" : "FAIL";
+            MyGlobal.testFunctionLogInfo.PRINTED.Result = r ? "PASS" : "FAIL";
             MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
             return r;
         }
@@ -83,9 +84,9 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                 int count = 0;
                 double ul = double.Parse(MyGlobal.MySetting.WeightUL);
                 double ll = double.Parse(MyGlobal.MySetting.WeightLL);
-                MyGlobal.testFunctionLogInfo.ProductWeight.Upper_Limit = MyGlobal.MySetting.WeightUL;
-                MyGlobal.testFunctionLogInfo.ProductWeight.Lower_Limit = MyGlobal.MySetting.WeightLL;
-                MyGlobal.testFunctionLogInfo.ProductWeight.Unit_Of_Measurement = "g";
+                MyGlobal.testFunctionLogInfo.WEIGHT.Upper_Limit = MyGlobal.MySetting.WeightUL;
+                MyGlobal.testFunctionLogInfo.WEIGHT.Lower_Limit = MyGlobal.MySetting.WeightLL;
+                MyGlobal.testFunctionLogInfo.WEIGHT.Unit_Of_Measurement = "g";
 
             REP:
                 count++;
@@ -95,8 +96,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight can't is NULL.", weight_string);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = "NULL";
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = "NULL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
@@ -107,28 +108,28 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight {0} is not valid.", weight_string);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = weight_string;
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = weight_string;
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
                 }
 
                 MyGlobal.MyTesting.WeightActual = weight_value.ToString();
-                MyGlobal.testFunctionLogInfo.ProductWeight.Actual_Value = MyGlobal.MyTesting.WeightActual;
+                MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = MyGlobal.MyTesting.WeightActual;
                 r = weight_value >= ll && weight_value <= ul;
 
                 if (!r) {
                     if (count < 5) goto REP;
                     else {
                         MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight {0} is out of range {1}.", weight_string, MyGlobal.MyTesting.WeightStandard);
-                        MyGlobal.testFunctionLogInfo.ProductWeight.Result = "FAIL";
+                        MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                         return false;
                     }
                 }
                 else {
-                    MyGlobal.testFunctionLogInfo.ProductWeight.Result = "PASS";
+                    MyGlobal.testFunctionLogInfo.WEIGHT.Result = "PASS";
                     MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;
                     return true;
                 }

@@ -24,23 +24,37 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
             Thread t = new Thread(new ThreadStart(() => {
                 while (true) {
-                    if (MyGlobal.MySetting.ProductionStatus == "Normal") {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
-                                this.Background = Brushes.White;
-                                this.lblproductionstatus.Content = "";
-                            } catch { }
-                            
-                        }));
+                    if (!MyGlobal.ModeSetting) {
+                        if (MyGlobal.MySetting.ProductionStatus == "Normal") {
+                            Dispatcher.Invoke(new Action(() => {
+                                try {
+                                    this.Background = Brushes.White;
+                                    this.lblproductionstatus.Content = "";
+                                }
+                                catch { }
+
+                            }));
+                        }
+                        else {
+                            Dispatcher.Invoke(new Action(() => {
+                                try {
+                                    this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
+                                    this.lblproductionstatus.Content = "=> Bulk Rework";
+                                }
+                                catch { }
+                            }));
+                        }
                     }
                     else {
                         Dispatcher.Invoke(new Action(() => {
                             try {
-                                this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
-                                this.lblproductionstatus.Content = "=> Bulk Rework";
-                            } catch { }
+                                this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#f1ffb5");
+                                this.lblproductionstatus.Content = "=> Setting";
+                            }
+                            catch { }
                         }));
                     }
+                    
                     Thread.Sleep(1000);
                 }
             }));

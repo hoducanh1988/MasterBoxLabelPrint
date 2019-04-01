@@ -18,6 +18,7 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 using MasterBoxLabelPrint_Ver1.MyFunction.Implement;
+using UtilityPack.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
@@ -29,18 +30,28 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
         
         private void Txt_SN_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                txt_SN.IsEnabled = false; //
 
-                bool r = MyGlobal.MySetting.ProductionStatus == "Normal" ? _run_All() : _run_Bulk_Rework();
+                if (MyGlobal.MyTesting.ProductSerial.Contains("CO::STA::1")) {
+                    MyGlobal.ModeSetting = true;
+                    MyGlobal.MyTesting.ProductSerial = "";
+                    return;
+                }
+                if (MyGlobal.MyTesting.ProductSerial.Contains("CO::SET::1")) {
+                    MyGlobal.ModeSetting = false;
+                    XmlHelper<MyFunction.Custom.Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName); //save setting
+                    MyGlobal.MyTesting.ProductSerial = "";
+                    return;
+                }
+
+                if (MyGlobal.ModeSetting) {
+                    bool r = _run_Setting();
+                }
+                else {
+                    txt_SN.IsEnabled = false; //
+                    bool r = MyGlobal.MySetting.ProductionStatus == "Normal" ? _run_All() : _run_Bulk_Rework();
+                }
             }
         }
 
-        
-
-
-        
-
-
-        
     }
 }
