@@ -15,7 +15,12 @@
 
         <StackPanel Grid.Row="0">
             <Label FontSize="13" Content="Vui lòng chọn loại dữ liệu log cần truy vấn:"/>
-            <ComboBox x:Name="cbb_logtype" FontWeight="SemiBold" Height="25" IsEditable="True" Width="400" HorizontalAlignment="Left"/>
+            <WrapPanel>
+                <ComboBox x:Name="cbb_logtype" FontWeight="SemiBold" Height="25" IsEditable="True" Width="400" HorizontalAlignment="Left"/>
+                <Button Content="Go" Margin="10,0,0,0" Width="70" Click="Button_Click"/>
+            </WrapPanel>
+            
+            
         </StackPanel>
 
         <Border Grid.Row="1" BorderBrush="#777777" BorderThickness="0.5">

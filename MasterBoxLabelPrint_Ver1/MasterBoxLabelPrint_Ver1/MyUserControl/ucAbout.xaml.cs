@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MasterBoxLabelPrint_Ver1.MyFunction.Global;
+using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +36,23 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
         public ucAbout()
         {
             InitializeComponent();
+
+            MyGlobal.SuggestionTexts = Utility.GetSuggestionTexts();
+            MyGlobal.Guidelines = Utility.GetGuidelines();
+
+            //load setting
+            if (System.IO.File.Exists(MyFunction.Global.MyGlobal.Setting_FileFullName)) {
+                try {
+                    MyFunction.Global.MyGlobal.MySetting = UtilityPack.IO.XmlHelper<MyFunction.Custom.Proj_SettingInformation>.FromXmlFile(
+                        MyFunction.Global.MyGlobal.Setting_FileFullName);
+                    MyGlobal.MasterBox = new MyFunction.AccessDatabase.MasterBoxAccessDB(MyGlobal.MySetting.MSAccessFile);
+                }
+                catch { }
+            }
+            
+            //load production lot
+            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
+
 
             listHist.Add(new history() {
                 ID = "1",

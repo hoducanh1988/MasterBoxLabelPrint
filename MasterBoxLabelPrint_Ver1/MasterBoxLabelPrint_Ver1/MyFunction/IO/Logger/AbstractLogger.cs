@@ -92,7 +92,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
     public class VnptLogMoreInfo {
 
         public VnptLogMoreInfo() {
-            Info1 = Info2 = Info3 = Info4 = Info5 = "";
+            Info1 = Info2 = Info3 = Info4 = Info5 = Info6 = Info7 = Info8 = Info9 = Info10 = "";
         }
 
         public string Info1 { get; set; }
@@ -100,6 +100,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public string Info3 { get; set; }
         public string Info4 { get; set; }
         public string Info5 { get; set; }
+        public string Info6 { get; set; }
+        public string Info7 { get; set; }
+        public string Info8 { get; set; }
+        public string Info9 { get; set; }
+        public string Info10 { get; set; }
     }
 
 

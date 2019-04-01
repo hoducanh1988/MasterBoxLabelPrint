@@ -29,19 +29,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             InitializeComponent();
 
             //load _ref to combobox
-            MyGlobal.Guidelines = Utility.GetGuidelines();
-            MyGlobal.SuggestionTexts = Utility.GetSuggestionTexts();
             _init_ItemSource_For_Combobox_();
-
-            //load setting
-            if (System.IO.File.Exists(MyFunction.Global.MyGlobal.Setting_FileFullName)) {
-                try {
-                    MyFunction.Global.MyGlobal.MySetting = UtilityPack.IO.XmlHelper<MyFunction.Custom.Proj_SettingInformation>.FromXmlFile(
-                        MyFunction.Global.MyGlobal.Setting_FileFullName);
-                    MyGlobal.MasterBox = new MyFunction.AccessDatabase.MasterBoxAccessDB(MyGlobal.MySetting.MSAccessFile);
-                }
-                catch { }
-            }
 
             //load product name
             if (!string.IsNullOrEmpty(MyGlobal.MySetting.FileProduct)) MyGlobal.Products = Utility.GetProducts(MyGlobal.MySetting.FileProduct);
@@ -49,9 +37,6 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 this.cbb_product_name.ItemsSource = MyGlobal.Products.Select(x => new { x.name }).Where(x => x.name.Trim() != "").Select(x => x.name.ToString()).ToList();
                 MyGlobal.MySetting.Get_product_info();
             }
-
-            //load production lot
-            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
 
             //
             this.DataContext = MyGlobal.MySetting;
