@@ -41,7 +41,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static string OutputLamp = "";
 
         public static bool ModeSetting = false;
-        
+
+        public static bool GenNewLotFlag = false;
         
     }
 }

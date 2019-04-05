@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
              mc:Ignorable="d" 
              d:DesignHeight="595" d:DesignWidth="985" Background="White">
-    
+
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -19,8 +19,8 @@
                 <ComboBox x:Name="cbb_logtype" FontWeight="SemiBold" Height="25" IsEditable="True" Width="400" HorizontalAlignment="Left"/>
                 <Button Content="Go" Margin="10,0,0,0" Width="70" Click="Button_Click"/>
             </WrapPanel>
-            
-            
+
+
         </StackPanel>
 
         <Border Grid.Row="1" BorderBrush="#777777" BorderThickness="0.5">
@@ -30,14 +30,14 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <Label Grid.Row="0" Background="Aqua" Foreground="Black" VerticalAlignment="Top" Height="50" Content="Calib trọng lượng sản phẩm" FontSize="25" BorderBrush="Blue" BorderThickness="0,0,0,1" FontWeight="SemiBold"/>
                 <Border Grid.Row="1" BorderBrush="#777777" BorderThickness="0,0,0,0.5">
                     <WrapPanel>
-                        <Button Click="Button_Click" Margin="5,5,0,0" Content="Start Calib" Height="30" Width="100"/>
-                        <Button Click="Button_Click" Margin="10,5,0,0" Content="Stop Calib" Height="30" Width="100"/>
+                        <Button x:Name="btn_startcalib" Click="Button_Click" Margin="5,5,0,0" Content="Start Calib" Height="30" Width="100" IsEnabled="True"/>
+                        <Button x:Name="btn_stopcalib" Click="Button_Click" Margin="10,5,0,0" Content="Stop Calib" Height="30" Width="100" IsEnabled="False"/>
                         <Label Margin="20,5,0,0" Content="Số lượng sản phẩm calib trọng lượng: "/>
-                        <TextBox Margin="5,5,0,0" Height="30" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Padding="10,0,0,0" FontSize="15" FontWeight="Bold"
+                        <TextBox x:Name="txt_CalibQty"  Margin="5,5,0,0" Height="30" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Padding="10,0,0,0" FontSize="15" FontWeight="Bold"
                                  Text="100"/>
                     </WrapPanel>
                 </Border>
@@ -59,22 +59,32 @@
                               FontSize="14"
                               SelectionUnit="FullRow" SelectionMode="Single"
                               Margin="5">
-                        
+
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Order, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="ORDER" Width="0.5*"/>
                             <DataGridTextColumn Binding="{Binding Weight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="WEIGHT" Width="*" FontWeight="Bold"/>
                             <DataGridTextColumn Binding="{Binding UOM, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="U.O.M" Width="0.5*"/>
                         </DataGrid.Columns>
-                        
+
                     </DataGrid>
 
                     <Grid Grid.Column="1">
-                        
+                        <Label VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" Content="Giá trị trọng lượng trung bình"/>
+                        <Label VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,25,0,0" x:Name="lbl_avr" FontSize="30" FontWeight="Bold" Content="--"/>
+                        <ScrollViewer Margin="0,100,0,0" x:Name="_scrollViewer">
+                            <RichTextBox  Background="Transparent" BorderThickness="0" IsReadOnly="True" Block.LineHeight="1" Padding="0,5,0,0">
+                                <FlowDocument PageHeight="180">
+                                    <Paragraph>
+                                        <Run Foreground="#050928" FontWeight="Normal" Text="{Binding Path=WeightData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>
+                        </ScrollViewer>
                     </Grid>
                 </Grid>
 
             </Grid>
         </Border>
-        
+
     </Grid>
 </UserControl>

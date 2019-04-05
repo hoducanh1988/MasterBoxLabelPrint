@@ -55,9 +55,20 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Lamp {
                         }
 
                 }
-                device.Write(MyGlobal.OutputLamp);
-                Thread.Sleep(100);
 
+                Thread t = new Thread(new ThreadStart(() => {
+                    device.Write(MyGlobal.OutputLamp);
+                    device.Write(MyGlobal.OutputLamp);
+                    device.Write(MyGlobal.OutputLamp);
+                    int delay = MyGlobal.OutputLamp == "p" ? 1000 : 5000;
+                    Thread.Sleep(delay);
+                    device.Write("0");
+                    Thread.Sleep(100);
+                    device.Close();
+                }));
+                t.IsBackground = true;
+                t.Start();
+                
                 return true;
             }
             catch {

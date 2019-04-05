@@ -76,7 +76,13 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
 
 
         private string _gen(string lot, string curr_qty, out string lot_index) {
-            lot_index = lot == null ? "000001" : (curr_qty=="0" ? lot : _increment_lot(lot));
+            if (MyGlobal.GenNewLotFlag == true) {
+                lot_index = _increment_lot(lot);
+            }
+            else {
+                lot_index = lot == null ? "000001" : (curr_qty == "0" ? lot : _increment_lot(lot));
+            }
+            
             if (string.IsNullOrEmpty(_code) ||
                 string.IsNullOrEmpty(_place) ||
                 string.IsNullOrEmpty(_year) ||

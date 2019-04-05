@@ -95,7 +95,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement
                 if (weight_string == null) {
                     if (count < 5) goto REP;
                     else {
-                        MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight can't is NULL.", weight_string);
+                        MyGlobal.MyTesting.ErrorMessage += string.Format("Product weight can not is NULL.", weight_string);
                         MyGlobal.testFunctionLogInfo.WEIGHT.Actual_Value = "NULL";
                         MyGlobal.testFunctionLogInfo.WEIGHT.Result = "FAIL";
                         MyGlobal.testFunctionLogInfo.Error_Message = MyGlobal.MyTesting.ErrorMessage;

@@ -28,11 +28,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti
                 
                 //delete all data row in tb_Template
                 r = _delete_All_DataRow_In_Table_(tbtemp);
-                if (!r) { message = "Can't delete all data row in tb_Template."; return r; }
+                if (!r) { message = "Cant delete all data row in tb_Template."; return r; }
 
                 //copy all data row from IMEI_SN_Print to tb_Template
                 r = _copy_All_DataRow_From_Table1_To_Table2_(tbtemp, tbprint);
-                if (!r) { message = "Can't copy all data row from IMEI_SN_Print to tb_Template."; return r; }
+                if (!r) { message = "Cant copy all data row from IMEI_SN_Print to tb_Template."; return r; }
 
                 //get all product in lot name from tb_DataProductionLOT
                 List<msaccdb_tbDataProductionLOT> productlot = new io_msaccdb_tbDataProductionLot().ReadProduct(this.lot);
@@ -42,7 +42,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti
 
                 //delete all data row in IMEI_SN_Print
                 r = _delete_All_DataRow_In_Table_(tbprint);
-                if (!r) { message = "Can't delete all data row in IMEI_SN_Print."; return r; }
+                if (!r) { message = "Cant delete all data row in IMEI_SN_Print."; return r; }
 
                 //insert all product in lot name into IMEI_SN_Print
                 foreach (var product in productlot) {
@@ -56,11 +56,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti
 
                 //delete all data row in IMEI_SN_Print
                 r = _delete_All_DataRow_In_Table_(tbprint);
-                if (!r) { message = "Can't delete all data row in IMEI_SN_Print."; return r; }
+                if (!r) { message = "Cant delete all data row in IMEI_SN_Print."; return r; }
 
                 //copy all data row from tb_Template to IMEI_SN_Print
                 r = _copy_All_DataRow_From_Table1_To_Table2_(tbprint, tbtemp);
-                if (!r) { message = "Can't copy all data row from tb_Template to IMEI_SN_Print."; return r; }
+                if (!r) { message = "Cant copy all data row from tb_Template to IMEI_SN_Print."; return r; }
 
                 return true;
             } catch (Exception ex) {

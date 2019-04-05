@@ -88,31 +88,40 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); }));  //set focus for txt_SN
 
             if (MyGlobal.MyTesting.LotCount.Equals(MyGlobal.MyTesting.LotLimit)) {  //gen lot
+                //set green lamp
+                VNPT_Lamp.Output(LampStatus.YellowON);
 
                 Thread t = new Thread(new ThreadStart(() => {
                     MyGlobal.MasterBox.Print_Access_Report("IMEI_SN_fPrint"); //print label
-                    Thread.Sleep(100);
+                    Thread.Sleep(200);
                     new io_msaccdb_tbIMEISerialPrint().DeleteAll(); //delete all row in table imei print
 
+                    MyGlobal.GenNewLotFlag = true;
                     MyGlobal.MyTesting.LotCount = "0";
                     MyGlobal.MyTesting.LotName = new GenerateProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).Gererate();
+                    MyGlobal.GenNewLotFlag = false;
                 }));
                 t.IsBackground = true;
                 t.Start();
+
+                
+            }
+            else {
+                //set green lamp
+                VNPT_Lamp.Output(LampStatus.GreenON);
             }
             
             _load_ms_datatable_(); //load ms database
             new GetRecentProductionLot().SetData(); //
 
-            //set green lamp
-            VNPT_Lamp.Output(LampStatus.GreenON);
+            
         }
 
 
         void _jud_fail() {
             MyGlobal.MyTesting.FailParameters(); //display fail
             _save_log_(); //save log
-            Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); })); //set focus for txt_SN
+            Dispatcher.Invoke(new Action(() => { txt_SN.Clear(); txt_SN.IsEnabled = true; txt_SN.Focus(); })); //set focus for txt_SN
             _load_ms_datatable_(); //load ms database
 
             //set red lamp

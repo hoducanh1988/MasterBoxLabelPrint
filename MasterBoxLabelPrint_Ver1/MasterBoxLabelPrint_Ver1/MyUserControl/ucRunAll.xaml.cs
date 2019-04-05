@@ -38,7 +38,11 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 }
                 if (MyGlobal.MyTesting.ProductSerial.Contains("CO::SET::1")) {
                     MyGlobal.ModeSetting = false;
-                    XmlHelper<MyFunction.Custom.Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName); //save setting
+                    //save setting
+                    XmlHelper<MyFunction.Custom.Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName); 
+                    //update change related value                                                                                                             
+                    MyGlobal.MasterBox = new MyFunction.AccessDatabase.MasterBoxAccessDB(MyGlobal.MySetting.MSAccessFile);
+                    new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData(); //gen lot
                     MyGlobal.MyTesting.ProductSerial = "";
                     return;
                 }
@@ -48,6 +52,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 }
                 else {
                     txt_SN.IsEnabled = false; //
+                    MyGlobal.MyTesting.ProductSerial = MyGlobal.MyTesting.ProductSerial.ToUpper();
                     bool r = MyGlobal.MySetting.ProductionStatus == "Normal" ? _run_All() : _run_Bulk_Rework();
                 }
             }

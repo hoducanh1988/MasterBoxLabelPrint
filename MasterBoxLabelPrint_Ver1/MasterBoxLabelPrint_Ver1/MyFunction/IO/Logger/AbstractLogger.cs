@@ -28,8 +28,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
             if (!Directory.Exists(_dir)) Directory.CreateDirectory(_dir);
 
             //Create StationIndex Folder
-            _dir = Path.Combine(_dir, MyGlobal.MySetting.StationIndex);
-            if (!Directory.Exists(_dir)) Directory.CreateDirectory(_dir);
+            //_dir = Path.Combine(_dir, MyGlobal.MySetting.StationIndex);
+            //if (!Directory.Exists(_dir)) Directory.CreateDirectory(_dir);
 
             //Create JigIndex Folder
             _dir = Path.Combine(_dir, MyGlobal.MySetting.JigIndex);

@@ -53,7 +53,9 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                     try {
                         r = new Ping().Send(MyGlobal.MySetting.SOPServer, 1000, Encoding.ASCII.GetBytes("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
                     } catch { }
-                    
+                    if (r == null) goto END; 
+
+
                     if (r.Status == IPStatus.Success) {
                         Dispatcher.Invoke(new Action(() => {
                             try {
@@ -79,6 +81,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                         }));
                     }
 
+                    END:
                     Thread.Sleep(1000);
                 }
             }));

@@ -1,9 +1,9 @@
 ﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProductionPlace>2</ProductionPlace>
-  <ProductionYear>19</ProductionYear>
+  <ProductionPlace>1</ProductionPlace>
+  <ProductionYear>18</ProductionYear>
   <ProductionCommand>#12345</ProductionCommand>
-  <PrintMode>Only print label</PrintMode>
-  <LineIndex>1</LineIndex>
+  <PrintMode>Combine label printing with product weighing</PrintMode>
+  <LineIndex>2</LineIndex>
   <StationName>MasterBoxLabelPrint</StationName>
   <StationIndex>1</StationIndex>
   <JigIndex>1</JigIndex>
@@ -31,11 +31,11 @@
   <SOPServer>10.5.1.254</SOPServer>
   <ProductNumber>019</ProductNumber>
   <ColorCode>F</ColorCode>
-  <ProductWeight>580</ProductWeight>
+  <ProductWeight>103</ProductWeight>
   <WeightBias>10</WeightBias>
-  <LotQuantity>20</LotQuantity>
-  <WeightLL>570</WeightLL>
-  <WeightUL>590</WeightUL>
-  <ProductInfo>&lt; 019,HY5NPE9N000002NP,F,580,10,20 &gt;</ProductInfo>
+  <LotQuantity>5</LotQuantity>
+  <WeightLL>93</WeightLL>
+  <WeightUL>113</WeightUL>
+  <ProductInfo>&lt; 019,HY5NPE9N000002NP,F,103,10,5 &gt;</ProductInfo>
   <ProductionStatus>Normal</ProductionStatus>
 </Proj_SettingInformation>
