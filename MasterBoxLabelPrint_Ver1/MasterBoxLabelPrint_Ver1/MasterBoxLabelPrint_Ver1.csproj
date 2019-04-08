@@ -129,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyWindow\WaitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyFunction\AccessDatabase\MasterBoxAccessDB.cs" />
@@ -151,6 +155,7 @@
     <Compile Include="MyFunction\Implement\imp_Rework.cs" />
     <Compile Include="MyFunction\Implement\imp_RunAll.cs" />
     <Compile Include="MyFunction\Implement\imp_Setting.cs" />
+    <Compile Include="MyFunction\IO\io_dll_Recent.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataLog.cs" />
     <Compile Include="MyFunction\IO\io_msaccdb_tbDataProductionLot.cs" />
     <Compile Include="MyFunction\Global\MyGlobal.cs" />
@@ -165,8 +170,7 @@
     <Compile Include="MyFunction\Scale\CAS_EDH.cs" />
     <Compile Include="MyFunction\Scale\Iscale.cs" />
     <Compile Include="MyFunction\Ulti\GetLatestFileInDirectory.cs" />
-    <Compile Include="MyFunction\Ulti\GenerateProductionLot.cs" />
-    <Compile Include="MyFunction\Ulti\GetRecentProductionLot.cs" />
+    <Compile Include="MyFunction\Ulti\GenerateLOT.cs" />
     <Compile Include="MyFunction\Ulti\ReprintProductionLot.cs" />
     <Compile Include="MyFunction\Ulti\ValidateSettingBarcode.cs" />
     <Compile Include="MyFunction\Ulti\zCNotifyPropertyChanged.cs" />
@@ -212,6 +216,9 @@
     </Compile>
     <Compile Include="MyWindow\ReworkWindow.xaml.cs">
       <DependentUpon>ReworkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyWindow\WaitWindow.xaml.cs">
+      <DependentUpon>WaitWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -14,42 +14,47 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
         //constructor
         public Proj_SettingInformation() {
             //com
+            LampPortName = "COM2";
+            SerialPortName = "COM1";
             SerialBaudRate = "9600";
             SerialDataBits = "8";
             SerialParity = "None";
             SerialStopBits = "1";
+            WaitTime = "100";
 
             //log
             DirLog = "D:\\LOGDATA";
             VisibleLogQuantity = "100";
 
             //SOP
-            SOPServer = "192.168.10.1";
+            SOPServer = "10.5.1.254";
 
             //printer
             MSAccessFile = "MASTER_LABLE_PRINT_20190109.accdb";
             PrintPage = "1";
+            
 
             //cai dat sx
             PrintMode = "Combine label printing with product weighing";
 
             //temp
-            ProductionCommand = "#12345";
-            Operator = "ABCD";
-            SerialPortName = "COM3";
-            PrinterName = "Microsoft Print to PDF";
+            ProductionCommand = "-";
+            Operator = "-";
+            PrinterName = "-";
             StationName = "MasterBoxLabelPrint";
-            StationIndex = "1";
             JigIndex = "1";
             ProductVersion = "3";
 
             //other
             ProductionStatus = "Normal";
+            LOTIndex = "000001";
         }
 
         //method
         public void Get_product_info() {
             if (MyGlobal.Products != null) {
+                if (MyGlobal.MySetting.ProductName == null) return;
+
                 Init_Product product = MyGlobal.Products.Single(x => x.name.Equals(MyGlobal.MySetting.ProductName));
                 if (product != null) {
                     MyGlobal.MySetting.ProductNumber = product.number;
@@ -76,7 +81,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_place = value;
                 OnPropertyChanged(nameof(ProductionPlace));
-                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -86,7 +90,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _production_year = value;
                 OnPropertyChanged(nameof(ProductionYear));
-                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -121,7 +124,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             set {
                 _line_index = value;
                 OnPropertyChanged(nameof(LineIndex));
-                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -182,9 +184,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 _product_name = value;
                 OnPropertyChanged(nameof(ProductName));
                 MyGlobal.MyTesting.ProductName = ProductName;
-
                 Get_product_info();
-                //new GetRecentProductionLot(LineIndex, ProductionPlace, ProductionYear, ProductNumber).GetData();
             }
         }
 
@@ -454,7 +454,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 MyGlobal.MyTesting.WeightStandard = string.Format("{0} ~ {1}", WeightLL, WeightUL);
             }
         }
-
         string _weight_upper_limit; //weight upper
         public string WeightUL {
             get { return _weight_upper_limit; }
@@ -464,7 +463,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 MyGlobal.MyTesting.WeightStandard = string.Format("{0} ~ {1}", WeightLL, WeightUL);
             }
         }
-
         string _product_info;  //product info
         public string ProductInfo {
             get { return _product_info; }
@@ -473,13 +471,20 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 OnPropertyChanged(nameof(ProductInfo));
             }
         }
-
         string _production_status;
         public string ProductionStatus {
             get { return _production_status; }
             set {
                 _production_status = value;
                 OnPropertyChanged(nameof(ProductionStatus));
+            }
+        }
+        string _lot_index;
+        public string LOTIndex {
+            get { return _lot_index; }
+            set {
+                _lot_index = value;
+                OnPropertyChanged(nameof(LOTIndex));
             }
         }
 

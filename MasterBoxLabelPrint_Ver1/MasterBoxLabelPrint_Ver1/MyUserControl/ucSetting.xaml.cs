@@ -18,6 +18,7 @@ using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
 
 using UtilityPack.IO;
+using MasterBoxLabelPrint_Ver1.MyFunction.IO;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
     /// <summary>
@@ -96,9 +97,48 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 case "save_setting": {
                         bool r = false;
                         try {
-                            XmlHelper<MyFunction.Custom.Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName);
+                            if (!System.IO.File.Exists(MyGlobal.Setting_FileFullName)) {
+                                MyGlobal.MySetting.LOTIndex = "000001";
+                                bool flag = string.IsNullOrEmpty(MyGlobal.MySetting.ProductNumber) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionPlace) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionYear) || string.IsNullOrEmpty(MyGlobal.MySetting.LineIndex);
+                                if (!flag) {
+                                    //gen LOT
+                                    MyGlobal.MyTesting.LotCount = "0";
+                                    MyGlobal.MyTesting.LotName = new GenerateLOT(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber, MyGlobal.MySetting.LOTIndex, false).Gererate();
+                                    
+                                    //delete IMEI_SN_Print talbe
+                                    new io_msaccdb_tbIMEISerialPrint().DeleteAll();
+                                }
+                            }
+                            else {
+                                var obj = XmlHelper<Proj_SettingInformation>.FromXmlFile(MyGlobal.Setting_FileFullName); //load du lieu file setting
+                                bool kq = (obj.ProductionPlace != MyGlobal.MySetting.ProductionPlace) || (obj.ProductionYear != MyGlobal.MySetting.ProductionYear) || (obj.LineIndex != MyGlobal.MySetting.LineIndex);
+                                if (kq) MyGlobal.MySetting.LOTIndex = "000001"; //reset lot
+
+                                if (kq) {
+                                    bool flag = string.IsNullOrEmpty(MyGlobal.MySetting.ProductNumber) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionPlace) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionYear) || string.IsNullOrEmpty(MyGlobal.MySetting.LineIndex);
+                                    MyGlobal.MyTesting.LotCount = "0";
+                                    MyGlobal.MyTesting.LotName = new GenerateLOT(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber, MyGlobal.MySetting.LOTIndex, false).Gererate();
+                                    //delete IMEI_SN_Print talbe
+                                    new io_msaccdb_tbIMEISerialPrint().DeleteAll();
+                                }
+                                else {
+                                    if (obj.ProductName != MyGlobal.MySetting.ProductName) {
+                                        bool flag = string.IsNullOrEmpty(MyGlobal.MySetting.ProductNumber) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionPlace) || string.IsNullOrEmpty(MyGlobal.MySetting.ProductionYear) || string.IsNullOrEmpty(MyGlobal.MySetting.LineIndex);
+                                        if (!flag) {
+                                            //gen LOT
+                                            bool flag_index_change = MyGlobal.MyTesting.LotCount == "0" ? false : true; //true = +1 vao chi so LOT, false = ko thay doi
+                                            MyGlobal.MyTesting.LotCount = "0";
+                                            MyGlobal.MyTesting.LotName = new GenerateLOT(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber, MyGlobal.MySetting.LOTIndex, flag_index_change).Gererate();
+                                            
+                                            //delete IMEI_SN_Print talbe
+                                            new io_msaccdb_tbIMEISerialPrint().DeleteAll();
+                                        }
+                                    }
+                                }
+                            }
+
+                            XmlHelper<Proj_SettingInformation>.ToXmlFile(MyGlobal.MySetting, MyGlobal.Setting_FileFullName); //save setting to xml file
                             MyGlobal.MasterBox = new MyFunction.AccessDatabase.MasterBoxAccessDB(MyGlobal.MySetting.MSAccessFile);
-                            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData(); //gen lot
                             r = true;
                         }
                         catch { }
@@ -136,7 +176,6 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 this.cbb_port_name.ItemsSource = this.cbb_lamp_port_name.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.port }).Where(x => x.port.Trim() != "").Select(x => x.port.ToString()).ToList();
                 this.cbb_print_mode.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.mode }).Where(x => x.mode.Trim() != "").Select(x => x.mode.ToString()).ToList();
                 this.cbb_print_page.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
-                this.cbb_station_index.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
                 this.cbb_product_version.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.index }).Where(x => x.index.Trim() != "").Select(x => x.index.ToString()).ToList();
                 this.cbb_station_name.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.station }).Where(x => x.station.Trim() != "").Select(x => x.station.ToString()).ToList();
                 this.cbb_production_place.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.place }).Where(x => x.place.Trim() != "").Select(x => x.place.ToString()).ToList();

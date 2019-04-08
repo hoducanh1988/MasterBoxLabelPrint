@@ -69,11 +69,15 @@
                             <Label FontSize="14" FontWeight="SemiBold" Content="Input product serial number:"/>
                             <Label Margin="0,-10,0,0" FontWeight="Bold" Foreground="Red" x:Name="lblproductionstatus" FontSize="25" Content=""/>
                         </WrapPanel>
-                        <TextBox x:Name="txt_SN" FontSize="30" Width="400" HorizontalAlignment="Left"  
+                        <WrapPanel>
+                            <TextBox x:Name="txt_SN" FontSize="30" Width="400" HorizontalAlignment="Left"  
                              Text="{Binding Path=ProductSerial, UpdateSourceTrigger=PropertyChanged}"
                              KeyDown="Txt_SN_KeyDown"
                              TextChanged="Txt_SN_TextChanged">
-                        </TextBox>
+                            </TextBox>
+                            <TextBox x:Name="txt_buffer"/>
+                        </WrapPanel>
+                        
 
                         <Label FontSize="14" Content="Results of SN testing and product weight:"/>
                         <Label FontSize="50" FontWeight="Bold"

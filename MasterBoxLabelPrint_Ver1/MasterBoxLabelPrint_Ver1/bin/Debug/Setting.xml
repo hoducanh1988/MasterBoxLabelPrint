@@ -1,33 +1,32 @@
 ﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProductionPlace>1</ProductionPlace>
-  <ProductionYear>18</ProductionYear>
-  <ProductionCommand>#12345</ProductionCommand>
-  <PrintMode>Combine label printing with product weighing</PrintMode>
-  <LineIndex>2</LineIndex>
+  <ProductionYear>19</ProductionYear>
+  <ProductionCommand>-</ProductionCommand>
+  <PrintMode>Only print label</PrintMode>
+  <LineIndex>1</LineIndex>
   <StationName>MasterBoxLabelPrint</StationName>
-  <StationIndex>1</StationIndex>
   <JigIndex>1</JigIndex>
-  <Operator>ABCD</Operator>
+  <Operator>-</Operator>
   <FileProduct>Product_Ver1.csv</FileProduct>
   <ProductName>SmartBoxV2</ProductName>
   <ProductCode>HY5NPE9N000002NP</ProductCode>
-  <ProductVersion>1</ProductVersion>
-  <PrinterName>Microsoft Print to PDF</PrinterName>
+  <ProductVersion>3</ProductVersion>
+  <PrinterName>-</PrinterName>
   <PrintPage>1</PrintPage>
   <MSAccessFile>MASTER_LABLE_PRINT_20190109.accdb</MSAccessFile>
-  <SerialPortName>COM4</SerialPortName>
+  <SerialPortName>COM1</SerialPortName>
   <SerialBaudRate>9600</SerialBaudRate>
   <SerialDataBits>8</SerialDataBits>
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <WaitTime>100</WaitTime>
-  <LampPortName>COM6</LampPortName>
+  <LampPortName>COM2</LampPortName>
   <LampBaudRate>9600</LampBaudRate>
   <LampDataBits>8</LampDataBits>
   <LampParity>None</LampParity>
   <LampStopBits>1</LampStopBits>
   <DirLog>D:\LOGDATA</DirLog>
-  <VisibleLogQuantity>50</VisibleLogQuantity>
+  <VisibleLogQuantity>1000</VisibleLogQuantity>
   <SOPServer>10.5.1.254</SOPServer>
   <ProductNumber>019</ProductNumber>
   <ColorCode>F</ColorCode>
@@ -38,4 +37,5 @@
   <WeightUL>113</WeightUL>
   <ProductInfo>&lt; 019,HY5NPE9N000002NP,F,103,10,5 &gt;</ProductInfo>
   <ProductionStatus>Normal</ProductionStatus>
+  <LOTIndex>000001</LOTIndex>
 </Proj_SettingInformation>

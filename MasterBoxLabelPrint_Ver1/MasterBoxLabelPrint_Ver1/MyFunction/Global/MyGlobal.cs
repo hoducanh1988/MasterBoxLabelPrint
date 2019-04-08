@@ -16,7 +16,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
 
         //variables
         public static string Setting_FileFullName = string.Format("{0}Setting.xml", AppDomain.CurrentDomain.BaseDirectory);
-
+        public static string Recent_FileFullName = string.Format("{0}tmp_\\Recent.dll", AppDomain.CurrentDomain.BaseDirectory);
 
         //objects
         public static Proj_TestingInformation MyTesting = new Proj_TestingInformation();
@@ -41,8 +41,6 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static string OutputLamp = "";
 
         public static bool ModeSetting = false;
-
-        public static bool GenNewLotFlag = false;
         
     }
 }

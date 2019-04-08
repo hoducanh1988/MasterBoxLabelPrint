@@ -8,8 +8,7 @@
         mc:Ignorable="d"
         Title="Version: 1.0.0.0 // Build Date: 2019/04/02 16:01" 
         Height="750" Width="1200" WindowStartupLocation="CenterScreen"
-        Opacity="{Binding Path=WindowOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-        Closing="Window_Closing">
+        Opacity="{Binding Path=WindowOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
 
     <Grid Margin="10,5,5,0">
         <Grid.RowDefinitions>

@@ -43,15 +43,14 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
             //load setting
             if (System.IO.File.Exists(MyFunction.Global.MyGlobal.Setting_FileFullName)) {
                 try {
-                    MyFunction.Global.MyGlobal.MySetting = UtilityPack.IO.XmlHelper<MyFunction.Custom.Proj_SettingInformation>.FromXmlFile(
-                        MyFunction.Global.MyGlobal.Setting_FileFullName);
+                    MyFunction.Global.MyGlobal.MySetting = UtilityPack.IO.XmlHelper<MyFunction.Custom.Proj_SettingInformation>.FromXmlFile(MyFunction.Global.MyGlobal.Setting_FileFullName);
                     MyGlobal.MasterBox = new MyFunction.AccessDatabase.MasterBoxAccessDB(MyGlobal.MySetting.MSAccessFile);
                 }
                 catch { }
             }
             
             //load production lot
-            new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
+            //new GetRecentProductionLot(MyGlobal.MySetting.LineIndex, MyGlobal.MySetting.ProductionPlace, MyGlobal.MySetting.ProductionYear, MyGlobal.MySetting.ProductNumber).GetData();
 
 
             listHist.Add(new history() {

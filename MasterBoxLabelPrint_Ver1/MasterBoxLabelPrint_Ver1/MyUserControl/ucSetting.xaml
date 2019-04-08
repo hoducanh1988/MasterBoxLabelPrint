@@ -143,12 +143,6 @@
                               Text="{Binding Path=StationName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Grid>
                 <Grid>
-                    <Label Content="Số thứ tự của trạm"/>
-                    <ComboBox x:Name="cbb_station_index"
-                              Tag="stationindex" GotFocus="FrameWorkElement_Focus"
-                              Text="{Binding Path=StationIndex, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                </Grid>
-                <Grid>
                     <Label Content="Số thứ tự Jig"/>
                     <ComboBox x:Name="cbb_jig_index"
                               Tag="jigindex" GotFocus="FrameWorkElement_Focus"
