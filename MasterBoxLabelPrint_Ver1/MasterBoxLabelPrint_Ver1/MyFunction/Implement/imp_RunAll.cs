@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
@@ -16,6 +17,8 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
 
         public bool Execute() {
             bool r = false;
+            Stopwatch st = new Stopwatch();
+            st.Start();
 
             try {
                 //init log
@@ -27,16 +30,27 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Implement {
                     ProductCode = MyGlobal.MySetting.ProductCode
                 };
                 MyGlobal.MyTesting.ErrorMessage = "";
+                MyGlobal.MyTesting.TestTime = "";
                 MyGlobal.MyTesting.ErrorMessage = string.Format("Product: \"{0}\"\n", MyGlobal.MyTesting.ProductSerial);
 
                 //validate serial number
                 if (!_validate_product_serialnumber()) goto END;
+                st.Stop();
+                MyGlobal.MyTesting.TestTime += string.Format("<Format={0}>", st.ElapsedMilliseconds);
 
                 //check serial printed or not
+                st.Reset();
+                st.Restart();
                 if (!_serial_was_printed()) goto END;
+                st.Stop();
+                MyGlobal.MyTesting.TestTime += string.Format("<Printed={0}>", st.ElapsedMilliseconds);
 
                 //check product weight
+                st.Reset();
+                st.Restart();
                 if (!_product_weight_is_valid()) goto END;
+                st.Stop();
+                MyGlobal.MyTesting.TestTime += string.Format("<Weight={0}>", st.ElapsedMilliseconds);
 
                 r = true;
                 goto END;

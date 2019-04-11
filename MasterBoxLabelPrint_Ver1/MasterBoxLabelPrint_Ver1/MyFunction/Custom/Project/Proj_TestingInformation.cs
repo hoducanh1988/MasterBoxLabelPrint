@@ -18,6 +18,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
             TotalResult = "";
             ErrorMessage = "";
             ErrorCode = "";
+            TestTime = "";
         }
         public void WaitingParameters() {
             WeightActual = "";
@@ -131,6 +132,14 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom {
             set {
                 _use_scale = value;
                 OnPropertyChanged(nameof(UseScaleFlag));
+            }
+        }
+        string _test_time;
+        public string TestTime {
+            get { return _test_time; }
+            set {
+                _test_time = value;
+                OnPropertyChanged(nameof(TestTime));
             }
         }
     }

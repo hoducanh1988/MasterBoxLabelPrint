@@ -98,7 +98,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Scale {
             string data = null;
             device.Read();
 
-            Thread.Sleep(250);
+            Thread.Sleep(100);
             data = device.Read();
             if (data == null) return null;
 

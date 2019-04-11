@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 using Access = Microsoft.Office.Interop.Access;
 using UtilityPack.Protocol;
@@ -282,9 +283,47 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.AccessDatabase {
                 oAccess.CloseCurrentDatabase();
                 oAccess.Quit();
 
+                Marshal.ReleaseComObject(oAccess);
+
                 return true;
             }
             catch (Exception ex) {
+                System.Windows.MessageBox.Show(ex.ToString());
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databaseLocation"></param>
+        /// <param name="queryNameToExport"></param>
+        /// <param name="locationToExportTo"></param>
+        /// <returns></returns>
+        public bool ExportQuery(string tableName, string locationToExportTo) {
+            try {
+                //init access file
+                Access.Application oAccess = null;
+
+                // Start a new instance of Access for Automation:
+                oAccess = new Access.Application();
+                oAccess.Visible = false;
+
+                // Open a database in exclusive mode:
+                oAccess.OpenCurrentDatabase(Access_FileFullName);
+
+                //transfer access data to excel file
+                oAccess.DoCmd.TransferSpreadsheet(Access.AcDataTransferType.acExport, Access.AcSpreadSheetType.acSpreadsheetTypeExcel12, tableName, locationToExportTo, true);
+
+                //close database
+                oAccess.CloseCurrentDatabase();
+                oAccess.Quit();
+
+                Marshal.ReleaseComObject(oAccess);
+
+                return true;
+            } catch (Exception ex) {
                 System.Windows.MessageBox.Show(ex.ToString());
                 return false;
             }

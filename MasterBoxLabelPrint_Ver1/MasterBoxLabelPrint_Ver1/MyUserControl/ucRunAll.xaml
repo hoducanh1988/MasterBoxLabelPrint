@@ -194,6 +194,7 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
+                        <Label Content="{Binding Path=TestTime, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Height="25" Padding="0,0,0,0"/>
                     </Grid>
                 </Border>
 
@@ -297,10 +298,12 @@
                             <Label Margin="30,0,0,0" Content="Lot name: " Width="70"/>
                             <TextBox x:Name="txt_lot_name" VerticalContentAlignment="Center" Width="170"/>
                             <Label Margin="30,0,0,0" Content="Product Serial: " Width="100"/>
-                            <TextBox x:Name="txt_search_datalog_sn" VerticalContentAlignment="Center" Width="200"/>
+                            <TextBox x:Name="txt_search_datalog_sn" VerticalContentAlignment="Center" Width="150"/>
                             <Label Margin="30,0,0,0" Content="Result: "/>
-                            <ComboBox x:Name="cbb_list_result" FontWeight="SemiBold" VerticalContentAlignment="Center" Width="200" IsEditable="True"/>
-                            
+                            <ComboBox x:Name="cbb_list_result" FontWeight="SemiBold" VerticalContentAlignment="Center" Width="100" IsEditable="True"/>
+
+                            <Button Content="Export Excel" Width="80" Margin="20,0,0,0" Tag="export_excel"
+                                    Click="Button_Click"/>
                         </WrapPanel>
 
                         <DataGrid x:Name="datagrid_recentdatalog" Grid.Row="1" 

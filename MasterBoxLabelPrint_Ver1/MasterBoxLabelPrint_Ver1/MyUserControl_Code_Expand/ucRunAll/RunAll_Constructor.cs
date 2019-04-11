@@ -26,33 +26,33 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 while (true) {
                     if (!MyGlobal.ModeSetting) {
                         if (MyGlobal.MySetting.ProductionStatus == "Normal") {
-                            Dispatcher.Invoke(new Action(() => {
-                                try {
+                            try {
+                                Dispatcher.Invoke(new Action(() => {
                                     this.Background = Brushes.White;
                                     this.lblproductionstatus.Content = "";
-                                }
-                                catch { }
-
-                            }));
+                                }));
+                            }
+                            catch { }
+                            
                         }
                         else {
-                            Dispatcher.Invoke(new Action(() => {
-                                try {
+                            try {
+                                Dispatcher.Invoke(new Action(() => {
                                     this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D0D0D0");
                                     this.lblproductionstatus.Content = "=> Bulk Rework";
-                                }
-                                catch { }
-                            }));
+                                }));
+                            }
+                            catch { }
                         }
                     }
                     else {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
+                        try {
+                            Dispatcher.Invoke(new Action(() => {
                                 this.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#f1ffb5");
                                 this.lblproductionstatus.Content = "=> Setting";
-                            }
-                            catch { }
-                        }));
+                            }));
+                        }
+                        catch { }   
                     }
                     
                     Thread.Sleep(1000);

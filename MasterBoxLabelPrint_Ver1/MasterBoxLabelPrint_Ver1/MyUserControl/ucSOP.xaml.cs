@@ -43,12 +43,13 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             Thread t = new Thread(new ThreadStart(() => {
                 while (true) {
                     string dir = string.Format(@"\\{0}\SOP\{1}\{2}", MyGlobal.MySetting.SOPServer, MyGlobal.MySetting.ProductName, MyGlobal.MySetting.StationName);
-                    Dispatcher.Invoke(new Action(() => {
-                        try {
+                    try {
+                        Dispatcher.Invoke(new Action(() => {
                             lbl_videoDir.Content = lbl_documentDir.Content = dir;
-                        } catch { }
-                        
-                    }));
+                        }));
+                    }
+                    catch { }
+                    
                     PingReply r = null;
                     try {
                         r = new Ping().Send(MyGlobal.MySetting.SOPServer, 1000, Encoding.ASCII.GetBytes("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
@@ -57,8 +58,8 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
 
                     if (r.Status == IPStatus.Success) {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
+                        try {
+                            Dispatcher.Invoke(new Action(() => {
                                 if (Directory.Exists(dir)) {
                                     //get lastest file
                                     lbl_documentFile.Content = new GetLatestFileInDirectory(dir, new string[] { "pdf" }).GetFileName();
@@ -68,17 +69,19 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                                     lbl_documentFile.Content = "null";
                                     lbl_videoFile.Content = "null";
                                 }
-                            } catch { }
-                            
-                        }));
+                            }));
+                        }
+                        catch { }
+                        
                     }
                     else {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
+                        try {
+                            Dispatcher.Invoke(new Action(() => {
                                 lbl_documentFile.Content = "null";
                                 lbl_videoFile.Content = "null";
-                            } catch { }
-                        }));
+                            }));
+                        }
+                        catch { }
                     }
 
                     END:

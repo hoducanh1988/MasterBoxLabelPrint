@@ -1,17 +1,18 @@
 ﻿<Proj_SettingInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProductionPlace>1</ProductionPlace>
+  <ProductionPlace>2</ProductionPlace>
   <ProductionYear>19</ProductionYear>
-  <ProductionCommand>-</ProductionCommand>
-  <PrintMode>Only print label</PrintMode>
+  <ProductionCommand>#12345</ProductionCommand>
+  <PrintMode>Combine label printing with product weighing</PrintMode>
   <LineIndex>1</LineIndex>
   <StationName>MasterBoxLabelPrint</StationName>
+  <StationIndex>1</StationIndex>
   <JigIndex>1</JigIndex>
-  <Operator>-</Operator>
+  <Operator>test</Operator>
   <FileProduct>Product_Ver1.csv</FileProduct>
-  <ProductName>SmartBoxV2</ProductName>
-  <ProductCode>HY5NPE9N000002NP</ProductCode>
-  <ProductVersion>3</ProductVersion>
-  <PrinterName>-</PrinterName>
+  <ProductName>GW020BoB</ProductName>
+  <ProductCode>HY5N2T5N000024NP</ProductCode>
+  <ProductVersion>8</ProductVersion>
+  <PrinterName>Microsoft Print to PDF</PrinterName>
   <PrintPage>1</PrintPage>
   <MSAccessFile>MASTER_LABLE_PRINT_20190109.accdb</MSAccessFile>
   <SerialPortName>COM1</SerialPortName>
@@ -20,22 +21,22 @@
   <SerialParity>None</SerialParity>
   <SerialStopBits>1</SerialStopBits>
   <WaitTime>100</WaitTime>
-  <LampPortName>COM2</LampPortName>
+  <LampPortName>COM4</LampPortName>
   <LampBaudRate>9600</LampBaudRate>
   <LampDataBits>8</LampDataBits>
   <LampParity>None</LampParity>
   <LampStopBits>1</LampStopBits>
   <DirLog>D:\LOGDATA</DirLog>
-  <VisibleLogQuantity>1000</VisibleLogQuantity>
+  <VisibleLogQuantity>50</VisibleLogQuantity>
   <SOPServer>10.5.1.254</SOPServer>
-  <ProductNumber>019</ProductNumber>
+  <ProductNumber>031</ProductNumber>
   <ColorCode>F</ColorCode>
-  <ProductWeight>103</ProductWeight>
+  <ProductWeight>583.95</ProductWeight>
   <WeightBias>10</WeightBias>
-  <LotQuantity>5</LotQuantity>
-  <WeightLL>93</WeightLL>
-  <WeightUL>113</WeightUL>
-  <ProductInfo>&lt; 019,HY5NPE9N000002NP,F,103,10,5 &gt;</ProductInfo>
+  <LotQuantity>20</LotQuantity>
+  <WeightLL>573.95</WeightLL>
+  <WeightUL>593.95</WeightUL>
+  <ProductInfo>&lt; 031,HY5N2T5N000024NP,F,583.95,10,20 &gt;</ProductInfo>
   <ProductionStatus>Normal</ProductionStatus>
   <LOTIndex>000001</LOTIndex>
 </Proj_SettingInformation>

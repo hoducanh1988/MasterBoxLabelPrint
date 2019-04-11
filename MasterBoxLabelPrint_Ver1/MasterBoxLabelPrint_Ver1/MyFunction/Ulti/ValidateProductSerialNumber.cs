@@ -31,7 +31,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             validate_product_serialnumber = sn;
             ValidateItems.Clear();
             ValidateItems.Add(new validate_item() { ActionName = "Invalid serial number length", ActualValue = validate_product_serialnumber.Length.ToString(), StandardValue = "15" });
-            ValidateItems.Add(new validate_item() { ActionName = "Product code is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = MyGlobal.MySetting.ProductNumber });
+            ValidateItems.Add(new validate_item() { ActionName = "Product number is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = MyGlobal.MySetting.ProductNumber });
             ValidateItems.Add(new validate_item() { ActionName = "The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = MyGlobal.MySetting.ProductionPlace });
             ValidateItems.Add(new validate_item() { ActionName = "Product version is not correct", ActualValue = _get_value_from_serial(7, 1), StandardValue = MyGlobal.MySetting.ProductVersion });
             ValidateItems.Add(new validate_item() { ActionName = "Color code is not correct", ActualValue = _get_value_from_serial(8, 1), StandardValue = MyGlobal.MySetting.ColorCode });
@@ -45,7 +45,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             validate_product_serialnumber = sn_bulk_rework;
             ValidateItems.Clear();
             ValidateItems.Add(new validate_item() { ActionName = "Invalid serial number length", ActualValue = validate_product_serialnumber.Length.ToString(), StandardValue = "15" });
-            ValidateItems.Add(new validate_item() { ActionName = "Product code is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = MyGlobal.MySetting.ProductNumber });
+            ValidateItems.Add(new validate_item() { ActionName = "Product number is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = MyGlobal.MySetting.ProductNumber });
             ValidateItems.Add(new validate_item() { ActionName = "Rework: The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = "" });
             ValidateItems.Add(new validate_item() { ActionName = "Rework: Product version is not correct", ActualValue = _get_value_from_serial(7, 1), StandardValue = "" });
             ValidateItems.Add(new validate_item() { ActionName = "Color code is not correct", ActualValue = _get_value_from_serial(8, 1), StandardValue = MyGlobal.MySetting.ColorCode });
@@ -59,7 +59,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Ulti {
             validate_product_serialnumber = sn_rework;
             ValidateItems.Clear();
             ValidateItems.Add(new validate_item() { ActionName = "Invalid serial number length", ActualValue = validate_product_serialnumber.Length.ToString(), StandardValue = "15" });
-            ValidateItems.Add(new validate_item() { ActionName = "Product code is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = productInfo.number });
+            ValidateItems.Add(new validate_item() { ActionName = "Product number is not correct", ActualValue = _get_value_from_serial(0, 3), StandardValue = productInfo.number });
             ValidateItems.Add(new validate_item() { ActionName = "Rework: The place of production is not correct", ActualValue = _get_value_from_serial(3, 1), StandardValue = "" });
             ValidateItems.Add(new validate_item() { ActionName = "Rework: Product version is not correct", ActualValue = _get_value_from_serial(7, 1), StandardValue = "" });
             ValidateItems.Add(new validate_item() { ActionName = "Color code is not correct", ActualValue = _get_value_from_serial(8, 1), StandardValue = productInfo.color });

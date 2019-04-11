@@ -67,6 +67,23 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
         public List<msaccdb_tbDataLog> ReadData() {
             return MyGlobal.MasterBox.Get_Specified_DataRow_From_Access_DB_Table<msaccdb_tbDataLog>(MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataLog" : "tb_DataLog_Bulk", int.Parse(MyGlobal.MySetting.VisibleLogQuantity), "tb_ID", "ProductSerial", "", "TotalResult", "", "Lot", "");
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool ExportToExcel(string export_filename) {
+            try {
+                string table_name = MyGlobal.MySetting.ProductionStatus == "Normal" ? "tb_DataLog" : "tb_DataLog_Bulk";
+
+                var box = MyGlobal.MasterBox;
+                box.ExportQuery(table_name, export_filename);
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        }
         
     }
 }

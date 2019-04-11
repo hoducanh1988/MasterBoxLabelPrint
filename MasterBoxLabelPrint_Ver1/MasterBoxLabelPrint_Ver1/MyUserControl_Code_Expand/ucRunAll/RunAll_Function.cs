@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Ulti;
@@ -80,13 +81,19 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
         //sub function --------------------------------------------//
         void _jud_pass() {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
             MyGlobal.MyTesting.ErrorMessage += string.Format("Serial Number is valid.");
             MyGlobal.MyTesting.PassParameters();
             MyGlobal.MyTesting.LotCount = string.Format("{0}", int.Parse(MyGlobal.MyTesting.LotCount) + 1);
 
             _save_log_(); //save log
+            st.Stop();
+            MyGlobal.MyTesting.TestTime += string.Format("<save_log={0}>", st.ElapsedMilliseconds);
 
-
+            st.Reset();
+            st.Restart();
             if (MyGlobal.MyTesting.LotCount.Equals(MyGlobal.MyTesting.LotLimit)) {  //gen lot
                 //set green lamp
                 VNPT_Lamp.Output(LampStatus.YellowON);
@@ -108,12 +115,30 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 //set green lamp
                 VNPT_Lamp.Output(LampStatus.GreenON);
             }
+            st.Stop();
+            MyGlobal.MyTesting.TestTime += string.Format("<set_lamp={0}>", st.ElapsedMilliseconds);
 
+            st.Reset();
+            st.Restart();
             _load_ms_datatable_(); //load ms database
+            st.Stop();
+            MyGlobal.MyTesting.TestTime += string.Format("<load_dblog={0}>", st.ElapsedMilliseconds);
 
+            st.Reset();
+            st.Restart();
             io_dll_Recent.ToFile(MyGlobal.MyTesting.LotName, MyGlobal.MyTesting.LotProgress); //save recent file
-
             Dispatcher.Invoke(new Action(() => { txt_SN.IsEnabled = true; txt_SN.Focus(); }));  //set focus for txt_SN
+            st.Stop();
+            MyGlobal.MyTesting.TestTime += string.Format("<save_recent={0}>", st.ElapsedMilliseconds);
+
+            //save log test time
+            if (System.IO.Directory.Exists(string.Format("{0}\\Log", AppDomain.CurrentDomain.BaseDirectory)) == false) {
+                System.IO.Directory.CreateDirectory(string.Format("{0}\\Log", AppDomain.CurrentDomain.BaseDirectory));
+                Thread.Sleep(100);
+            } 
+            var sw = new System.IO.StreamWriter(string.Format("{0}\\Log\\{1}.txt", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("yyyyMMdd")), true);
+            sw.WriteLine(MyGlobal.MyTesting.TestTime);
+            sw.Close();
         }
 
 

@@ -29,22 +29,23 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
             Thread t = new Thread(new ThreadStart(() => {
                 while (true) {
                     if (MyGlobal.MySetting.ProductionStatus == "Normal") {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
+                        try {
+                            Dispatcher.Invoke(new Action(() => {
                                 btnstartbulk.IsEnabled = true;
                                 btnendbulk.IsEnabled = false;
-                            }
-                            catch { }
-                        }));
+                            }));
+                        }
+                        catch { }
                     }
                     else {
-                        Dispatcher.Invoke(new Action(() => {
-                            try {
+                        try {
+                            Dispatcher.Invoke(new Action(() => {
                                 btnstartbulk.IsEnabled = false;
                                 btnendbulk.IsEnabled = true;
-                            }
-                            catch { }
-                        }));
+                            }));
+                        }
+                        catch { }
+                        
                     }
                     Thread.Sleep(500);
                 }

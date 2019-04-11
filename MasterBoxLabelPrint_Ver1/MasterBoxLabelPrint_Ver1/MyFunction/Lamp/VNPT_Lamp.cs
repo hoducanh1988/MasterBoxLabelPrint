@@ -15,9 +15,19 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Lamp {
 
     public class VNPT_Lamp : UART {
         public static UART device = null;
+        static Thread thrlamp = null;
 
         public static bool Output(LampStatus lampstatus) {
             try {
+                if (thrlamp != null) {
+                    if (thrlamp.IsAlive == true) {
+                        thrlamp.Abort();
+                        device.Write("0");
+                        Thread.Sleep(100);
+                        device.Close();
+                    }
+                }
+
                 if (device != null) device.Close();
                 device = new UART();
                 device.Open(
@@ -56,18 +66,23 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Lamp {
 
                 }
 
-                Thread t = new Thread(new ThreadStart(() => {
-                    device.Write(MyGlobal.OutputLamp);
-                    device.Write(MyGlobal.OutputLamp);
-                    device.Write(MyGlobal.OutputLamp);
-                    int delay = MyGlobal.OutputLamp == "p" ? 1000 : 5000;
-                    Thread.Sleep(delay);
-                    device.Write("0");
-                    Thread.Sleep(100);
-                    device.Close();
+                thrlamp = new Thread(new ThreadStart(() => {
+                    if (MyGlobal.OutputLamp == "0") {
+                        device.Write("0");
+                        Thread.Sleep(100);
+                        device.Close();
+                    }
+                    else {
+                        device.Write(MyGlobal.OutputLamp);
+                        int delay = MyGlobal.OutputLamp == "p" ? 500 : 3000;
+                        Thread.Sleep(delay);
+                        device.Write("0");
+                        Thread.Sleep(100);
+                        device.Close();
+                    }
                 }));
-                t.IsBackground = true;
-                t.Start();
+                thrlamp.IsBackground = true;
+                thrlamp.Start();
                 
                 return true;
             }

@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
+
 using MasterBoxLabelPrint_Ver1.MyFunction.Global;
 using MasterBoxLabelPrint_Ver1.MyFunction.Custom;
 using MasterBoxLabelPrint_Ver1.MyFunction.IO;
-
+using System;
 
 namespace MasterBoxLabelPrint_Ver1.MyUserControl {
 
@@ -32,6 +34,17 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 case "search_lot": {
                         this.datagrid_recentlot.ItemsSource = new io_msaccdb_tbDataProductionLot().ReadProductionLot(txt_lot_recent.Text);
                         MessageBox.Show("Success.", "Search Log MSAccess", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    }
+                case "export_excel": {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                        saveFileDialog.Filter = "Excel 1997 - 2003 (*.xls)|*.xls";
+                        if (saveFileDialog.ShowDialog() == true) {
+                            string file_name = saveFileDialog.FileName;
+                            new io_msaccdb_tbDataLog().ExportToExcel(file_name);
+                            MessageBox.Show("Success.", "Export Log MSAccess To Excel File", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                         break;
                     }
                 default: break;

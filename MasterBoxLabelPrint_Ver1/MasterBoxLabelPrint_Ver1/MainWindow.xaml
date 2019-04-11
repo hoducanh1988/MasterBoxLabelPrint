@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MasterBoxLabelPrint_Ver1"
         xmlns:uc="clr-namespace:MasterBoxLabelPrint_Ver1.MyUserControl"
         mc:Ignorable="d"
-        Title="Version: 1.0.0.0 // Build Date: 2019/04/02 16:01" 
+        Title="Version: 1.0.0.1 // Build Date: 2019/04/09 12:40" 
         Height="750" Width="1200" WindowStartupLocation="CenterScreen"
         Opacity="{Binding Path=WindowOpacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
 
