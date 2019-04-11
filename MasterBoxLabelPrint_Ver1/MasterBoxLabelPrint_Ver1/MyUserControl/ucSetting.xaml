@@ -95,6 +95,35 @@
                     <Setter Property="BorderThickness" Value="1,0,1,1"/>
                     <EventSetter Event="Click" Handler="Button_Click"/>
                 </Style>
+
+                <!--Border-->
+                <Style TargetType="Border">
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Margin" Value="200,0,0,0"/>
+                    <Setter Property="BorderBrush" Value="#777777"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                </Style>
+
+                <!--CheckBox-->
+                <Style TargetType="CheckBox">
+                    <Setter Property="Width" Value="120"/>
+                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="Margin" Value="0,0,0,0"/>
+                    
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsChecked}" Value="True">
+                            <Setter Property="Foreground" Value="Blue"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Opacity" Value="1"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsChecked}" Value="False">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
                 
             </ScrollViewer.Resources>
 
@@ -303,8 +332,40 @@
                         Tag="visiblelogquantity" GotFocus="FrameWorkElement_Focus"
                         Text="{Binding Path=VisibleLogQuantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </Grid>
+                <Grid>
+                    <Label Content="Lưu log chưa kiểm tra"/>
+                    <ComboBox x:Name="cbb_save_log_no_meaning"
+                        Tag="savelognomeaning" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=SaveLogNoMeaning, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>
+                <Grid>
+                    <Label Content="Tùy chọn lưu nội dung log"/>
+                    <Border>
+                        <WrapPanel Margin="5,5,0,0">
+                            <CheckBox x:Name="ck_save_format"
+                                      Content="Serial Format"
+                                      Tag="savelogformat" GotFocus="FrameWorkElement_Focus"
+                                      IsChecked="{Binding Path=IsSaveLogFormat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <CheckBox x:Name="ck_save_printed"
+                                      Content="Serial Printed"
+                                      Tag="savelogprinted" GotFocus="FrameWorkElement_Focus"
+                                      IsChecked="{Binding Path=IsSaveLogPrinted, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <CheckBox x:Name="ck_save_weight"
+                                      Content="Product Weight"
+                                      Tag="savelogweight" GotFocus="FrameWorkElement_Focus"
+                                      IsChecked="{Binding Path=IsSaveLogWeight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        </WrapPanel>
+                    </Border>
+                    
+                </Grid>
+                <!--<Grid>
+                    <Label Content="Số lượng serial check trùng lặp"/>
+                    <ComboBox x:Name="cbb_duplicate_quantity"
+                        Tag="duplicatequantity" GotFocus="FrameWorkElement_Focus"
+                        Text="{Binding Path=DuplicateQuantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                </Grid>-->
 
-
+                
                 <!--CÀI ĐẶT SOP-->
                 <Label Style="{StaticResource label_style}" Content="# CÀI ĐẶT SOP"/>
                 <Grid>

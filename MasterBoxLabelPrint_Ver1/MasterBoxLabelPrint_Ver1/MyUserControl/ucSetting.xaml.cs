@@ -182,6 +182,8 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                 this.cbb_production_year.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.year }).Where(x => x.year.Trim() != "").Select(x => x.year.ToString()).ToList();
                 this.cbb_stop_bit.ItemsSource = this.cbb_lamp_stop_bit.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.stopbit }).Where(x => x.stopbit.Trim() != "").Select(x => x.stopbit.ToString()).ToList();
                 this.cbb_visible_log_quantity.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.quantity }).Where(x => x.quantity.Trim() != "").Select(x => x.quantity.ToString()).ToList();
+                this.cbb_save_log_no_meaning.ItemsSource = MyParameter.QuestionList;
+                //this.cbb_duplicate_quantity.ItemsSource = MyGlobal.SuggestionTexts.Select(x => new { x.quantity }).Where(x => x.quantity.Trim() != "").Select(x => x.quantity.ToString()).ToList();
             }
         }
 

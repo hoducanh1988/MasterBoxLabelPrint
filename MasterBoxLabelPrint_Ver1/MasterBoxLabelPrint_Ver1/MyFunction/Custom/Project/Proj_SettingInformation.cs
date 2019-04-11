@@ -25,6 +25,11 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
             //log
             DirLog = "D:\\LOGDATA";
             VisibleLogQuantity = "100";
+            SaveLogNoMeaning = "No";
+            IsSaveLogFormat = true;
+            IsSaveLogPrinted = true;
+            IsSaveLogWeight = true;
+            DuplicateQuantity = "10000";
 
             //SOP
             SOPServer = "10.5.1.254";
@@ -375,6 +380,52 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Custom
                 OnPropertyChanged(nameof(VisibleLogQuantity));
             }
         }
+
+        string _save_log_no_meaning; //Save log no meaning
+        public string SaveLogNoMeaning {
+            get { return _save_log_no_meaning; }
+            set {
+                _save_log_no_meaning = value;
+                OnPropertyChanged(nameof(SaveLogNoMeaning));
+            }
+        }
+
+        bool _is_save_log_format; //Is save log format
+        public bool IsSaveLogFormat {
+            get { return _is_save_log_format; }
+            set {
+                _is_save_log_format = value;
+                OnPropertyChanged(nameof(IsSaveLogFormat));
+            }
+        }
+
+        bool _is_save_log_printed; //Is save log printed
+        public bool IsSaveLogPrinted {
+            get { return _is_save_log_printed; }
+            set {
+                _is_save_log_printed = value;
+                OnPropertyChanged(nameof(IsSaveLogPrinted));
+            }
+        }
+
+        bool _is_save_log_weight; //Is save log weight
+        public bool IsSaveLogWeight {
+            get { return _is_save_log_weight; }
+            set {
+                _is_save_log_weight = value;
+                OnPropertyChanged(nameof(IsSaveLogWeight));
+            }
+        }
+
+        string _duplicate_quantity; //Duplicate Quantity
+        public string DuplicateQuantity {
+            get { return _duplicate_quantity; }
+            set {
+                _duplicate_quantity = value;
+                OnPropertyChanged(nameof(DuplicateQuantity));
+            }
+        }
+
 
         #endregion
 

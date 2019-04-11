@@ -71,6 +71,15 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                 PERSON = "Hồ Đức Anh"
             });
 
+            listHist.Add(new history() {
+                ID = "3",
+                VERSION = "1.0.0.2",
+                CONTENT = "- Thêm chức năng tùy chọn lưu hoặc không lưu log chưa kiểm tra.\n" +
+                          "- Thêm chức năng tùy chọn lưu hoặc không lưu log check FORMAT, PRINTED, WEIGHT.",
+                DATE = "2019/04/11",
+                CHANGETYPE = "Chỉnh sửa",
+                PERSON = "Hồ Đức Anh"
+            });
 
             this.GridAbout.ItemsSource = listHist;
         }

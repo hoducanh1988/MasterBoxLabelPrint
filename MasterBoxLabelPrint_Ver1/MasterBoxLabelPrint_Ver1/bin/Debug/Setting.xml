@@ -28,6 +28,11 @@
   <LampStopBits>1</LampStopBits>
   <DirLog>D:\LOGDATA</DirLog>
   <VisibleLogQuantity>50</VisibleLogQuantity>
+  <SaveLogNoMeaning>No</SaveLogNoMeaning>
+  <IsSaveLogFormat>true</IsSaveLogFormat>
+  <IsSaveLogPrinted>true</IsSaveLogPrinted>
+  <IsSaveLogWeight>true</IsSaveLogWeight>
+  <DuplicateQuantity>10</DuplicateQuantity>
   <SOPServer>10.5.1.254</SOPServer>
   <ProductNumber>031</ProductNumber>
   <ColorCode>F</ColorCode>

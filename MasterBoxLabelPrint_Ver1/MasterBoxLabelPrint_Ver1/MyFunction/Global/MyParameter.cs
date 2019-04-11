@@ -16,14 +16,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
 
         };
 
-        //public static List<string> IndexList = MyBase.Get_Init_File("IndexList.ini");
-        //public static List<string> ProductList = MyBase.Get_Init_File("ProductList.ini");
-        //public static List<string> StationList = MyBase.Get_Init_File("StationList.ini");
         public static List<string> PrintModes = new List<string>() { "Only print label", "Combine label printing with product weighing" };
-
-        //public static List<string> ProductCodeList = MyBase.Get_Init_File("ProductCodeList.ini");
-        //public static List<string> ProductionPlaceList = MyBase.Get_Init_File("ProductionPlaceList.ini");
-        //public static List<string> ProductionYearList = MyBase.Get_Init_File("ProductionYearList.ini");
 
         public static List<string> SerialPorts = null;
         public static List<string> baudRates = new List<string>() { "75", "110", "134", "150", "300", "600", "1200", "1800", "2400", "4800", "7200", "9600", "14400", "19200", "38400", "57600", "115200", "128000", "256000" };
@@ -32,6 +25,7 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Global {
         public static List<string> stopBits = new List<string>() { "1", "1.5", "2" };
 
         public static List<string> Results = new List<string>() { "PASS", "FAIL" };
+        public static List<string> QuestionList = new List<string>() { "Yes", "No" };
 
         //public static Dictionary<string, string> dictGuide = new Dictionary<string, string>() {
         //    //CÀI ĐẶT TRẠM TEST --------------------------------------------------------------//

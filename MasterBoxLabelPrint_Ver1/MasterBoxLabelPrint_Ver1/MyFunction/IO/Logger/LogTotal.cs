@@ -51,6 +51,19 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.IO {
                         if (propertyInfo.PropertyType == typeof(VnptTestItemInfo)) {
                             VnptTestItemInfo itemInfo = (VnptTestItemInfo)propertyInfo.GetValue(logInfo, null);
 
+                            //check save log NONE
+                            if (MyGlobal.MySetting.SaveLogNoMeaning == "No") { if (itemInfo.Result.ToLower().Contains("none") == true) continue; }
+
+                            //check save log format
+                            if (MyGlobal.MySetting.IsSaveLogFormat == false) { if (propertyInfo.Name.ToLower().Equals("format") == true) continue; }
+
+                            //check save log printed
+                            if (MyGlobal.MySetting.IsSaveLogPrinted == false) { if (propertyInfo.Name.ToLower().Equals("printed") == true) continue; }
+
+                            //check save log weight
+                            if (MyGlobal.MySetting.IsSaveLogWeight == false) { if (propertyInfo.Name.ToLower().Equals("weight") == true) continue; }
+                            
+                            //save log
                             string content = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20}",
                                                            DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss ffff"),
                                                            logInfo.Production_Command.Replace(",", ";"),
