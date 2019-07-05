@@ -76,7 +76,7 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl
                 VERSION = "1.0.0.2",
                 CONTENT = "- Thêm chức năng tùy chọn lưu hoặc không lưu log chưa kiểm tra.\n" +
                           "- Thêm chức năng tùy chọn lưu hoặc không lưu log check FORMAT, PRINTED, WEIGHT.",
-                DATE = "2019/04/11",
+                DATE = "2019/04/11 && 2019/04/25",
                 CHANGETYPE = "Chỉnh sửa",
                 PERSON = "Hồ Đức Anh"
             });

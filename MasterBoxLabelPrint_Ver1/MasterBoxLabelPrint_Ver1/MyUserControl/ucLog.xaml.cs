@@ -133,11 +133,12 @@ namespace MasterBoxLabelPrint_Ver1.MyUserControl {
                                         }
                                     }
                                 } catch {
-                                    Dispatcher.Invoke(new Action(() => {
-                                        btn_startcalib.IsEnabled = true;
-                                        btn_stopcalib.IsEnabled = false;
-                                    }));
-                                    return;
+                                    //Dispatcher.Invoke(new Action(() => {
+                                    //    btn_startcalib.IsEnabled = true;
+                                    //    btn_stopcalib.IsEnabled = false;
+                                    //}));
+                                    //return;
+                                    continue;
                                 }
                                 
                                 //get weight

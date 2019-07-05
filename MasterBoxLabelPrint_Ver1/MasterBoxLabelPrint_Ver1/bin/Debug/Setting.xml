@@ -4,7 +4,7 @@
   <ProductionCommand>#12345</ProductionCommand>
   <PrintMode>Combine label printing with product weighing</PrintMode>
   <LineIndex>1</LineIndex>
-  <StationName>MasterBoxLabelPrint</StationName>
+  <StationName>ImeiSerialLabelPrint</StationName>
   <StationIndex>1</StationIndex>
   <JigIndex>1</JigIndex>
   <Operator>test</Operator>
@@ -43,5 +43,5 @@
   <WeightUL>593.95</WeightUL>
   <ProductInfo>&lt; 031,HY5N2T5N000024NP,F,583.95,10,20 &gt;</ProductInfo>
   <ProductionStatus>Normal</ProductionStatus>
-  <LOTIndex>000001</LOTIndex>
+  <LOTIndex>000111</LOTIndex>
 </Proj_SettingInformation>

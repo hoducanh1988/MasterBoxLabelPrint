@@ -98,7 +98,12 @@ namespace MasterBoxLabelPrint_Ver1.MyFunction.Scale {
             string data = null;
             device.Read();
 
-            Thread.Sleep(100);
+            //wait time
+            int wait_time; bool r = int.TryParse(MyGlobal.MySetting.WaitTime, out wait_time);
+            wait_time = r ? wait_time : 100;
+            Thread.Sleep(wait_time);
+
+            //read newest data
             data = device.Read();
             if (data == null) return null;
 
